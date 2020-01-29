@@ -23,6 +23,15 @@ a:hover {
   text-shadow:2px 2px #e5e5e5;
 }
 
+.header button {
+    background: none;
+    border:none;
+}
+
+.header button:hover {
+    box-shadow: 2px 2px #e5e5e5;
+}
+
 .image {
   opacity: 1;
   display: block;
@@ -30,7 +39,7 @@ a:hover {
   backface-visibility: hidden;
 }
 
-.col-sm-3 .image:hover {
+.col-md-3 .image:hover {
   opacity: 0.7;
 }
 
@@ -38,13 +47,17 @@ a:hover {
     margin-top:20px;
 }
 
-.row .col-sm-3 img {
+.row .col-md-3 img {
     width:200px;
     height:305px;
     border-radius:1px;
     margin-left:auto;
     margin-right:auto;
     display:block;
+}
+
+.row .col-md-3 {
+    padding-top:20px;
 }
 
 .container {
@@ -103,4 +116,49 @@ a:hover {
 
 .movie-desc {
 
+}
+
+#popupdark {
+    width:100%;
+    height:100%;
+    background-color:#000;
+    opacity:0.2;
+    display:none;
+    z-index:1;
+    position:fixed;
+}
+
+#popup {
+    background-color:#FFF;
+    width:400px;
+    height:300px;
+    position:fixed;
+    display:none;
+    z-index:1;
+    left: 50%;
+    margin-left: -200px;
+    top:50%;
+    margin-top: -150px;
+    border: 1px solid #e5e5e5;
+    border-radius:10px;
+}
+
+#popup form {
+    margin-left:40px;
+    margin-top:40px;
+}
+
+#loginbutton2 {
+    background: #4B99AD;
+	padding: 8px 15px 8px 15px;
+	border: none;
+	color: #fff;
+        border-radius:4px;
+}
+
+#loginbutton2:hover {
+    background: #4691A4;
+	box-shadow:none;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
 }
