@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="CarDAOTest" time="0.335" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="CarDAOTest" time="0.363" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
     <property name="java.vm.version" value="25.181-b13"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\jespe\Documents\Dat076\project\lab3"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:\Users\makka\Desktop\lab3"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -16,12 +16,12 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\jespe\Documents\Dat076\project\lab3"/>
+    <property name="user.dir" value="C:\Users\makka\Desktop\lab3"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\jespe\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\makka\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
@@ -30,17 +30,17 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-11.2\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans-11.2\netbeans\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27\;C:\Python27\Scripts;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\PowerShell\6.0.4\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Users\jespe\Desktop\Grejer\premake4;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\CMake\bin;C:\Program Files\Git\cmd;C:\Users\jespe\AppData\Local\Microsoft\WindowsApps;C:\Users\jespe\AppData\Local\GitHubDesktop\bin;C:\Users\jespe\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\bin;C:\Users\jespe\AppData\Local\Microsoft\WindowsApps;C:\Users\jespe\AppData\Local\atom\bin;C:\Program Files\nodejs\;C:\Users\jespe\AppData\Roaming\npm;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\MATLAB\R2017b\bin;C:\WINDOWS\System32\OpenSSH\;C:\Users\makka\OneDrive\Dokument\apache-maven-3.5.4\bin;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\PostgreSQL\pg11\bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Users\makka\AppData\Local\Microsoft\WindowsApps;C:\Users\makka\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\jespe"/>
+    <property name="user.home" value="C:\Users\makka"/>
     <property name="user.timezone" value="Europe/Berlin"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="user.name" value="jespe"/>
+    <property name="user.name" value="makka"/>
     <property name="java.class.path" value="C:\Program Files\NetBeans-11.2\netbeans\java\maven\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
@@ -62,5 +62,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="CarDAOTest" name="checkThatFindCarsMatchingNameMatchesCorrectly" time="0.335"/>
+  <testcase classname="CarDAOTest" name="checkThatFindCarsMatchingNameMatchesCorrectly" time="0.363"/>
 </testsuite>

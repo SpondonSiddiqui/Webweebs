@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +25,5 @@ import lombok.NoArgsConstructor;
 public class Car implements Serializable {
     @Id private String license;
     private String name;
-    @OneToOne private ParkingSpace parkingSpace;
     
 }
