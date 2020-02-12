@@ -5,27 +5,25 @@
  */
 package model.entity;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 /**
  *
- * @author Spondon
+ * @author jespe
  */
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car implements Serializable {
-    @Id private String license;
-    private String name;
-    @OneToOne private ParkingSpace parkingSpace;
-    
+public class ParkingSpace {
+    @Id private int number;
+    @JoinColumn (name = "parkingLot_id")
+    @ManyToOne private ParkingLot parkingLot;
+    @OneToOne public Car car;
 }
