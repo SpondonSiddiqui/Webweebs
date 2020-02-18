@@ -1,4 +1,10 @@
-model\dao\CarDAO.class
+model\entity\QParkingLot_.class
+model\dao\ParkingLotDAO.class
+model\dao\ParkingSpaceDAO.class
 model\entity\Car.class
+model\entity\ParkingSpace.class
 model\dao\AbstractDAO.class
 model\entity\QCar_.class
+model\entity\QParkingSpace_.class
+model\entity\ParkingLot.class
+model\dao\CarDAO.class

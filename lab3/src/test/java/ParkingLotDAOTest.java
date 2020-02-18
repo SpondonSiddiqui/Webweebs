@@ -6,11 +6,13 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.ejb.EJB;
+import junit.framework.Assert;
 import model.dao.CarDAO;
+import model.dao.ParkingLotDAO;
 import model.entity.Car;
 import model.entity.ParkingLot;
-import model.dao.ParkingLotDAO;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -18,7 +20,6 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,10 +28,10 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * @author Spondon
+ * @author makka
  */
 @RunWith(Arquillian.class)
-public class CarDAOTest {
+public class ParkingLotDAOTest {
     @Deployment 
     public static WebArchive createDeployment() { 
         return ShrinkWrap.create(WebArchive.class)
@@ -39,34 +40,33 @@ public class CarDAOTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml"); 
     }
     
-    @EJB private CarDAO carDAO;
-    private List<Car> cars = new ArrayList<>();
+    @EJB private ParkingLotDAO parkingLotDAO;
+    
     private ParkingLot parkingLot;
     
-    @Before public void init() {
-        cars.add(new Car("IFF780", "Renault Clio", parkingLot));
-        cars.add(new Car("LTP520", "Volvo 760GT", parkingLot));
-        cars.add(new Car("XOL345", "Isuzu Traga", parkingLot));
-        for(Car c : cars) {
-            carDAO.create(c);
+    @Before
+    public void setUp() {
+        List<Car> cars = new ArrayList<>();
+        
+        for(int i = 0; i < 5; i++) {
+            cars.add(new Car("AAA00" + i, "Volvo 740", null));
+        }       
+        parkingLot = new ParkingLot(1, 100, cars);
+        
+        for(int i = 0; i < 5; i++){
+            parkingLot.getCars().get(i).setParkingLot(parkingLot);
         }
-    }
+        
+        parkingLotDAO.create(parkingLot);
+    }  
     
-    @Test
-    public void checkThatFindCarsMatchingNameMatchesCorrectly() { 
+    @After
+    public void tearDown() {
         
-        List<Car> carTestList = new ArrayList<>();
-        List<Car> carDAOList = carDAO.findCarsMatchingName("Isuzu Traga");
-        
-        carTestList.add(new Car("XOL345", "Isuzu Traga", parkingLot));
+    }
 
-        Assert.assertTrue(carDAOList.equals(carTestList));
+    @Test
+    public void checkAvailableSpaces() {
+        Assert.assertEquals(95, parkingLotDAO.available_spaces(parkingLot));
     }
-    
-    @After public void clean() { 
-        for(Car c : cars) {
-            carDAO.remove(c);
-        }
-    }
-    
 }

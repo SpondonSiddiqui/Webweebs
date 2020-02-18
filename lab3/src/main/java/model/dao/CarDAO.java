@@ -36,5 +36,5 @@ public class CarDAO extends AbstractDAO<Car> {
         JPAQuery query = new JPAQuery(entityManager);
         
         return query.select(Car.class).where(carx.name.like(name)).getResultList();
-    }
+    } 
 }

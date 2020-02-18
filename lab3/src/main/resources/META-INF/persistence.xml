@@ -2,6 +2,7 @@
 <persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <!-- Define Persistence Unit -->
   <persistence-unit name="webweebs" transaction-type="JTA">
-      
+    <class>model.entity.ParkingLot</class>
+    <class>model.entity.ParkingSpace</class>
   </persistence-unit>
 </persistence>
