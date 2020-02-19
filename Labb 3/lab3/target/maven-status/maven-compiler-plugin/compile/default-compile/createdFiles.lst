@@ -1,0 +1,7 @@
+model\dao\UserDAO.class
+model\dao\AbstractDAO.class
+model\dao\MovieDAO.class
+model\entity\Movie.class
+model\entity\Actor.class
+model\dao\ActorDAO.class
+model\entity\WebUser.class
