@@ -7,42 +7,39 @@ package model.dao;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import easycriteria.JPAQuery;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.JoinType;
 import lombok.Getter;
-import lombok.Setter;
-import model.entity.Car;
-import model.entity.ParkingLot;
-import model.entity.QCar;
-import model.entity.QParkingLot_;
-import model.entity.QCar_;
+import model.entity.Driver;
+import model.entity.QDriver;
+import model.entity.QDriver_;
 
 /**
  *
  * @author makka
  */
 @Stateless
-public class ParkingLotDAO extends AbstractDAO<ParkingLot> {
+public class DriverDAO extends AbstractDAO<Driver> {
     @Getter
-    @Setter
     @PersistenceContext(unitName = "webweebs")
     private EntityManager entityManager;
     
-    public ParkingLotDAO() {
-        super(ParkingLot.class);
+    public DriverDAO(){
+        super(Driver.class);
     }
     
-    public int available_spaces(ParkingLot pl) {
+    public int getNumberOfCarsByName(String name) {
         JPAQueryFactory queryFactory = new JPAQueryFactory(entityManager);
-        QCar car = QCar.car;
         
-        List<Car> list = queryFactory.selectFrom(car)
-                .where(car.parkingLot.eq(pl))
+        QDriver driver = QDriver.driver;
+        
+        List<Driver> list = queryFactory.selectFrom(driver)
+                .where(driver.name.eq(name))
                 .fetch();
         
-        return pl.getCapacity() - list.size();
+        return list.size();
     }
 }

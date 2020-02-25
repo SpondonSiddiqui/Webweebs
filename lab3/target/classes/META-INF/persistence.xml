@@ -4,5 +4,6 @@
   <persistence-unit name="webweebs" transaction-type="JTA">
     <class>model.entity.ParkingLot</class>
     <class>model.entity.ParkingSpace</class>
+    <class>model.entity.Driver</class>
   </persistence-unit>
 </persistence>

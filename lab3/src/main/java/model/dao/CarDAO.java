@@ -37,4 +37,6 @@ public class CarDAO extends AbstractDAO<Car> {
         
         return query.select(Car.class).where(carx.name.like(name)).getResultList();
     } 
+    
+    
 }
