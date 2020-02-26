@@ -6,10 +6,13 @@
 package model.view;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import lombok.Data;
+import model.entity.Movie;
+import model.entity.MovieGrid;
 
 /**
  *
