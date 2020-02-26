@@ -9,11 +9,15 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
     <h:head><title>Shuffle test</title></h:head>
     <h:body>
-        <h:form> <p:dataTable value="#{movieGridBackingBean.movies}" var="movie" paginator="true" rows="10"> 
+        Hello world:
+        #{movieBackingBean.test}
+        
+        <h:form> <p:dataTable value="#{movieBackingBean.movies}" var="movie" paginator="true" rows="10"> 
                 <p:column headerText="Title" sortBy="#{movie.name}">#{movie.name}</p:column>
                 <p:column headerText="Release year" sortBy="#{movie.releaseYear}">#{movie.releaseYear}</p:column>
                 <p:column headerText="Rating" sortBy="#{movie.rating}">#{movie.rating}</p:column> 
             </p:dataTable> </h:form>
+        
     </h:body>
 </html>
 

@@ -6,13 +6,15 @@
 package model.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import lombok.Data;
+import model.dao.MovieDAO;
 import model.entity.Movie;
-import model.entity.MovieGrid;
 
 /**
  *
@@ -21,10 +23,18 @@ import model.entity.MovieGrid;
 @Data
 @Named
 @ViewScoped
-public class MovieGridBackingBean implements Serializable {
+public class MovieBackingBean implements Serializable {
     
     @EJB
-    private MovieGrid movieGrid;
+    MovieDAO movieDAO;
+
+    private List<Movie> movies = movieDAO.findAll();
     
-    private List<Movie> movies;
+    private String test;
+    
+    @PostConstruct
+    private void init() {
+        //movies = new ArrayList<>(movieGrid.getMovies());
+        test = "Hello world";
+    }
 }
