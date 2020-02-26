@@ -27,6 +27,7 @@ public class Movie implements Serializable {
     @NonNull private String name;
     @NonNull private Integer releaseYear;
     @NonNull private Integer rating;
+    @NonNull private String description;
     
     @JoinTable(name = "actor_list",
             joinColumns = @JoinColumn(name = "movie"),

@@ -1,14 +1,7 @@
-model\dao\MovieDAO.class
-model\entity\Actor.class
-model\entity\WebUser.class
-model\dao\MovieFacade.class
-model\dao\MovieController.class
-model\dao\util\JsfUtil.class
 model\dao\UserDAO.class
-model\dao\MovieController$1.class
 model\dao\AbstractDAO.class
+model\dao\MovieDAO.class
 model\entity\Movie.class
-model\dao\MovieController$MovieControllerConverter.class
+model\entity\Actor.class
 model\dao\ActorDAO.class
-model\dao\util\PaginationHelper.class
-model\dao\AbstractFacade.class
+model\entity\WebUser.class

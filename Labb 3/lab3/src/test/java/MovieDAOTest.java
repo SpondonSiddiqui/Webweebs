@@ -39,53 +39,29 @@ public class MovieDAOTest {
     private ActorDAO actorDAO;
     
     private List<Movie> movies = new ArrayList<>();
-    Faker faker = new Faker();
+    private List<Actor> actors = new ArrayList<>();
+    private Faker faker = new Faker();
     int n = 8;
-    Random rand = new Random();
-    
-
-    /*Movie godfather = new Movie("The Godfather", 1972, 10);
-    Movie joker = new Movie("Joker", 2019, 8);
-    Movie uncut = new Movie("Uncut Gem", 2019, 9);
-    Movie darkNight = new Movie("The Dark Knight", 2008, 6);
-    Movie gladiator = new Movie("Gladiator", 2000, 5);
-    Movie beautifulMind = new Movie("A Beautiful Mind", 2001, 4);*/
-    
-    Actor joph = new Actor ("Joaquin Phoenix", 1974);
-    Actor rucr = new Actor ("Russell Crowe", 1964);
+    private Random rand = new Random();
 
     @Before
     public void init() {
-
-        /*List<Actor> jokerActors = new ArrayList<>();
-        jokerActors.add(joph);
-        joker.setActors(jokerActors);
         
-        List<Actor> gladiatorActors = new ArrayList<>();
-        gladiatorActors.add(rucr);
-        gladiatorActors.add(joph);
-        gladiator.setActors(gladiatorActors);
-        
-        List<Actor> beautifulMindActors = new ArrayList<>();
-        beautifulMindActors.add(rucr);
-        beautifulMind.setActors(beautifulMindActors);
-        
-        actorDAO.create(joph);
-        actorDAO.create(rucr);
-        
-        movies.add(godfather);
-        movies.add(joker);
-        movies.add(uncut);
-        movies.add(darkNight);
-        movies.add(gladiator);
-        movies.add(beautifulMind);*/
-
         for(int i=0; i<n; i++ ) {
             String title = faker.book().title();
             Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
             Integer rating = rand.nextInt((10-1)+1) + 1;
-            Movie movie = new Movie(title, year, rating);
+            String description = faker.gameOfThrones().quote();
+            Movie movie = new Movie(title, year, rating, description);
+            
+            String name = faker.funnyName().name();
+            Integer byear = rand.nextInt((2020-1900)+1) + 1900;
+            Actor actor = new Actor(name, byear);
+            actorDAO.create(actor);
+            actors.add(actor);
             movieDAO.create(movie);
+            movie.setActors(actors);
+            
         }
     }
 
