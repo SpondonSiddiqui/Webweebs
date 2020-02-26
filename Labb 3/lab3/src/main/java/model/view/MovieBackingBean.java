@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import lombok.Data;
 import model.dao.MovieDAO;
@@ -28,13 +28,13 @@ public class MovieBackingBean implements Serializable {
     @EJB
     MovieDAO movieDAO;
 
-    private List<Movie> movies = movieDAO.findAll();
+    private List<Movie> movies;
     
     private String test;
     
     @PostConstruct
     private void init() {
-        //movies = new ArrayList<>(movieGrid.getMovies());
         test = "Hello world";
+        movieDAO.findMoviesByName("Joker");
     }
 }
