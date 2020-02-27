@@ -35,6 +35,6 @@ public class MovieBackingBean implements Serializable {
     @PostConstruct
     private void init() {
         test = "Hello world";
-        movieDAO.findMoviesByName("Joker");
+        movies = movieDAO.findMoviesByName("Joker");
     }
 }
