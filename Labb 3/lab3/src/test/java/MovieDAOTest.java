@@ -62,6 +62,7 @@ public class MovieDAOTest {
             movieDAO.create(movie);
             movie.setActors(actors);
             
+            
         }
     }
 

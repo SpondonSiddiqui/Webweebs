@@ -38,4 +38,9 @@ public class MovieDAO extends AbstractDAO<Movie> {
                 + "ORDER BY m.rating DESC");
         return query.getResultList();
     }
+    
+    public List<Movie> getAllMovies(){
+        Query query = entityManager.createQuery("SELECT m FROM Movie m");
+        return query.getResultList();
+    }
 }
