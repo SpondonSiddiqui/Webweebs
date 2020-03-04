@@ -43,4 +43,6 @@ public class MovieDAO extends AbstractDAO<Movie> {
         Query query = entityManager.createQuery("SELECT m FROM Movie m");
         return query.getResultList();
     }
+    
+    
 }

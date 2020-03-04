@@ -3,23 +3,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title></title>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        <ui:composition>
-            <ui:define name="title">My Book Shelf</ui:define>
-            <ui:define name="content">
-                <h1 class="movie">
-                    #{showMovieBackingBean.movie.name}
-                </h1>
-                <h2>#{showMovieBackingBean.movie.rating}</h2>
-                <h3>#{showMovieBackingBean.movie.description}</h3>
-                <p:button value="Go back to book index" href="."/>
-            </ui:define>
-        </ui:composition>
+        Hello poop
+        <br />
+        <h:link outcome="/movie/List" value="Show All Movie Items"/>
+        <h:form>
+            <p:dataTable value="#{showMovieBackingBean.getMovie()}" var="movie"
+                         paginator="true" rows="10">
+                <p:column headerText="Name" sortBy="#{movie.name}">#{movie.name}
+                    <p:button href="movieDetails">
+                        <f:param name="name" value="#{movie.name}"/>
+                    </p:button>
+                </p:column>
+
+                <p:column headerText="Rating" sortBy="#{movie.rating}">#{movie.rating}</p:column>
+                <p:column headerText="Description" sortBy="#{movie.description}">#{movie.description}</p:column>
+            </p:dataTable>
+        </h:form>
     </h:body>
 
 </html>
-
