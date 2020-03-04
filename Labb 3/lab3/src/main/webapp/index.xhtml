@@ -11,17 +11,23 @@ and open the template in the editor.
         <title>Shuffle test</title>
 
     </h:head>
+
     <h:body>
+        <div>
+            <button class="login-button">
+                <p>Login</p>
+            </button>
+        </div>
         <h:form id="form">
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="3" layout="grid"
-                rows="12" paginator="true" id="mov"
-                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                rowsPerPageTemplate="6,12,16">
+                        rows="12" paginator="true" id="mov"
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
 
                 <f:facet name="header">
                     Movies
                 </f:facet>
-                
+
                 <p:panel header="#{movie.name}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage name="img/Joker.jpg"/> -->

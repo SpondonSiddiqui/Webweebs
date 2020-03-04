@@ -5,3 +5,8 @@
 .customPanelGrid .ui-panelgrid-content {
     align-items: center;
 }
+
+.login-button {
+    color: #FF8282;
+    margin-right: 25px;
+}
