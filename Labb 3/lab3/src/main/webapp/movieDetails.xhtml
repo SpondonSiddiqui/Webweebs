@@ -8,14 +8,15 @@
         <title></title>
     </h:head>
     <h:body>
+        <ui:composition>
+            <ui:define name="title">My Book Shelf</ui:define>
             <ui:define name="content">
                 <h1 class="movie">
                     #{showMovieBackingBean.movie.name}
                 </h1>
                 <h2>#{showMovieBackingBean.movie.rating}</h2>
                 <h3>#{showMovieBackingBean.movie.description}</h3>
-                
-                <p:button value="Go back to index" href="index.xhtml"/>
+                <p:button value="Go back to book index" href="."/>
             </ui:define>
         </ui:composition>
     </h:body>

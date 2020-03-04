@@ -9,14 +9,13 @@ import java.awt.print.Book;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import model.dao.MovieDAO;
 import model.entity.Movie;
 import org.omnifaces.cdi.Param;
-import org.omnifaces.cdi.ViewScoped;
-
 /**
  *
  * @author User
@@ -32,7 +31,10 @@ public class ShowMovieBackingBean implements Serializable {
     @EJB
     private MovieDAO movieDAO;
 
-    public List<Movie> getMovie() {
+    /*public List<Movie> getMovie() {
         return movieDAO.findMoviesByName(name);
+    }*/
+    public Movie getMovie(){
+        return movieDAO.findMoviesByName(name).get(0);
     }
 }
