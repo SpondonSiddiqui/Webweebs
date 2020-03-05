@@ -19,9 +19,12 @@ import lombok.RequiredArgsConstructor;
 public class Movie implements Serializable {
 
     @Id
-    @NonNull private String name;
-    @NonNull private Integer releaseYear;
-    @NonNull private Integer rating;
+    @NonNull private String title;
+    @NonNull private Integer avg_rating;
+    @NonNull private String overview;
+    @NonNull private Integer release_date;
+    @NonNull private String poster_path;
+    
     
     @JoinTable(name = "actor_list",
             joinColumns = @JoinColumn(name = "movie"),
