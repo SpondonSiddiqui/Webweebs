@@ -7,8 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
-    <head>
-        <title>NAME OF ACTOR</title>
+    <head value="#{showMovieBackingBean.getMovie()}" var="movie">
+        <title id="pageTitle">#{movie.name}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
@@ -38,39 +38,24 @@ and open the template in the editor.
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
-                            <img src="img/joaquin-phoenix.jpg" class="img-fluid" alt="Responsive image"/>
-                            <table class="table table-sm">
+                            <img src="img/sharknado.jpg" class="img-fluid" alt="Responsive image"/>
+                            <table class="table table-sm" value="#{showMovieBackingBean.getMovie()}" var="movie">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Born</th>
-                                        <td>October 28, 1974 in San Juan, Puerto Rico</td>
+                                        <th scope="row">Release year</th>
+                                        <td>#{movie.releaseYear}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Birth name</th>
-                                        <td>Joaquin Rafael Bottom</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nicknames</th>
-                                        <td>
-                                            <ul style="list-style-type:none">
-                                                <li>Kitten</li>
-                                                <li>Joaq</li>
-                                                <li>Leaf</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Height</th>
-                                        <td>5' 8" (1.73 m)</td>
+                                        <th scope="row">Rating</th>
+                                        <td>#{movie.rating}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col">
-                            <h5 class="card-title text-left" float="left">Joaquin Phoenix</h5>
-                            <p class="card-text text-left">Joaquin Phoenix was born Joaquin Rafael Bottom in San Juan, Puerto Rico, to Arlyn (Dunetz) and John Bottom, and is the middle child in a brood of five. His parents, from the continental United States, were then serving as Children of God missionaries. His mother is from a Jewish family from New York, while his father, from California, is of mostly British Isles descent. As a youngster, Joaquin took his cues from older siblings River Phoenix and Rain Phoenix, changing his name to Leaf to match their earthier monikers. When the children were encouraged to develop their creative instincts, he followed their lead into acting. Younger sisters Liberty Phoenix and Summer Phoenix rounded out the talented troupe.
-
-                                The family moved often, traveling through Central and South America (and adopting the surname "Phoenix" to celebrate their new beginnings) but, by the time Joaquin was age 6, they had more or less settled in the Los Angeles area. Arlyn found work as a secretary at NBC, and John turned his talents to landscaping. They eventually found an agent who was willing to represent all five children, and the younger generation dove into television work. Commercials for meat, milk, and junk food were off-limits (the kids were all raised as strict vegans), but they managed to find plenty of work pushing other, less sinister products. Joaquin's first real acting gig was a guest appearance on River's sitcom, Seven Brides for Seven Brothers (1982).</p>
+                        <div class="col" value="#{showMovieBackingBean.getMovie()}" var="movie">
+                            
+                            <h5 id="movieTitle" class="card-title text-left" float="left">#{movie.name}</h5>
+                            <p id="movieDescription" class="card-text text-left">#{movie.description}</p>
                         </div>
                     </div>
                 </div>
