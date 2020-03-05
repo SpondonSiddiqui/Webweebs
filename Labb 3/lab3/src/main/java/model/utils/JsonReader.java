@@ -59,7 +59,7 @@ public class JsonReader {
       
       ObjectMapper objectMapper = new ObjectMapper();
       List<JsonNode> result = new ArrayList<>();
-      JsonNode tree = objectMapper.readTree(url);
+      JsonNode tree = objectMapper.readTree(json.toString());
       JsonNode paths = tree.get("results");
       
       Iterator<String> fieldNames = paths.fieldNames();
@@ -79,7 +79,8 @@ public class JsonReader {
       
       for(JsonNode node : result){
           
-          Movie movie = jsonb.fromJson(node.toString(), Movie.class);
+          //Movie movie = jsonb.fromJson(node.toString(), Movie.class);
+          Movie movie = objectMapper.readValue(node.toString(), Movie.class);
           movies.add(movie);
       }
       return movies;
