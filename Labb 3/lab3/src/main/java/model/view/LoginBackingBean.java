@@ -6,11 +6,18 @@
 package model.view;
 
 import java.io.Serializable;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import lombok.Data;
 
 /**
  *
  * @author Spondon
  */
+
+@Data
+@Named
+@ViewScoped
 public class LoginBackingBean implements Serializable{
 
     private String username;
