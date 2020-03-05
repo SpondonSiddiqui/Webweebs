@@ -5,11 +5,13 @@
  */
 package model.view;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Spondon
  */
-public class LoginBackingBean {
+public class LoginBackingBean implements Serializable{
 
     private String username;
     private String password;
@@ -58,12 +60,12 @@ public class LoginBackingBean {
     }
 
     public String checkValidity() {
-        if (this.username == null || this.username.equals("")) {
+        if (this.username == null || this.username.equals("webweebs")) {
             isUsernameValid = false;
         } else {
             isUsernameValid = true;
         }
-        if (this.password == null || this.password.equals("")) {
+        if (this.password == null || this.password.equals("webweebs")) {
             isPasswordValid = false;
         } else {
             isPasswordValid = true;

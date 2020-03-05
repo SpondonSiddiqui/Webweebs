@@ -9,15 +9,12 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
         <title>Shuffle test</title>
-
     </h:head>
 
     <h:body>
-        <div>
-            <button class="login-button">
-                <p>Login</p>
-            </button>
-        </div>
+        
+        <h:button value="Log in" outcome="login.xhtml"></h:button>
+        
         <h:form id="form">
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="3" layout="grid"
                         rows="12" paginator="true" id="mov"
