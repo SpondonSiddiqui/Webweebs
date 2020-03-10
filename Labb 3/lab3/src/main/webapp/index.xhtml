@@ -25,7 +25,7 @@ and open the template in the editor.
                 <p:panel header="#{movie.title}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage name="img/Joker.jpg"/> -->
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Duckling_-_domestic_duck.jpg/170px-Duckling_-_domestic_duck.jpg"/>
+                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" />
                         <h:outputText value="#{movie.release_date}" />
 
                     </h:panelGrid>
