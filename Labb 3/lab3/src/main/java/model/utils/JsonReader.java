@@ -23,9 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import javax.json.bind.*;
 import model.entity.*;
-import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.Iterator;
 
@@ -55,6 +53,7 @@ public class JsonReader {
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
       Jsonb jsonb = JsonbBuilder.create();
       JSONObject json = readJsonFromUrl(url);
+      String jsonString = json.toString();
       List<Movie> movies = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
@@ -63,9 +62,31 @@ public class JsonReader {
       JsonNode paths = tree.get("results");
       
       Iterator<String> fieldNames = paths.fieldNames();
-      while(fieldNames.hasNext()){
-           String fieldName = fieldNames.next();
-            JsonNode path = paths.get(fieldName);
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            //JsonNode title = field.findValue("title");
+            //String fieldName = title.asText();
+            
+            String title = field.findValue("title").asText();
+            String avg_rating = field.findValue("vote_average").asText();
+            String overview = field.findValue("overview").asText();
+            String release_date = field.findValue("release_date").asText();
+            String poster_path = field.findValue("poster_path").asText();
+            
+            Movie movie = new Movie(
+                    title
+                    ,avg_rating
+                    ,overview
+                    ,release_date
+                    ,poster_path
+            );
+            
+            movies.add(movie);
+            
+            /*JsonNode path = paths.get(fieldName);
+            
 
             // Create a copy of the tree
             JsonNode copyOfTree = objectMapper.valueToTree(tree);
@@ -74,15 +95,15 @@ public class JsonReader {
             ((ObjectNode) copyOfTree.get("paths")).removeAll().set(fieldName, path);
 
             // Add the modified tree to the result list
-            result.add(copyOfTree);
+            result.add(copyOfTree);*/
       }
       
-      for(JsonNode node : result){
+     /* for(JsonNode node : result){
           
           //Movie movie = jsonb.fromJson(node.toString(), Movie.class);
           Movie movie = objectMapper.readValue(node.toString(), Movie.class);
           movies.add(movie);
-      }
+      }*/
       return movies;
       
   }

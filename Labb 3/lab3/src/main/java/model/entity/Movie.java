@@ -20,9 +20,9 @@ public class Movie implements Serializable {
 
     @Id
     @NonNull private String title;
-    @NonNull private Integer avg_rating;
+    @NonNull private String avg_rating;
     @NonNull private String overview;
-    @NonNull private Integer release_date;
+    @NonNull private String release_date;
     @NonNull private String poster_path;
     
     
