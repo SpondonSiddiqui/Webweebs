@@ -8,66 +8,36 @@ package model.view;
 import java.io.Serializable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
 import lombok.Data;
 
 /**
  *
  * @author Spondon
  */
-
 @Data
 @Named
 @ViewScoped
-public class LoginBackingBean implements Serializable{
+public class LoginBackingBean implements Serializable {
 
+    //@Pattern(regexp = "?^abc.*+ef")
     private String username;
     private String password;
-    private boolean isUsernameValid ;
-    private boolean isPasswordValid ;
-    private boolean validationComplete  = false;
 
-    public String getUsername() {
-        return username;
-    }
+    public String validateLoginDetails() {
+        
+        System.out.println("loginsuccessful2");
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+        if (this.username.equals("webweebs") && this.password.equals("webweebs")) {
+            System.out.println("loginsuccesful");
+            return "loginsuccesful";
+        } else {
+            return "false";   
+        }
+        
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean getIsUsernameValid() {
-        return isUsernameValid;
-    }
-
-    public void setUsernameValid(boolean isUsernameValid) {
-        this.isUsernameValid = isUsernameValid;
-    }
-
-    public boolean getIsPasswordValid() {
-        return isPasswordValid;
-    }
-
-    public void setPasswordValid(boolean isPasswordValid) {
-        this.isPasswordValid = isPasswordValid;
-    }
-
-    public boolean getValidationComplete() {
-        return validationComplete;
-    }
-
-    public void setValidationComplete(boolean validationComplete) {
-        this.validationComplete = validationComplete;
-    }
-
-    public String checkValidity() {
-        if (this.username == null || this.username.equals("webweebs")) {
+        /*if (this.username == null || this.username.equals("webweebs")) {
             isUsernameValid = false;
         } else {
             isUsernameValid = true;
@@ -77,7 +47,7 @@ public class LoginBackingBean implements Serializable{
         } else {
             isPasswordValid = true;
         }
-        validationComplete = true;
-        return "success";
+        validationComplete = true;*/
+        //return "loginsuccessful";
     }
 }

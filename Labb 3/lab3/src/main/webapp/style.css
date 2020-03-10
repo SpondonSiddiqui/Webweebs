@@ -7,6 +7,6 @@
 }
 
 .login-button {
-    color: #FF8282;
-    margin-right: 25px;
+    background-color: #FF8282 !important;
+    margin-right: 25px !important;
 }

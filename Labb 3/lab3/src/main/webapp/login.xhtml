@@ -13,16 +13,17 @@ and open the template in the editor.
     <h:body>
 
         <h:form>
-            <p>Username</p> 
-            <h:inputText value="#{loginBackingBean.username}"></h:inputText>
-            <p>Password</p> 
-            <h:inputText value="#{loginBackingBean.password}"></h:inputText>
+            <p:outputLabel>Username</p:outputLabel> 
+            <p:inputText id="username" value="#{loginBackingBean.username}"></p:inputText>
+            
+            <br/>
+       
+            <p:outputLabel>Password</p:outputLabel>
+            <p:inputText id="password" value="#{loginBackingBean.password}"></p:inputText>
             
             <br/>
             
-            <br/>
-            
-            <h:commandButton value="Log in" action="#{loginBackingBean.checkValidity}"></h:commandButton>
+            <p:commandButton value="Log in" action="#{loginBackingBean.validateLoginDetails}" class="login-button"></p:commandButton>
             
         </h:form>
 
