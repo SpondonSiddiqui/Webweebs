@@ -28,7 +28,7 @@ public class MovieDAO extends AbstractDAO<Movie> {
         return query.getResultList();
     }
     
-    public List<Movie> findMoviesByYear(int release_date) {
+    public List<Movie> findMoviesByYear(String release_date) {
         Query query = entityManager.createQuery("SELECT m FROM Movie m "
                 + "WHERE m.release_date = :release_date");
         query.setParameter("release_date", release_date);
