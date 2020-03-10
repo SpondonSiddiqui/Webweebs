@@ -26,11 +26,8 @@ public class LoginBackingBean implements Serializable {
     private String password;
 
     public String validateLoginDetails() {
-        
-        System.out.println("loginsuccessful2");
 
         if (this.username.equals("webweebs") && this.password.equals("webweebs")) {
-            System.out.println("loginsuccesful");
             return "loginsuccesful";
         } else {
             return "false";   
