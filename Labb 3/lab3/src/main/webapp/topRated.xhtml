@@ -7,21 +7,16 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
+   <h:head>
         <title>Shuffle test</title>
-        <link rel="stylesheet" type="text/css" href="style.css" />
-    </h:head>
 
+    </h:head>
     <h:body>
-        
-        <p:button value="Log in" outcome="login" class="login-button"></p:button>
-        
-        <p:button value="Sign up" outcome="signup"></p:button>
         <h:form id="form">
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="3" layout="grid"
-                        rows="12" paginator="true" id="mov"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16">
+                rows="12" paginator="true" id="mov"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="6,12,16">
 
                 <f:facet name="header">
                     Movies
@@ -30,7 +25,7 @@ and open the template in the editor.
                 <p:panel header="#{movie.title}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage name="img/Joker.jpg"/> -->
-                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Duckling_-_domestic_duck.jpg/170px-Duckling_-_domestic_duck.jpg"/>
                         <h:outputText value="#{movie.release_date}" />
 
                     </h:panelGrid>
@@ -46,4 +41,3 @@ and open the template in the editor.
         -->
     </h:body>
 </html>
-

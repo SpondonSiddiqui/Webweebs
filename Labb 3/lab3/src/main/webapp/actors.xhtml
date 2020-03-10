@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+    <h:head><title>List of actors</title></h:head>
+    <h:body>
+        <h:form> 
+            <p:dataTable value="#{actorBackingBean.actors}" var="actor" paginator="true" rows="10"> 
+                <p:column headerText="Name" sortBy="#{actor.name}">#{actor.name}</p:column>
+                <p:column headerText="Birth year" sortBy="#{actor.birthYear}" href="actorDetails.xhtml">#{actor.birthYear}</p:column>
+            </p:dataTable> 
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Signup</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <div>
+        
+            <h:form>
+                <h:panelGrid columns="4" cellpadding="5">
+                    <h:outputLabel for="name" value="Name: " style="font-weight:bold" />
+                    <p:inputText id="name" value="#{signUpBackingBean.username}" />
+                    
+                    <h:outputLabel for="password" value="Password: " style="font-weight:bold" />
+                    <p:inputText id="password" value="#{signUpBackingBean.password}" />
+                    <p:commandButton value="Sign up" update="@form" action="#{signUpBackingBean.validateNewUser}"/>
+                </h:panelGrid>
+                <p:growl/>
+            </h:form>
+            
+        </div>
+    </h:body>
+</html>
