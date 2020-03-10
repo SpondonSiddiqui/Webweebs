@@ -8,6 +8,7 @@ package beans;
 import java.awt.print.Book;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -28,13 +29,20 @@ public class ShowMovieBackingBean implements Serializable {
     @Inject
     @Param(name = "name")
     private String name;
+    
     @EJB
     private MovieDAO movieDAO;
+    private Movie movie;
 
     /*public List<Movie> getMovie() {
         return movieDAO.findMoviesByName(name);
     }*/
+    @PostConstruct
+    private void init(){
+        movie = movieDAO.findMoviesByName(name).get(0);
+    }
+    /*
     public Movie getMovie(){
         return movieDAO.findMoviesByName(name).get(0);
-    }
+    }*/
 }

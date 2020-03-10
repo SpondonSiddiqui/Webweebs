@@ -5,18 +5,16 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title value="#{showMovieBackingBean.getMovie()}" var="movie">#{movie.name}</title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello poop
         <br />
-        <h:link outcome="/movie/List" value="Show All Movie Items"/>
         <h:form>
             <p:dataTable value="#{showMovieBackingBean.getMovie()}" var="movie"
                          paginator="true" rows="10">
                 <p:column headerText="Name" sortBy="#{movie.name}">#{movie.name}
-                    <p:button href="movieDetails">
+                    <p:button href="index.xhtml">
                         <f:param name="name" value="#{movie.name}"/>
                     </p:button>
                 </p:column>

@@ -9,14 +9,14 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello poop
+        Hello poop yes
         <br />
         <h:link outcome="/movie/List" value="Show All Movie Items"/>
         <h:form>
             <p:dataTable value="#{movieBackingBean.movies}" var="movie"
                          paginator="true" rows="10">
                 <p:column headerText="Name" sortBy="#{movie.name}">#{movie.name}
-                    <p:button href="movieDetails.xhtml">
+                    <p:button href="detailedMovie.xhtml">
                         <f:param name="name" value="#{movie.name}"/>
                     </p:button>
                 </p:column>
