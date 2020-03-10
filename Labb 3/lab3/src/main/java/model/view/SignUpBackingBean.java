@@ -49,6 +49,8 @@ public class SignUpBackingBean implements Serializable {
         WebUser wu = new WebUser(username, password);
         if(!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
+            Messages.addGlobalWarn("Created user " + username + "!", null);
+            Faces.validationFailed();
         } else {
             Messages.addGlobalWarn("Username " + username + " already exists!", null);
             Faces.validationFailed();
