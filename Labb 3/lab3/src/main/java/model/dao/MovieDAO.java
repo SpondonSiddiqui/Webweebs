@@ -11,7 +11,7 @@ import model.entity.Movie;
 import model.utils.JsonReader;
 
 @Stateless
-public class MovieDAO extends AbstractDAO<Movie> {
+public class MovieDAO extends AbstractDAO<Movie, String> {
 
     @Getter
     @PersistenceContext(unitName = "academy")
