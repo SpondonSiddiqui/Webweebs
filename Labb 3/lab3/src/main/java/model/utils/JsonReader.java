@@ -21,10 +21,8 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import javax.json.bind.*;
 import model.entity.*;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.util.Iterator;
 
 public class JsonReader {
@@ -51,23 +49,17 @@ public class JsonReader {
   }
   
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
-      Jsonb jsonb = JsonbBuilder.create();
       JSONObject json = readJsonFromUrl(url);
-      String jsonString = json.toString();
       List<Movie> movies = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
-      List<JsonNode> result = new ArrayList<>();
       JsonNode tree = objectMapper.readTree(json.toString());
       JsonNode paths = tree.get("results");
       
-      Iterator<String> fieldNames = paths.fieldNames();
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
-            //JsonNode title = field.findValue("title");
-            //String fieldName = title.asText();
             
             String title = field.findValue("title").asText();
             String avg_rating = field.findValue("vote_average").asText();
@@ -83,27 +75,8 @@ public class JsonReader {
                     ,poster_path
             );
             
-            movies.add(movie);
-            
-            /*JsonNode path = paths.get(fieldName);
-            
-
-            // Create a copy of the tree
-            JsonNode copyOfTree = objectMapper.valueToTree(tree);
-
-            // Remove all the children from the "paths" node; add a single child to "paths"
-            ((ObjectNode) copyOfTree.get("paths")).removeAll().set(fieldName, path);
-
-            // Add the modified tree to the result list
-            result.add(copyOfTree);*/
+            movies.add(movie);      
       }
-      
-     /* for(JsonNode node : result){
-          
-          //Movie movie = jsonb.fromJson(node.toString(), Movie.class);
-          Movie movie = objectMapper.readValue(node.toString(), Movie.class);
-          movies.add(movie);
-      }*/
       return movies;
       
   }
