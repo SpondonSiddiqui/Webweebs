@@ -15,8 +15,6 @@ import javax.inject.Named;
 import lombok.Data;
 import model.dao.MovieDAO;
 import model.entity.Movie;
-import model.utils.JsonReader;
-
 /**
  *
  * @author Spondon
@@ -46,9 +44,5 @@ public class MovieBackingBean implements Serializable {
        } catch (IOException ex){
            System.out.println(ex.toString());
        }
-    }
-    
-    private List<Movie> getMovieList(String u) throws IOException{
-        return JsonReader.getMoviesFromUrl(u);
     }
 }
