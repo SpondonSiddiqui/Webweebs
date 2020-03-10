@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import lombok.Getter;
@@ -14,6 +17,8 @@ import model.dao.UserDAO;
 import model.entity.WebUser;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
 
 /**
  *
@@ -42,8 +47,13 @@ public class SignUpBackingBean implements Serializable {
     public void validateNewUser() {
         
         WebUser wu = new WebUser(username, password);
-        if(!users.contains(wu)) {
+        if(!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
+            Messages.addGlobalWarn("Created user " + username + "!", null);
+            Faces.validationFailed();
+        } else {
+            Messages.addGlobalWarn("Username " + username + " already exists!", null);
+            Faces.validationFailed();
         }
     }
 }

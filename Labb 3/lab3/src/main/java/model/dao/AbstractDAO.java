@@ -9,7 +9,7 @@ import javax.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class AbstractDAO<T> {
+public abstract class AbstractDAO<T, K> {
 
     private final Class<T> entityType;
 
@@ -32,6 +32,14 @@ public abstract class AbstractDAO<T> {
         final CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityType));
         return getEntityManager().createQuery(cq).getResultList();
+    }
+    
+    public T find(K key) {
+        return getEntityManager().find(entityType, key);
+    }
+
+    public boolean contains(K key) {
+        return find(key) != null;
     }
 
     public void remove(T entity) {

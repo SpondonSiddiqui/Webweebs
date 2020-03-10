@@ -7,7 +7,7 @@ import lombok.Getter;
 import model.entity.WebUser;
 
 @Stateless
-public class UserDAO extends AbstractDAO<WebUser> {
+public class UserDAO extends AbstractDAO<WebUser, String> {
 
     @Getter
     @PersistenceContext(unitName = "academy")
