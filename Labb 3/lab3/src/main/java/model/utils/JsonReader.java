@@ -60,12 +60,45 @@ public class JsonReader {
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
+            String title;
+            String avg_rating;
+            String overview;
+            String release_date;
+            String poster_path;
+                    
+                    
+            if(field.has("title")){
+                title = field.findValue("title").asText();
+            } else{
+                title = "Could not find title";
+            }
+            if(field.has("vote_average")){
+                 avg_rating = field.findValue("vote_average").asText();
+            } else{
+                 avg_rating = "Could not find vote_average";
+            }
+            if(field.has("overview")){
+                 overview = field.findValue("overview").asText();
+            } else{
+                 overview = "Could not find overview";
+            }
+            if(field.has("release_date")){
+                 release_date = field.findValue("release_date").asText();
+            } else{
+                 release_date = "Could not find release_date";
+            }
+            if(field.has("poster_path")){
+                 poster_path = field.findValue("poster_path").asText();
+            } else{
+                 poster_path = "Could not find poster_path";
+            }
+                                    
             
-            String title = field.findValue("title").asText();
-            String avg_rating = field.findValue("vote_average").asText();
+            
+            /*String avg_rating = field.findValue("vote_average").asText();
             String overview = field.findValue("overview").asText();
             String release_date = field.findValue("release_date").asText();
-            String poster_path = field.findValue("poster_path").asText();
+            String poster_path = field.findValue("poster_path").asText();*/
             
             Movie movie = new Movie(
                     title
