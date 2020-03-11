@@ -41,7 +41,12 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
         return query.getResultList();
     }
     
-    public List<Movie> getTopMovies(String url) throws IOException{
-        return JsonReader.getMoviesFromUrl(url);
+    public List<Movie> getTopMovies(String page) throws IOException{
+        String url = "https://api.themoviedb.org/3/discover/movie?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false";
+        return JsonReader.getMoviesFromUrl(url + "&page=" + page);
+    }
+    
+    public List<Movie> searchMovie(String movie) throws IOException{
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/search/movie?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+movie+"&page=1&include_adult=true");
     }
 }
