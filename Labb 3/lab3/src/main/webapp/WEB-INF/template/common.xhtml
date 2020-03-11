@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 	<h:head>
 		<title>Templating example</title>
 		<meta charset="utf-8" />
@@ -13,13 +14,21 @@
 	<h:body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
 			<div class="container">
+                                <img src="img/logo.png" width="40" />
 				<a class="navbar-brand" href="#">IMDB Clone</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
-						<ui:insert name="menu" />
+						<p:outputPanel id="button-container" rendered="#{userBean.loggedIn}">
+                                                    <p:outputLabel class="logged-in-text" value="#{userBean.user.username} is logged in."></p:outputLabel>
+                                                    <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout()}"></p:commandButton>
+                                                </p:outputPanel>
+                                                <p:outputPanel id="button-container" rendered="#{!userBean.loggedIn}">
+                                                    <p:button value="Log in" class="login-button" outcome="login"></p:button>
+                                                    <p:button value="Sign up" class="login-button" outcome="signup"></p:button>
+                                                </p:outputPanel>
 					</ul>
 				</div>
 			</div>
