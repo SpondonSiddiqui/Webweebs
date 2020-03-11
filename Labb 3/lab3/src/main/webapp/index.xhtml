@@ -21,8 +21,8 @@ and open the template in the editor.
        
         
         <h:form id="form">
-            <p:inputText id="searchInput" value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-            <p:commandButton value="Search" id="search" action="#{movieBackingBean.searchMovie}" update="form"></p:commandButton>
+            <p:inputText id="searchInput" value="#{movieBackingBean.searchKey}" required="true" label="Search: "></p:inputText>
+            <p:commandButton value="Search" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"

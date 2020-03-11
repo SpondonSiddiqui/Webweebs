@@ -58,6 +58,7 @@ public class MovieBackingBean implements Serializable {
     public void searchMovie(){
         try{
             this.movies = movieDAO.searchMovie(searchKey);
+            System.out.println(searchKey);
         } catch (IOException ex){
             System.out.println(ex.toString());
         }
