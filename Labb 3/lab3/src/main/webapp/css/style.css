@@ -162,3 +162,8 @@ a:hover {
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
 }
+
+.login-button {
+    background-color: #FF8282 !important;
+    margin-right: 25px !important;
+}
