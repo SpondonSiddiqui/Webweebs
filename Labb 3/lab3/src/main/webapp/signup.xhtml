@@ -10,22 +10,21 @@ and open the template in the editor.
     <h:head>
         <title>Signup</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/signin.css" />
     </h:head>
     <h:body>
-        <div>
-        
-            <h:form>
-                <h:panelGrid columns="4" cellpadding="5">
-                    <h:outputLabel for="name" value="Name: " style="font-weight:bold" />
-                    <p:inputText id="name" value="#{signUpBackingBean.username}" />
-                    
-                    <h:outputLabel for="password" value="Password: " style="font-weight:bold" />
-                    <p:inputText id="password" value="#{signUpBackingBean.password}" />
-                    <p:commandButton value="Sign up" update="@form" action="#{signUpBackingBean.validateNewUser}"/>
-                </h:panelGrid>
+            
+            <h:form id="form">
+                <p:focus context="form"/>
+                <img src="img/logo.png" width="40" />
+                <p:outputLabel class="signupheader">Register an account</p:outputLabel>
+                <p:outputLabel class="signuplabel">Username</p:outputLabel>
+                <p:inputText id="name" value="#{signUpBackingBean.username}" />
+                <p:outputLabel class="signuplabel">Password</p:outputLabel>
+                <p:inputText id="password" type="password" value="#{signUpBackingBean.password}" /> <br/><br/>
+                <p:commandButton value="Sign up" update="@form" action="#{signUpBackingBean.validateNewUser}"/>
                 <p:growl/>
             </h:form>
-            
-        </div>
     </h:body>
 </html>

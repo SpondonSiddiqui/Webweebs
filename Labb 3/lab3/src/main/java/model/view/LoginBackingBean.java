@@ -6,11 +6,16 @@
 package model.view;
 
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import lombok.Data;
+import model.dao.UserDAO;
+import model.entity.WebUser;
+import org.omnifaces.util.Faces;
+import org.omnifaces.util.Messages;
 
 /**
  *
@@ -24,27 +29,29 @@ public class LoginBackingBean implements Serializable {
     //@Pattern(regexp = "?^abc.*+ef")
     private String username;
     private String password;
+ 
+    @EJB
+    private UserDAO userDAO;
 
     public String validateLoginDetails() {
 
-        if (this.username.equals("webweebs") && this.password.equals("webweebs")) {
-            return "loginsuccesful";
-        } else {
-            return "false";   
-        }
+        WebUser user = userDAO.find(username);
         
+        if(user != null && user.getPassword().equals(password)) {
+            
+            return "loginsuccesful";
 
-        /*if (this.username == null || this.username.equals("webweebs")) {
-            isUsernameValid = false;
+            /*if (password.equals(wb.getPassword())) {
+                return "loginsuccesful";
+            } else {
+                Messages.addGlobalWarn("Wrong password");
+                Faces.validationFailed();
+                return "wrongpassword";
+            }*/
         } else {
-            isUsernameValid = true;
+            Messages.addGlobalWarn("Wrong username or password");
+            Faces.validationFailed();
+            return "false";
         }
-        if (this.password == null || this.password.equals("webweebs")) {
-            isPasswordValid = false;
-        } else {
-            isPasswordValid = true;
-        }
-        validationComplete = true;*/
-        //return "loginsuccessful";
     }
 }

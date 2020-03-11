@@ -28,32 +28,34 @@ import org.omnifaces.util.Messages;
 @Named
 @ViewScoped
 public class SignUpBackingBean implements Serializable {
-    
+
     @Pattern(regexp = "^[A-Za-z0-9_]+$", message = "Username contains weird characters!")
     @Size(min = 5, max = 25, message = "Username too short or too long!")
     private String username;
     private String password;
-    
+
     private List<WebUser> users;
-   
+
     @EJB
     private UserDAO userDAO;
-    
+
     @PostConstruct
     private void init() {
         users = userDAO.findAll();
     }
-    
-    public void validateNewUser() {
-        
+
+    public String validateNewUser() {
+
         WebUser wu = new WebUser(username, password);
-        if(!userDAO.contains(wu.getUsername())) {
+        if (!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
             Messages.addGlobalWarn("Created user " + username + "!", null);
             Faces.validationFailed();
+            return "signupsuccesful";
         } else {
             Messages.addGlobalWarn("Username " + username + " already exists!", null);
             Faces.validationFailed();
+            return "false";
         }
     }
 }
