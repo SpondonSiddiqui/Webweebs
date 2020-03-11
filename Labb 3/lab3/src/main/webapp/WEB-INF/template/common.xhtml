@@ -23,15 +23,16 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
                                             
-                                            
-						<p:outputPanel id="button-container" rendered="#{userBean.loggedIn}">
+                                            <h:form>
+						<p:outputPanel class="button-container" rendered="#{userBean.loggedIn}">
                                                     <p:outputLabel class="logged-in-text" value="#{userBean.user.username} is logged in."></p:outputLabel>
-                                                    <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout()}"></p:commandButton>
+                                                    <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout}" update="@form"></p:commandButton>
                                                 </p:outputPanel>
-                                                <p:outputPanel id="button-container" rendered="#{!userBean.loggedIn}">
+                                                <p:outputPanel class="button-container" rendered="#{!userBean.loggedIn}">
                                                     <p:button value="Log in" class="login-button" outcome="login"></p:button>
                                                     <p:button value="Sign up" class="login-button" outcome="signup"></p:button>
                                                 </p:outputPanel>
+                                            </h:form>
 					</ul>
 				</div>
 			</div>

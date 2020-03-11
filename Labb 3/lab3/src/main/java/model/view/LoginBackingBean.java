@@ -59,8 +59,8 @@ public class LoginBackingBean implements Serializable {
         }
     }
     
-    public String onLogout() {
+    public void onLogout() {
         userBean.setUser(null);
-        return "logoutsuccessful";
+        Faces.invalidateSession();
     }
 }

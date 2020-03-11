@@ -7,7 +7,8 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>IMDB Clone</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -22,8 +23,10 @@ and open the template in the editor.
 
         
         <h:form id="form">
-            <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-            <p:commandButton value="Search" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+            <div class="search-wrapper">
+                <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
+                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+            </div>
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"

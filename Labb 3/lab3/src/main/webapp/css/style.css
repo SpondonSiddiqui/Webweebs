@@ -167,7 +167,7 @@ a:hover {
 	-webkit-box-shadow:none;
 }
 
-#button-container {
+.button-container {
     float:right;
 }
 
@@ -195,6 +195,13 @@ a:hover {
 }
 
 .search-movie {
-    margin-left:20px;
     width:300px;
+}
+
+.search-button {
+    margin-left:10px !important;
+}
+
+.search-wrapper {
+   width:100%;
 }
