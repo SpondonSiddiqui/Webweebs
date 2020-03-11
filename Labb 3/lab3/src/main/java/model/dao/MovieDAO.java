@@ -51,6 +51,9 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
         movie = movie.replaceAll("ö", "%C3%B6");
         movie = movie.replaceAll("ä", "%C3%A4");
         movie = movie.replaceAll("å", "%C3%A5");
+        if(movie.isEmpty()){
+            return getTopMovies("1");
+        }
         return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/search/movie?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+movie+"&page=1&include_adult=true");
     }
 }
