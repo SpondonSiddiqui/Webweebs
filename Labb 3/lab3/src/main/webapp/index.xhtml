@@ -9,14 +9,29 @@
         <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
-        Hello poop yes
+        <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="home" aria-selected="true">Actors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies" aria-selected="false">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Something else</a>
+                    </li>
+                </ul>
+            </div>
+        <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+                    
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         <br />
-        <h:link outcome="/movie/List" value="Show All Movie Items"/>
         <h:form>
             <p:dataTable value="#{movieBackingBean.movies}" var="movie"
                          paginator="true" rows="10">
                 <p:column headerText="Name" sortBy="#{movie.name}">#{movie.name}
-                    <p:button href="detailedMovie.xhtml">
+                    <p:button href="detailedMovie.xhtml" value="details">
                         <f:param name="name" value="#{movie.name}"/>
                     </p:button>
                 </p:column>
