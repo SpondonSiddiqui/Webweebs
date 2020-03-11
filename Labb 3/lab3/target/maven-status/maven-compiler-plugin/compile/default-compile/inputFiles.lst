@@ -1,6 +1,8 @@
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\model\entity\WebUser.java
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\beans\ShowMovieBackingBean.java
+C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\beans\ShowActorBackingBean.java
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\model\dao\ActorDAO.java
+C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\beans\ActorBackingBean.java
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\model\entity\Movie.java
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\beans\MovieBackingBean.java
 C:\Users\User\Documents\GitHub\Webweebs\Labb 3\lab3\src\main\java\model\dao\MovieDAO.java

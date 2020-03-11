@@ -19,6 +19,7 @@ public class Actor implements Serializable {
     @Id
     @NonNull private String name;
     @NonNull private Integer birthYear;
+    @NonNull private String bio;
     
     @ManyToMany(mappedBy = "actors") private List<Movie> moviesActedIn;
 }

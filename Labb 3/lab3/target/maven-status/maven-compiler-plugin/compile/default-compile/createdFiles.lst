@@ -1,9 +1,11 @@
 beans\MovieBackingBean.class
-model\dao\UserDAO.class
-model\dao\AbstractDAO.class
 model\dao\MovieDAO.class
-model\entity\Movie.class
 model\entity\Actor.class
-model\dao\ActorDAO.class
 model\entity\WebUser.class
+beans\ShowActorBackingBean.class
+model\dao\UserDAO.class
+beans\ActorBackingBean.class
+model\dao\AbstractDAO.class
+model\entity\Movie.class
+model\dao\ActorDAO.class
 beans\ShowMovieBackingBean.class

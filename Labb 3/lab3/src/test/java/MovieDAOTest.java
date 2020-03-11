@@ -56,7 +56,8 @@ public class MovieDAOTest {
             
             String name = faker.funnyName().name();
             Integer byear = rand.nextInt((2020-1900)+1) + 1900;
-            Actor actor = new Actor(name, byear);
+            String bio = faker.harryPotter().spell();
+            Actor actor = new Actor(name, byear, bio);
             actorDAO.create(actor);
             actors.add(actor);
             movieDAO.create(movie);
