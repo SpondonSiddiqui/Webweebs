@@ -17,13 +17,19 @@ and open the template in the editor.
             
             <h:form id="form">
                 <p:focus context="form"/>
-                <img src="img/logo.png" width="40" />
+                <div class="headerwrapper">
+                    <img src="img/logo.png" width="40" />
+                    <p:button value="Go back" class="goback" outcome="index"></p:button>
+                </div>  
                 <p:outputLabel class="signupheader">Register an account</p:outputLabel>
                 <p:outputLabel class="signuplabel">Username</p:outputLabel>
                 <p:inputText id="name" value="#{signUpBackingBean.username}" />
                 <p:outputLabel class="signuplabel">Password</p:outputLabel>
                 <p:inputText id="password" type="password" value="#{signUpBackingBean.password}" /> <br/><br/>
-                <p:commandButton value="Sign up" update="@form" action="#{signUpBackingBean.validateNewUser}"/>
+                <p:commandButton class="signupbutton" value="Sign up" update="@form" action="#{signUpBackingBean.validateNewUser}"/> <br/>
+                <div class="gobackwrapper">
+                    <p:button value="Already a user? Click here to log in" class="login" outcome="login"></p:button>
+                </div>  
                 <p:growl/>
             </h:form>
     </h:body>

@@ -8,6 +8,7 @@ package model.view;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
@@ -32,13 +33,16 @@ public class LoginBackingBean implements Serializable {
  
     @EJB
     private UserDAO userDAO;
+    
+    @Inject
+    private UserBean userBean;
 
-    public String validateLoginDetails() {
+    public String onLogin() {
 
         WebUser user = userDAO.find(username);
         
         if(user != null && user.getPassword().equals(password)) {
-            
+            userBean.setUser(user);
             return "loginsuccesful";
 
             /*if (password.equals(wb.getPassword())) {
@@ -53,5 +57,10 @@ public class LoginBackingBean implements Serializable {
             Faces.validationFailed();
             return "false";
         }
+    }
+    
+    public String onLogout() {
+        userBean.setUser(null);
+        return "logoutsuccessful";
     }
 }

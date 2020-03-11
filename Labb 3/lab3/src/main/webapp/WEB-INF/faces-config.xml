@@ -46,4 +46,13 @@
             <redirect></redirect>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logoutsuccessful</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

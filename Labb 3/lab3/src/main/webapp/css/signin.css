@@ -16,7 +16,7 @@ form {
     padding:25px;
 }
 
-form button {
+form .signupbutton {
     width:350px;
 }
 
@@ -27,4 +27,32 @@ form input {
 .signuplabel {
     margin-top:10px;
     margin-bottom:10px;
+}
+
+.goback {
+    background:white !important;
+    border:none !important;
+    color:#5d97f5 !important;
+    float:right;
+}
+
+.login {
+    background:white !important;
+    border:none !important;
+    color:#5d97f5 !important;
+}
+
+.gobackwrapper {
+    width:350px;
+    height:60px;
+    margin:auto;
+    position:absolute;
+    padding:15px;
+    display:block;
+    text-align:center;
+}
+
+.headerwrapper {
+    width:350px;
+    height:40px;
 }

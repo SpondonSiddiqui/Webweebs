@@ -8,15 +8,25 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Shuffle test</title>
+        <title>IMDB Clone</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
     </h:head>
 
     <h:body>
+        <p:outputPanel id="navbar">
+            <img src="img/logo.png" width="40" />
+            
+            <p:outputPanel id="button-container" rendered="#{userBean.loggedIn}">
+                <p:outputLabel class="logged-in-text" value="#{userBean.user.username} is logged in."></p:outputLabel>
+                <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout()}"></p:commandButton>
+            </p:outputPanel>
+            <p:outputPanel id="button-container" rendered="#{!userBean.loggedIn}">
+                <p:button value="Log in" class="login-button" outcome="login"></p:button>
+                <p:button value="Sign up" class="login-button" outcome="signup"></p:button>
+            </p:outputPanel>
+            
+          </p:outputPanel> 
         
-        <p:button value="Log in" outcome="login" class="login-button"></p:button>
-        
-        <p:button value="Sign up" outcome="signup"></p:button>
         <h:form id="form">
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
