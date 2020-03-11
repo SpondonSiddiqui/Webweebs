@@ -18,13 +18,13 @@ and open the template in the editor.
         
         <p:button value="Sign up" outcome="signup"></p:button>
         <h:form id="form">
-            <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="3" layout="grid"
-                        rows="12" paginator="true" id="mov"
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16">
+            <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
+                        rows="20" paginator="true" id="mov"
+                        paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                        >
 
                 <f:facet name="header">
-                    Movies
+                    Most Popular Movies
                 </f:facet>
                 
                 <p:panel header="#{movie.title}" style="text-align:center">
