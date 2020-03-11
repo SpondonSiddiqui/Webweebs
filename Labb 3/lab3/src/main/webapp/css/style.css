@@ -24,7 +24,7 @@ a:hover {
 }
 
 #form {
-    margin-top:15px;
+    margin-top:65px;
 }
 
 .header button {
@@ -181,6 +181,7 @@ a:hover {
     float:left;
     margin-top:11px;
     padding-right:5px;
+    color:white !important;
 }
 
 #navbar {
@@ -191,4 +192,9 @@ a:hover {
 
 .logoname {
     font-size:18px;
+}
+
+.search-movie {
+    margin-left:20px;
+    width:300px;
 }

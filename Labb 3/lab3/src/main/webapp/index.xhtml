@@ -20,19 +20,9 @@ and open the template in the editor.
                 </ui:define>
         </ui:decorate>
 
-        <!---
-        <ui:decorate template="WEB-INF/template/common.xhtml">
-            <ui:define name="menu">
-                <p:button value="Log in" outcome="login" class="login-button"></p:button>
-
-                <p:button value="Sign up" outcome="signup"></p:button>
-            </ui:define>
-        </ui:decorate>
-        -->
-
         
         <h:form id="form">
-            <p:inputText id="searchInput" value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
+            <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
             <p:commandButton value="Search" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
