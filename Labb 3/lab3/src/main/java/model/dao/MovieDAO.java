@@ -44,5 +44,4 @@ public class MovieDAO extends AbstractDAO<Movie> {
         return query.getResultList();
     }
     
-    
 }

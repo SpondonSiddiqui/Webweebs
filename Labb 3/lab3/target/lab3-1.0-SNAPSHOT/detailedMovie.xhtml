@@ -48,11 +48,20 @@
                             <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.description}</p>
                         </div>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
+                    <div class="row">
+                        <p:outputLabel id="label" value="#{showMovieBackingBean.movie.reviews}"></p:outputLabel>
+                    </div>
+                    <div class="row">
+                        <h:form id="review">
+                            <h3>Leave a review :3</h3>
+                            <p:inputTextarea rows="6" cols="100" value="#{showMovieBackingBean.review}"/>
+                            <p:commandButton value="Submit" action="#{showMovieBackingBean.validateSubmission}" update="@all"/>
+                            <p:growl />
+                        </h:form>
+                    </div>    
                     
                 </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                
             </div>
         </div>
     </h:body>

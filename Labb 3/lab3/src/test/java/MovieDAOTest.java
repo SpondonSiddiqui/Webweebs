@@ -1,7 +1,6 @@
 
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.EJB;
@@ -16,9 +15,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -52,7 +48,8 @@ public class MovieDAOTest {
             Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
             Integer rating = rand.nextInt((10-1)+1) + 1;
             String description = faker.gameOfThrones().quote();
-            Movie movie = new Movie(title, year, rating, description);
+            String review = " ";
+            Movie movie = new Movie(title, year, rating, description, review);
             
             String name = faker.funnyName().name();
             Integer byear = rand.nextInt((2020-1900)+1) + 1900;
