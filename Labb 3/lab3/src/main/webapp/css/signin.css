@@ -1,0 +1,58 @@
+.signupheader {
+    font-size:24px !important;
+    font-weight:bold;
+    display:block;
+    padding-bottom:0px;
+}
+
+form {
+    color:#444;
+    margin: 100px auto;
+    width: 400px;
+    height: 400px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(117,117,117,0.81);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(117,117,117,0.81);
+    box-shadow: 0px 0px 12px 0px rgba(117,117,117,0.81);
+    padding:25px;
+}
+
+form .signupbutton {
+    width:350px;
+}
+
+form input {
+    width:350px;
+}
+
+.signuplabel {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.goback {
+    background:white !important;
+    border:none !important;
+    color:#5d97f5 !important;
+    float:right;
+}
+
+.login {
+    background:white !important;
+    border:none !important;
+    color:#5d97f5 !important;
+}
+
+.gobackwrapper {
+    width:350px;
+    height:60px;
+    margin:auto;
+    position:absolute;
+    padding:15px;
+    display:block;
+    text-align:center;
+}
+
+.headerwrapper {
+    width:350px;
+    height:40px;
+}
