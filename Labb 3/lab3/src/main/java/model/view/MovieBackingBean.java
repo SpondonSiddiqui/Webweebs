@@ -11,6 +11,7 @@ import java.io.IOException;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import lombok.Data;
 import model.dao.MovieDAO;
@@ -31,6 +32,8 @@ public class MovieBackingBean implements Serializable {
     
     //private String key = "10dfedc564f5b41f3c803582d1d3a5fa";
 
+    @Inject
+    private MovieBean movieBean;
     
     private String test;
     private String searchKey;

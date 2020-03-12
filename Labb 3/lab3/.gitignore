@@ -5,6 +5,7 @@ build/
 #netbeans specific
 core
 target/
+/target/
 gitinspector-master/
 nbproject/*
 !nbproject/project.properties
