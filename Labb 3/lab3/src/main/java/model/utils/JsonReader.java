@@ -47,6 +47,7 @@ public class JsonReader {
       is.close();
     }
   }
+  
   public static List<Actor> getActorsFromMovieCreditsUrl(String url) throws IOException, JSONException{
       JSONObject json = readJsonFromUrl(url);
       List<Actor> actors = new ArrayList<>();
@@ -96,7 +97,13 @@ public class JsonReader {
       }
       return actors;
   }
-  
+    /**
+     * Reads an url and returns the actor (or any person) given by the url
+     * @param url 
+     * @return
+     * @throws IOException
+     * @throws JSONException 
+     */
     public static Actor getActorFromUrl(String url) throws IOException, JSONException{
         JSONObject json = readJsonFromUrl(url);
 
@@ -152,6 +159,56 @@ public class JsonReader {
         
         return actor;
   }
+  
+    public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
+      JSONObject json = readJsonFromUrl(url);
+      Actor actor = new Actor("","","","","","");
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("results");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+          JsonNode field = fields.next();
+          String name;
+          String birthday = "";
+          String deathday = "";
+          String bio = "";
+          String id;
+          String pic_path;
+          
+          if(!field.has("department") || !field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
+          
+          if(field.has("name")){
+              name = field.findValue("name").asText();
+          } else{
+              name = "Could not find name";
+          }
+          if(field.has("id")){
+              id = field.findValue("id").asText();
+          } else{
+              id = "Could not find id";
+          }
+          if(field.has("profile_path")){
+              pic_path = field.findValue("profile_path").asText();
+          } else {
+              pic_path = "Could not find profile picture";
+          }
+          
+          actor = new Actor(
+                  name
+                  ,birthday
+                  ,deathday
+                  ,bio
+                  ,id
+                  ,pic_path
+          );
+          
+          break;
+      }
+      return actor;
+    }
   
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
