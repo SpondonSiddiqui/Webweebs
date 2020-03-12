@@ -275,6 +275,62 @@ public class JsonReader {
       return movies;
       
   }
+  
+  public static Movie getMovieFromUrl(String url) throws IOException, JSONException {
+        JSONObject json = readJsonFromUrl(url);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode field = objectMapper.readTree(json.toString());
+
+        String title;
+        String avg_rating;
+        String overview;
+        String release_date;
+        String poster_path;
+        String id;
+
+        if(field.has("title")){
+            title = field.findValue("title").asText();
+        } else{
+            title = "Could not find title";
+        }
+        if(field.has("vote_average")){
+             avg_rating = field.findValue("vote_average").asText();
+        } else{
+             avg_rating = "Could not find vote_average";
+        }
+        if(field.has("overview")){
+             overview = field.findValue("overview").asText();
+        } else{
+             overview = "Could not find overview";
+        }
+        if(field.has("release_date")){
+             release_date = field.findValue("release_date").asText();
+        } else{
+             release_date = "Could not find release_date";
+        }
+        if(field.has("poster_path")){
+             poster_path = field.findValue("poster_path").asText();
+        } else{
+             poster_path = "Could not find poster_path";
+        }
+        if(field.has("id")){
+             id = field.findValue("id").asText();
+        } else{
+             id = "Could not find id";
+        }                  
+
+        Movie movie = new Movie(
+                title
+                ,avg_rating
+                ,overview
+                ,release_date
+                ,poster_path
+                ,id
+        );
+        
+        return movie;
+  }
  
 
 }
