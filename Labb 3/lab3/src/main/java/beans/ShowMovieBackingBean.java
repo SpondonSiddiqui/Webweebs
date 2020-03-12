@@ -6,6 +6,7 @@
 package beans;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +34,8 @@ import org.omnifaces.util.Messages;
 public class ShowMovieBackingBean implements Serializable {
 
     @Inject
-    @Param(name = "name")
-    private String name;
+    @Param(name = "id")
+    private String id;
     @Size(min = 5, max = 100, message = "Review need to be between 5 and 100 characters")
     private String review;
 
@@ -44,7 +45,11 @@ public class ShowMovieBackingBean implements Serializable {
 
     @PostConstruct
     private void init() {
-        movie = movieDAO.findMoviesByName(name).get(0);
+        try {
+            movie = movieDAO.getMovie(id);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
     /*public void validateSubmission() {
