@@ -44,6 +44,10 @@ public class SignUpBackingBean implements Serializable {
         users = userDAO.findAll();
     }
 
+    /** validateNewUser()
+     * checks if user already exists/bad username
+     * @return string depending on successful signup
+     */
     public String validateNewUser() {
 
         WebUser wu = new WebUser(username, password);
