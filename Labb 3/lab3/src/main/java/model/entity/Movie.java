@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,11 +20,12 @@ import lombok.RequiredArgsConstructor;
 public class Movie implements Serializable {
 
     @Id
-    @NonNull private String name;
-    @NonNull private Integer releaseYear;
-    @NonNull private Integer rating;
-    @NonNull private String description;
-    @NonNull private String reviews;
+    @NonNull private String title;
+    @NonNull private String avg_rating;
+    @NonNull private String overview;
+    @NonNull private String release_date;
+    @NonNull private String poster_path;
+    
     
     @JoinTable(name = "actor_list",
             joinColumns = @JoinColumn(name = "movie"),

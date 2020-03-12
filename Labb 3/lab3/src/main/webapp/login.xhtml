@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Login</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/signin.css" />
+    </h:head>
+    <h:body>
+        <h:form id="form">
+                <p:focus context="form"/>
+                <div class="headerwrapper">
+                    <img src="img/logo.png" width="40" />
+                    <p:button value="Go back" class="goback" outcome="index"></p:button>
+                </div>  
+                <p:outputLabel class="signupheader">Log in to your account</p:outputLabel>
+                <p:outputLabel class="signuplabel">Username</p:outputLabel>
+                <p:inputText id="name" value="#{loginBackingBean.username}" />
+                <p:outputLabel class="signuplabel">Password</p:outputLabel>
+                <p:inputText id="password" type="password" value="#{loginBackingBean.password}" /> <br/><br/>
+                <p:commandButton class="signupbutton" value="Log in" update="@form" action="#{loginBackingBean.onLogin}"/> <br/>
+                <div class="gobackwrapper">
+                    <p:button value="Click here to create a new account" class="login" outcome="signup"></p:button>
+                </div>  
+                <p:growl/>
+            </h:form>
+
+    </h:body>
+</html>

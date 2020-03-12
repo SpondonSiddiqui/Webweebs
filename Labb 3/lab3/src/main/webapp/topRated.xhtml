@@ -6,46 +6,31 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-    <h:head>
-        <title>IMDB Clone</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+        <title>Shuffle test</title>
+
     </h:head>
-
     <h:body>
-
-        <ui:decorate template="WEB-INF/template/common.xhtml">
-                <ui:define name="menu">
-                </ui:define>
-        </ui:decorate>
-
-        
         <h:form id="form">
-            <div class="search-wrapper">
-                <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
-            </div>
-            <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
-                        rows="20" paginator="true" id="mov"
-                        paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
-                        >
+            <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="3" layout="grid"
+                rows="12" paginator="true" id="mov"
+                paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="6,12,16">
 
                 <f:facet name="header">
                     Movies
                 </f:facet>
-
+                
                 <p:panel header="#{movie.title}" style="text-align:center">
                     <h:panelGrid columns="1" style="width:100%">
                         <!--<p:graphicImage name="img/Joker.jpg"/> -->
-                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Duckling_-_domestic_duck.jpg/170px-Duckling_-_domestic_duck.jpg"/>
                         <h:outputText value="#{movie.release_date}" />
 
                     </h:panelGrid>
                 </p:panel>
             </p:dataGrid>
-
         </h:form>
         <!--
         <h:form> <p:dataTable value="#{movieBackingBean.movies}" var="movie" paginator="true" rows="10"> 
@@ -56,4 +41,3 @@ and open the template in the editor.
         -->
     </h:body>
 </html>
-

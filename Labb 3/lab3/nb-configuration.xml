@@ -21,7 +21,9 @@ Any value defined here will override the pom.xml file value but is only applicab
     </properties>
     <config-data xmlns="http://www.netbeans.org/ns/maven-config-data/1">
         <configurations>
-            <configuration id="skip-tests" profiles=""/>
+            <configuration id="skip-tests" profiles="">
+                <property name="skipTests">true</property>
+            </configuration>
         </configurations>
     </config-data>
 </project-shared-configuration>

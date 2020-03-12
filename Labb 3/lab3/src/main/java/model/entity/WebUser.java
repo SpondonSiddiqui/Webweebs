@@ -1,14 +1,8 @@
 package model.entity;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -22,6 +16,7 @@ public class WebUser implements Serializable {
 
     @Id
     @NonNull private String username;
+    @NonNull private String password;
     
     /*@JoinTable(name = "watch_list",
             joinColumns = @JoinColumn(name = "user"),

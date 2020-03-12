@@ -23,6 +23,10 @@ a:hover {
   text-shadow:2px 2px #e5e5e5;
 }
 
+#form {
+    margin-top:65px;
+}
+
 .header button {
     background: none;
     border:none;
@@ -161,4 +165,43 @@ a:hover {
 	box-shadow:none;
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
+}
+
+.button-container {
+    float:right;
+}
+
+.login-button {
+    float:right !important;
+    height:40px;
+    margin-top:4px;
+}
+
+.logged-in-text {
+    float:left;
+    margin-top:11px;
+    padding-right:5px;
+    color:white !important;
+}
+
+#navbar {
+    width:100%;
+    height:40px;
+    margin:0px;
+}
+
+.logoname {
+    font-size:18px;
+}
+
+.search-movie {
+    width:300px;
+}
+
+.search-button {
+    margin-left:10px !important;
+}
+
+.search-wrapper {
+   margin-left:22px;
 }
