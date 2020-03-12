@@ -8,9 +8,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import lombok.Data;
 import model.dao.ActorDAO;
-import model.dao.MovieDAO;
 import model.entity.Actor;
-import model.entity.Movie;
 
 @Data
 @Named
