@@ -33,10 +33,12 @@
 
                 <p:panel header="#{movie.title}" style="text-align:center" >
                     <h:panelGrid columns="1" style="width:100%">
-                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" href="detailedMovie.xhtml">
+                        <h:link outcome="detailedMovie">
+                            <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}">
                             <f:param name="id" value="#{movie.id}"/>
                             </img>
-                            <h:outputText value="#{movie.release_date}" />
+                        </h:link>
+                        <h:outputText value="#{movie.release_date}" />
                     </h:panelGrid>
                 </p:panel>
             </p:dataGrid>

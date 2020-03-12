@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title value="#{showMovieBackingBean.getMovie()}" var="movie">#{movie.title}
             <f:param name="name" value="#{movie.name}"/>
@@ -21,47 +22,43 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
+        
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+        
         <div class="card text-center">
            
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
-                            <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" class="img-fluid" alt="Responsive image" />
+                            <img src="https://image.tmdb.org/t/p/w185/#{showMovieBackingBean.movie.poster_path}" class="img-fluid" alt="Responsive image" />
                             <table class="table table-sm" value="#{showMovieBackingBean.getMovie()}" var="movie">
                                 
                                 <tbody>
                                     <tr>
                                         <th scope="row">Release year</th>
-                                        <td>#{showMovieBackingBean.movie.releaseYear}</td>
+                                        <td>#{showMovieBackingBean.movie.release_date}</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Rating</th>
-                                        <td>#{showMovieBackingBean.movie.rating}</td>
+                                        <td>#{showMovieBackingBean.movie.avg_rating}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col" value="#{showMovieBackingBean.movie}">
                             
-                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.name}</h5>
-                            <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.description}</p>
+                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.title}</h5>
+                            <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.overview}</p>
                         </div>
                     </div>
                     <div class="row">
                         
                     </div>
-                    <div class="row">
-                        <h:form id="review">
-                            <h3>The review:</h3>
-                            <p:outputLabel id="label" value="#{showMovieBackingBean.movie.reviews}"></p:outputLabel>
-                            <h3>Leave a review</h3>
-                            <p:inputTextarea rows="6" cols="100" value="#{showMovieBackingBean.review}"/>
-                            <p:commandButton value="Submit" action="#{showMovieBackingBean.validateSubmission}" update="label"/>
-                            <br/><br/>
-                            <p:growl />
-                        </h:form>
-                    </div>    
+                        
                     
                 </div>
                 
