@@ -44,7 +44,7 @@ public class MovieDAOTest {
     @Before
     public void init() {
         
-        for(int i=0; i<n; i++ ) {
+        /*for(int i=0; i<n; i++ ) {
             String title = faker.book().title();
             Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
             Integer rating = rand.nextInt((10-1)+1) + 1;
@@ -62,7 +62,7 @@ public class MovieDAOTest {
             movie.setActors(actors);
             
             
-        }
+        }*/
     }
 
     @After

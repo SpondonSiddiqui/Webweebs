@@ -47,7 +47,7 @@ public class ShowMovieBackingBean implements Serializable {
         movie = movieDAO.findMoviesByName(name).get(0);
     }
 
-    public void validateSubmission() {
+    /*public void validateSubmission() {
         movie = movieDAO.findMoviesByName(name).get(0);
         if (!movie.getReviews().equals("")) {
             movie.setReviews(review);
@@ -59,5 +59,5 @@ public class ShowMovieBackingBean implements Serializable {
                     + "of this movie.", null);
             Faces.validationFailed();
         }
-    }
+    }*/
 }
