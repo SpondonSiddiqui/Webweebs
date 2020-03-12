@@ -47,6 +47,16 @@ public class JsonReader {
       is.close();
     }
   }
+  public static List<Actor> getActorsFromUrl(String url) throws IOException, JSONExcpetion{
+      JSONObject json = readJsonFromUrl(url);
+      List<Movie> movies = new ArrayList<>();
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("results");
+      
+      Iterator<JsonNode> fields = paths.elements();
+  }
   
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
