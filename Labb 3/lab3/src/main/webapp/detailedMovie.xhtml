@@ -49,13 +49,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <p:outputLabel id="label" value="#{showMovieBackingBean.movie.reviews}"></p:outputLabel>
+                        
                     </div>
                     <div class="row">
                         <h:form id="review">
-                            <h3>Leave a review :3</h3>
+                            <h3>The review:</h3>
+                            <p:outputLabel id="label" value="#{showMovieBackingBean.movie.reviews}"></p:outputLabel>
+                            <h3>Leave a review</h3>
                             <p:inputTextarea rows="6" cols="100" value="#{showMovieBackingBean.review}"/>
-                            <p:commandButton value="Submit" action="#{showMovieBackingBean.validateSubmission}" update="@all"/>
+                            <p:commandButton value="Submit" action="#{showMovieBackingBean.validateSubmission}" update="label"/>
+                            <br/><br/>
                             <p:growl />
                         </h:form>
                     </div>    
