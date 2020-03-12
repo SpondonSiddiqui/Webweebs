@@ -39,15 +39,15 @@ public class MovieBackingBean implements Serializable {
     private void init(){
        test = "Hello world";
        try{
-       movies = movieDAO.getTopMovies("1");
+       movies = movieDAO.getTopMovies();
        } catch (IOException ex){
            System.out.println(ex.toString());
        }
     }
     
-    public List<Movie> getTopMovies(String page){
+    public List<Movie> getTopMovies(){
         try{
-            movies = movieDAO.getTopMovies(page);
+            movies = movieDAO.getTopMovies();
             return movies;
         } catch (IOException ex){
             System.out.println(ex.toString());
