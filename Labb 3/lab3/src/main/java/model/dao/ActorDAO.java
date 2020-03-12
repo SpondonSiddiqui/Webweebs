@@ -26,6 +26,7 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
                 + "WHERE m.name = :name");
         query.setParameter("name", name);
         return query.getResultList();
+    }
     /**
      * Get an actor by id.
      * @param id The id of the actor.
