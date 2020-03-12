@@ -47,15 +47,110 @@ public class JsonReader {
       is.close();
     }
   }
-  public static List<Actor> getActorsFromUrl(String url) throws IOException, JSONExcpetion{
+  public static List<Actor> getActorsFromMovieCreditsUrl(String url) throws IOException, JSONException{
       JSONObject json = readJsonFromUrl(url);
-      List<Movie> movies = new ArrayList<>();
+      List<Actor> actors = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
       JsonNode paths = tree.get("results");
       
       Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+          JsonNode field = fields.next();
+          String name;
+          String birthday = "";
+          String deathday = "";
+          String bio = "";
+          String id;
+          String pic_path;
+          
+          if(!field.has("character")) continue; //Checks if the person is an actor in the movie or not
+          
+          if(field.has("name")){
+              name = field.findValue("name").asText();
+          } else{
+              name = "Could not find name";
+          }
+          if(field.has("id")){
+              id = field.findValue("id").asText();
+          } else{
+              id = "Could not find id";
+          }
+          if(field.has("profile_path")){
+              pic_path = field.findValue("profile_path").asText();
+          } else {
+              pic_path = "Could not find profile picture";
+          }
+          
+          Actor actor = new Actor(
+                  name
+                  ,birthday
+                  ,deathday
+                  ,bio
+                  ,id
+                  ,pic_path
+          );
+          
+          actors.add(actor);
+      }
+      return actors;
+  }
+  
+    public static Actor getActorFromUrl(String url) throws IOException, JSONException{
+        JSONObject json = readJsonFromUrl(url);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode field = objectMapper.readTree(json.toString());
+
+        String name;
+        String birthday;
+        String deathday;
+        String bio;
+        String id;
+        String pic_path;
+
+        if(field.has("name")){
+            name = field.findValue("name").asText();
+        } else{
+            name = "Could not find name";
+        }
+        if(field.has("birthday")){
+            birthday = field.findValue("birthday").asText();
+        } else {
+            birthday = "Could not find birthday";
+        }
+        if(field.has("deathday")){
+            deathday = field.findValue("deathday").asText();
+        } else {
+            deathday = "Could not find deathday";
+        }
+        if(field.has("biography")){
+            bio = field.findValue("biography").asText();
+        } else {
+            bio = "Could not find biography";
+        }
+        if(field.has("id")){
+            id = field.findValue("id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
+
+        Actor actor = new Actor(
+              name
+              ,birthday
+              ,deathday
+              ,bio
+              ,id
+              ,pic_path
+          );
+        
+        return actor;
   }
   
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
@@ -75,6 +170,7 @@ public class JsonReader {
             String overview;
             String release_date;
             String poster_path;
+            String id;
                     
                     
             if(field.has("title")){
@@ -102,13 +198,11 @@ public class JsonReader {
             } else{
                  poster_path = "Could not find poster_path";
             }
-                                    
-            
-            
-            /*String avg_rating = field.findValue("vote_average").asText();
-            String overview = field.findValue("overview").asText();
-            String release_date = field.findValue("release_date").asText();
-            String poster_path = field.findValue("poster_path").asText();*/
+            if(field.has("id")){
+                 id = field.findValue("id").asText();
+            } else{
+                 id = "Could not find id";
+            }                  
             
             Movie movie = new Movie(
                     title
@@ -116,6 +210,7 @@ public class JsonReader {
                     ,overview
                     ,release_date
                     ,poster_path
+                    ,id
             );
             
             movies.add(movie);      

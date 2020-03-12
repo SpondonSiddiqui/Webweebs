@@ -16,4 +16,8 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
     public ActorDAO() {
         super(Actor.class);
     }
+    
+    public Actor getActor(String id){
+        
+    }
 }
