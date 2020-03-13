@@ -59,41 +59,9 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          String name;
-          String birthday = "";
-          String deathday = "";
-          String bio = "";
-          String id;
-          String pic_path;
-          
           if(!field.has("character")) continue; //Checks if the person is an actor in the movie or not
           
-          if(field.has("name")){
-              name = field.findValue("name").asText();
-          } else{
-              name = "Could not find name";
-          }
-          if(field.has("id")){
-              id = field.findValue("id").asText();
-          } else{
-              id = "Could not find id";
-          }
-          if(field.has("profile_path")){
-              pic_path = field.findValue("profile_path").asText();
-          } else {
-              pic_path = "Could not find profile picture";
-          }
-          
-          Actor actor = new Actor(
-                  name
-                  ,birthday
-                  ,deathday
-                  ,bio
-                  ,id
-                  ,pic_path
-          );
-          
-          actors.add(actor);
+          actors.add(getActorFromNode(field));
       }
       return actors;
   }
@@ -109,60 +77,13 @@ public class JsonReader {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode field = objectMapper.readTree(json.toString());
-
-        String name;
-        String birthday;
-        String deathday;
-        String bio;
-        String id;
-        String pic_path;
-
-        if(field.has("name")){
-            name = field.findValue("name").asText();
-        } else{
-            name = "Could not find name";
-        }
-        if(field.has("birthday")){
-            birthday = field.findValue("birthday").asText();
-        } else {
-            birthday = "Could not find birthday";
-        }
-        if(field.has("deathday")){
-            deathday = field.findValue("deathday").asText();
-        } else {
-            deathday = "Could not find deathday";
-        }
-        if(field.has("biography")){
-            bio = field.findValue("biography").asText();
-        } else {
-            bio = "Could not find biography";
-        }
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
-        }
-
-        Actor actor = new Actor(
-              name
-              ,birthday
-              ,deathday
-              ,bio
-              ,id
-              ,pic_path
-          );
         
-        return actor;
+        return getActorFromNode(field);
   }
   
     public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
-      Actor actor = new Actor("","","","","","");
+      Actor emptyActor = new Actor("COuld not find Director","","","","","");
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
@@ -171,43 +92,11 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          String name;
-          String birthday = "";
-          String deathday = "";
-          String bio = "";
-          String id;
-          String pic_path;
-          
           if(!field.has("department") || !field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
           
-          if(field.has("name")){
-              name = field.findValue("name").asText();
-          } else{
-              name = "Could not find name";
-          }
-          if(field.has("id")){
-              id = field.findValue("id").asText();
-          } else{
-              id = "Could not find id";
-          }
-          if(field.has("profile_path")){
-              pic_path = field.findValue("profile_path").asText();
-          } else {
-              pic_path = "Could not find profile picture";
-          }
-          
-          actor = new Actor(
-                  name
-                  ,birthday
-                  ,deathday
-                  ,bio
-                  ,id
-                  ,pic_path
-          );
-          
-          break;
+          return getActorFromNode(field);
       }
-      return actor;
+      return emptyActor;
     }
   
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
@@ -222,55 +111,8 @@ public class JsonReader {
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
-            String title;
-            String avg_rating;
-            String overview;
-            String release_date;
-            String poster_path;
-            String id;
-                    
-                    
-            if(field.has("title")){
-                title = field.findValue("title").asText();
-            } else{
-                title = "Could not find title";
-            }
-            if(field.has("vote_average")){
-                 avg_rating = field.findValue("vote_average").asText();
-            } else{
-                 avg_rating = "Could not find vote_average";
-            }
-            if(field.has("overview")){
-                 overview = field.findValue("overview").asText();
-            } else{
-                 overview = "Could not find overview";
-            }
-            if(field.has("release_date")){
-                 release_date = field.findValue("release_date").asText();
-            } else{
-                 release_date = "Could not find release_date";
-            }
-            if(field.has("poster_path")){
-                 poster_path = field.findValue("poster_path").asText();
-            } else{
-                 poster_path = "Could not find poster_path";
-            }
-            if(field.has("id")){
-                 id = field.findValue("id").asText();
-            } else{
-                 id = "Could not find id";
-            }                  
             
-            Movie movie = new Movie(
-                    title
-                    ,avg_rating
-                    ,overview
-                    ,release_date
-                    ,poster_path
-                    ,id
-            );
-            
-            movies.add(movie);      
+            movies.add(getMovieFromNode(field));      
       }
       return movies;
       
@@ -282,6 +124,11 @@ public class JsonReader {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode field = objectMapper.readTree(json.toString());
 
+        return getMovieFromNode(field);
+  }
+  
+  private static Movie getMovieFromNode(JsonNode field){
+      
         String title;
         String avg_rating;
         String overview;
@@ -330,6 +177,58 @@ public class JsonReader {
         );
         
         return movie;
+  }
+  
+  private static Actor getActorFromNode(JsonNode field){
+      
+        String name;
+        String birthday;
+        String deathday;
+        String bio;
+        String id;
+        String pic_path;
+
+        if(field.has("name")){
+            name = field.findValue("name").asText();
+        } else{
+            name = "Could not find name";
+        }
+        if(field.has("birthday")){
+            birthday = field.findValue("birthday").asText();
+        } else {
+            birthday = "Could not find birthday";
+        }
+        if(field.has("deathday")){
+            deathday = field.findValue("deathday").asText();
+        } else {
+            deathday = "Could not find deathday";
+        }
+        if(field.has("biography")){
+            bio = field.findValue("biography").asText();
+        } else {
+            bio = "Could not find biography";
+        }
+        if(field.has("id")){
+            id = field.findValue("id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
+
+        Actor actor = new Actor(
+              name
+              ,birthday
+              ,deathday
+              ,bio
+              ,id
+              ,pic_path
+          );
+        
+        return actor;
   }
  
 
