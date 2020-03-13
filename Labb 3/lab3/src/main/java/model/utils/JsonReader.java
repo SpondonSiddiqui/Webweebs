@@ -47,8 +47,7 @@ public class JsonReader {
       is.close();
     }
   }
-  
-  public static List<Actor> getActorsFromMovieCreditsUrl(String url) throws IOException, JSONException{
+  public static List<Actor> getActorsFromUrl(String url) throws IOException, JSONException{
       JSONObject json = readJsonFromUrl(url);
       List<Actor> actors = new ArrayList<>();
       
@@ -57,107 +56,7 @@ public class JsonReader {
       JsonNode paths = tree.get("results");
       
       Iterator<JsonNode> fields = paths.elements();
-      while(fields.hasNext()){
-          JsonNode field = fields.next();
-          String name;
-          String birthday = "";
-          String deathday = "";
-          String bio = "";
-          String id;
-          String pic_path;
-          
-          if(!field.has("character")) continue; //Checks if the person is an actor in the movie or not
-          
-          if(field.has("name")){
-              name = field.findValue("name").asText();
-          } else{
-              name = "Could not find name";
-          }
-          if(field.has("id")){
-              id = field.findValue("id").asText();
-          } else{
-              id = "Could not find id";
-          }
-          if(field.has("profile_path")){
-              pic_path = field.findValue("profile_path").asText();
-          } else {
-              pic_path = "Could not find profile picture";
-          }
-          
-          Actor actor = new Actor(
-                  name
-                  ,birthday
-                  ,deathday
-                  ,bio
-                  ,id
-                  ,pic_path
-          );
-          
-          actors.add(actor);
-      }
-      return actors;
-  }
-    /**
-     * Reads an url and returns the actor (or any person) given by the url
-     * @param url 
-     * @return
-     * @throws IOException
-     * @throws JSONException 
-     */
-    public static Actor getActorFromUrl(String url) throws IOException, JSONException{
-        JSONObject json = readJsonFromUrl(url);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode field = objectMapper.readTree(json.toString());
-
-        String name;
-        String birthday;
-        String deathday;
-        String bio;
-        String id;
-        String pic_path;
-
-        if(field.has("name")){
-            name = field.findValue("name").asText();
-        } else{
-            name = "Could not find name";
-        }
-        if(field.has("birthday")){
-            birthday = field.findValue("birthday").asText();
-        } else {
-            birthday = "Could not find birthday";
-        }
-        if(field.has("deathday")){
-            deathday = field.findValue("deathday").asText();
-        } else {
-            deathday = "Could not find deathday";
-        }
-        if(field.has("biography")){
-            bio = field.findValue("biography").asText();
-        } else {
-            bio = "Could not find biography";
-        }
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
-        }
-
-        Actor actor = new Actor(
-              name
-              ,birthday
-              ,deathday
-              ,bio
-              ,id
-              ,pic_path
-          );
-        
-        return actor;
+      return actors; // TODO This is not complete right? Comparing with getMoviesFromURL
   }
   
     public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
