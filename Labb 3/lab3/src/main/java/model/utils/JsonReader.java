@@ -193,7 +193,7 @@ public class JsonReader {
            
             JsonNode field = fields.next();
             
-            movies.add(getMovieFromNode(field, " "));      
+            movies.add(getMovieFromNode(field));      
       }
       return movies;
       
@@ -212,7 +212,7 @@ public class JsonReader {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode field = objectMapper.readTree(json.toString());
 
-        return getMovieFromNode(field, movID);
+        return getMovieFromNode(field);
   }
   
   /**
@@ -240,7 +240,7 @@ public class JsonReader {
       return "";
   }
   
-  private static Movie getMovieFromNode(JsonNode field, String movID){
+  private static Movie getMovieFromNode(JsonNode field){
       
         String title;
         String avg_rating;
@@ -287,26 +287,7 @@ public class JsonReader {
         } else {
             //TODO
         }
-
         
-        /*try{
-            director = getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US").getName();
-        }catch (IOException e){
-            director = "No";
-        }
-        
-        starring = new ArrayList<>();
-        
-        try{
-            for(int i=0; i<3; i++){
-            starring.add(getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+movID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US").get(i).getName());
-            }
-        }catch (IOException e){
-            starring.add(" ");
-        }*/
-        starring = new ArrayList<>();
-        director=" test";
-        starring.add(" test");
         Movie movie = new Movie(
                 title
                 ,avg_rating
@@ -314,8 +295,6 @@ public class JsonReader {
                 ,release_date
                 ,poster_path
                 ,id
-                ,director
-                ,starring
                 ,genres
         );
         
