@@ -1,6 +1,9 @@
 package model.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Data;
@@ -17,6 +20,8 @@ public class WebUser implements Serializable {
     @Id
     @NonNull private String username;
     @NonNull private String password;
+    
+    @NonNull Map<String, List<Movie>> myLists;
     
     /*@JoinTable(name = "watch_list",
             joinColumns = @JoinColumn(name = "user"),

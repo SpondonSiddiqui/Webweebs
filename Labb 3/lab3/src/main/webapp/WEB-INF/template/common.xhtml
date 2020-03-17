@@ -24,6 +24,7 @@
 					<ul class="navbar-nav ml-auto">
                                             
                                             <h:form>
+                                                <a href=""></a>
 						<p:outputPanel class="button-container" rendered="#{userBean.loggedIn}">
                                                     <p:outputLabel class="logged-in-text" value="Logged in as #{userBean.user.username}"></p:outputLabel>
                                                     <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout}" update="@form"></p:commandButton>
