@@ -38,13 +38,14 @@ public class MovieDAOTest {
     private ActorDAO actorDAO;
     
     private List<Movie> movies = new ArrayList<>();
+    private List<String> genres = new ArrayList<>();
 
-    Movie godfather = new Movie("The Godfather", "10", "", "1972","", "");
-    Movie joker = new Movie("Joker","8","", "2019", "", "");
-    Movie uncut = new Movie("Uncut Gem","9","", "2019", "", "");
-    Movie darkNight = new Movie("The Dark Knight","6","", "2008", "", "");
-    Movie gladiator = new Movie("Gladiator","5","", "2000", "", "");
-    Movie beautifulMind = new Movie("A Beautiful Mind","4","", "2001", "", "");
+    Movie godfather = new Movie("The Godfather", "10", "", "1972","", "",genres);
+    Movie joker = new Movie("Joker","8","", "2019", "", "",genres);
+    Movie uncut = new Movie("Uncut Gem","9","", "2019", "", "",genres);
+    Movie darkNight = new Movie("The Dark Knight","6","", "2008", "", "",genres);
+    Movie gladiator = new Movie("Gladiator","5","", "2000", "", "",genres);
+    Movie beautifulMind = new Movie("A Beautiful Mind","4","", "2001", "", "",genres);
     
     Actor joph = new Actor ("Joaquin Phoenix", "1974","","","","");
     Actor rucr = new Actor ("Russell Crowe", "1964","","","","");

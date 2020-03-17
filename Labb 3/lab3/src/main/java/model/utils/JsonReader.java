@@ -154,6 +154,31 @@ public class JsonReader {
         return getMovieFromNode(field);
   }
   
+  /**
+   * Get genre tied to id
+   * @param url Url with genres 
+   * @return The genre
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static String getGenreFromUrl(String url, String id) throws IOException, JSONException{
+      JSONObject json = readJsonFromUrl(url);
+
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("genres");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            if(field.findValue("id").asText().equals(id))
+                return field.findValue("name").asText();
+                
+      }
+      return "";
+  }
+  
   private static Movie getMovieFromNode(JsonNode field){
       
         String title;
@@ -162,6 +187,7 @@ public class JsonReader {
         String release_date;
         String poster_path;
         String id;
+        List<String> genres = new ArrayList<>();
 
         if(field.has("title")){
             title = field.findValue("title").asText();
@@ -192,7 +218,12 @@ public class JsonReader {
              id = field.findValue("id").asText();
         } else{
              id = "Could not find id";
-        }                  
+        }      
+        if(field.has("genres")){
+            genres = getGenresFromGenreNode(field.get("genres"));
+        } else {
+            //TODO
+        }
 
         Movie movie = new Movie(
                 title
@@ -201,6 +232,7 @@ public class JsonReader {
                 ,release_date
                 ,poster_path
                 ,id
+                ,genres
         );
         
         return movie;
@@ -258,10 +290,19 @@ public class JsonReader {
         return actor;
   }
   
-  private static List<String> getIdFromNode(JsonNode movieField){
+  private static List<String> getGenresFromGenreNode(JsonNode genreField){
       List<String> ids = new ArrayList<>();
+      Iterator<JsonNode> fields = genreField.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            if(field.has("id")){
+                ids.add(field.findValue("id").asText());
+            }
+      }
       return ids;
   }
+  
  
 
 }
