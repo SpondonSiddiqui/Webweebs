@@ -14,22 +14,22 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <h:form id="form">
-                <p:focus context="form"/>
-                <div class="headerwrapper">
-                    <img src="img/logo.png" width="40" />
-                    <p:button value="Go back" class="goback" outcome="index"></p:button>
-                </div>  
-                <p:outputLabel class="signupheader">Log in to your account</p:outputLabel>
-                <p:outputLabel class="signuplabel">Username</p:outputLabel>
-                <p:inputText id="name" value="#{loginBackingBean.username}" />
-                <p:outputLabel class="signuplabel">Password</p:outputLabel>
-                <p:inputText id="password" type="password" value="#{loginBackingBean.password}" /> <br/><br/>
-                <p:commandButton class="signupbutton" value="Log in" update="@form" action="#{loginBackingBean.onLogin}"/> <br/>
-                <div class="gobackwrapper">
-                    <p:button value="Click here to create a new account" class="login" outcome="signup"></p:button>
-                </div>  
-                <p:growl/>
-            </h:form>
+            <p:focus context="form"/>
+            <div class="headerwrapper">
+                <img src="img/logo.png" width="40" />
+                <p:button value="Go back" class="goback" outcome="index"></p:button>
+            </div>  
+            <p:outputLabel class="signupheader">Log in to your account</p:outputLabel>
+            <p:outputLabel class="signuplabel">Username</p:outputLabel>
+            <p:inputText id="name" value="#{loginBackingBean.username}" />
+            <p:outputLabel class="signuplabel">Password</p:outputLabel>
+            <p:inputText id="password" type="password" value="#{loginBackingBean.password}" /> <br/><br/>
+            <p:commandButton class="signupbutton" value="Log in" update="@form" action="#{loginBackingBean.onLogin}"/> <br/>
+            <div class="gobackwrapper">
+                <p:button value="Click here to create a new account" class="login" outcome="signup"></p:button>
+            </div>  
+            <p:growl/>
+        </h:form>
 
     </h:body>
 </html>

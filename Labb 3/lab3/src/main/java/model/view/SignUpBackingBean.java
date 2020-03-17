@@ -45,7 +45,7 @@ public class SignUpBackingBean implements Serializable {
      */
     public String validateNewUser() {
 
-        WebUser wu = new WebUser(username, password);
+        WebUser wu = new WebUser(username, password, null);
         if (!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
             Messages.addGlobalWarn("Created user " + username + "!", null);

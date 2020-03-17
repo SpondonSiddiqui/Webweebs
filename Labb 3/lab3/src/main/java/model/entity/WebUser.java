@@ -21,6 +21,8 @@ public class WebUser implements Serializable {
     @NonNull private String username;
     @NonNull private String password;
     
+    @NonNull private WatchList myWatchList;
+    
     /*@JoinTable(name = "watch_list",
             joinColumns = @JoinColumn(name = "user"),
             inverseJoinColumns = @JoinColumn(name = "movie"))

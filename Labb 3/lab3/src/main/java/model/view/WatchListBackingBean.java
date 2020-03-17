@@ -19,6 +19,8 @@ import lombok.Data;
 @ViewScoped
 public class WatchListBackingBean implements Serializable{
     
+    
+    
     public String populateWatchLists() {
         return "watchlists";
     }
