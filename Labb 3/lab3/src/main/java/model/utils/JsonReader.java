@@ -72,6 +72,55 @@ public class JsonReader {
       }
       return actors;
   }
+  
+  /**
+   * Get actors from url (Such as search results)
+   * @param url Url to list of actors
+   * @return List of actors
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static List<Actor> getActorsFromUrl(String url)  throws IOException, JSONException{
+        JSONObject json = readJsonFromUrl(url);
+      List<Actor> actors = new ArrayList<>();
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("results");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+          JsonNode field = fields.next();
+          
+          actors.add(getActorFromNode(field));
+      }
+      return actors;
+  }
+  
+  /**
+   * Get movies in which the actor (or general person) has starred in/been involved with.
+   * @param url Url to Actor
+   * @return List of movies
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static List<Movie> getMoviesFromActorUrl(String url) throws IOException, JSONException{
+        JSONObject json = readJsonFromUrl(url);
+      List<Movie> movies = new ArrayList<>();
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("known_for");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            
+            movies.add(getMovieFromNode(field));      
+      }
+      return movies;
+  }
     /**
      * Reads an url and returns the actor (or any person) (chosen by id) given by the url
      * @param url Url with actor-id
