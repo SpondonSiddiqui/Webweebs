@@ -24,6 +24,7 @@ import org.omnifaces.util.Messages;
 @ViewScoped
 public class SignUpBackingBean implements Serializable {
 
+    //only accept letters, numbers and underscore in the username, aswell as 5-25 characters
     @Pattern(regexp = "^[A-Za-z0-9_]+$", message = "Username contains weird characters!")
     @Size(min = 5, max = 25, message = "Username too short or too long!")
     private String username;
@@ -35,22 +36,22 @@ public class SignUpBackingBean implements Serializable {
     private UserDAO userDAO;
 
     @PostConstruct
-    private void init() {
-        users = userDAO.findAll();
+    private void init() { 
+        users = userDAO.findAll(); 
     }
 
     /** validateNewUser()
      * checks if user already exists/bad username
      * @return string depending on successful signup
      */
-    public String validateNewUser() {
+    public String validateNewUser() { 
 
-        WebUser wu = new WebUser(username, password);
+        WebUser wu = new WebUser(username, password); //create new user
         if (!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
             Messages.addGlobalWarn("Created user " + username + "!", null);
-            Faces.validationFailed();
-            return "signupsuccesful";
+            Faces.validationFailed(); 
+            return "signupsuccesful"; //return to index
         } else {
             Messages.addGlobalWarn("Username " + username + " already exists!", null);
             Faces.validationFailed();
