@@ -5,8 +5,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>IMDB Clone</title>
+        <title>MovIT</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/carousel.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
     </h:head>
 
     <h:body>
@@ -16,33 +19,141 @@
             </ui:define>
         </ui:decorate>
 
-
-        <h:form id="form">
-            <div class="search-wrapper">
-                <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+        <div class="container-fluid">
+            <h3 class="text-center mb-3">Top movies right now</h3>
+            <a href="topRated.xhtml">See all</a>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" value="#{movieBackingBean.movies}">
+                <div class="carousel-inner row w-100 mx-auto">
+                    <div class="carousel-item col-md-2 active">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(0).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(0).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(0).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(0).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(1).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(1).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(1).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(1).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(1).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(2).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(2).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(2).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(2).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(2).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(3).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(3).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(3).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(3).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(3).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(4).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(4).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(4).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(4).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(4).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(5).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(5).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(5).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(5).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(5).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item col-md-2">
+                        <div class="card">
+                            <h:link outcome="detailedMovie">
+                                <img class="card-img-top img-fluid" 
+                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
+                                 alt="Card image cap">
+                                    <f:param name="id" value="#{movieBackingBean.movies.get(6).id}"/>
+                                </img>
+                            </h:link>
+                            <div class="card-body">
+                                <h4 class="card-title">#{movieBackingBean.movies.get(6).title}</h4>
+                                <p class="card-text movie-overview">#{movieBackingBean.movies.get(6).overview}</p>
+                                <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(6).avg_rating}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
-                        rows="20" paginator="true" id="mov"
-                        paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
-                        >
+        </div>
 
-                <f:facet name="header">
-                    Movies
-                </f:facet>
-
-                <p:panel header="#{movie.title}" style="text-align:center" >
-                    <h:panelGrid columns="1" style="width:100%">
-                        <h:link outcome="detailedMovie">
-                            <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}">
-                            <f:param name="id" value="#{movie.id}"/>
-                            </img>
-                        </h:link>
-                        <h:outputText value="#{movie.release_date}" />
-                    </h:panelGrid>
-                </p:panel>
-            </p:dataGrid>
-        </h:form>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="js/carousel.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     </h:body>
 </html>
 
