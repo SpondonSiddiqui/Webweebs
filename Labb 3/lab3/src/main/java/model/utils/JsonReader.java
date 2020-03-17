@@ -230,6 +230,11 @@ public class JsonReader {
         
         return actor;
   }
+  
+  private static List<String> getIdFromNode(JsonNode movieField){
+      List<String> ids = new ArrayList<>();
+      return ids;
+  }
  
 
 }
