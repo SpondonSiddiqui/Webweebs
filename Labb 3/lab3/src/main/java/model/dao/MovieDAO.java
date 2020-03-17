@@ -41,7 +41,12 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
         return query.getResultList();
     }
     
-    /**
+    public List<Movie> getAllMovies(){
+        Query query = entityManager.createQuery("SELECT m FROM Movie m");
+        return query.getResultList();
+    }
+
+      /**
      * Get top movies by page.
      * @param page 
      * @return
