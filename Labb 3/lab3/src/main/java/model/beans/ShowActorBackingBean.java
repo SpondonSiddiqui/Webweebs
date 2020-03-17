@@ -5,6 +5,7 @@
  */
 package model.beans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,17 +26,20 @@ import org.omnifaces.cdi.Param;
 public class ShowActorBackingBean implements Serializable {
 
     @Inject
-    @Param(name = "name")
-    private String name;
+    @Param(name = "id")
+    private String id;
     
     @EJB
     private ActorDAO actorDAO;
     private Actor actor;
 
-  
     @PostConstruct
     private void init(){
-        actor = actorDAO.findActorsByName(name).get(0);
+        try {
+            actor = actorDAO.getActor(id);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
    
 }
