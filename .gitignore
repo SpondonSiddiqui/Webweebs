@@ -4,11 +4,13 @@
 # Log file
 *.log
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+#netbeans specific
+core
+target/
+gitinspector-master/
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
 
 # Package Files #
 *.jar
