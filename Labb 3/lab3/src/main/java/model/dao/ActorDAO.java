@@ -48,6 +48,12 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         return JsonReader.getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
     }
     
+    /**
+     * Get movies that actor starred in.
+     * @param actorID Id of actor
+     * @return List of movies 
+     * @throws IOException 
+     */
     public List<Movie> getMoviesFromActor(String actorID) throws IOException{
         Actor actor = getActor(actorID);
         return JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+actor.getName()+"&page=1&include_adult=true",actorID);
