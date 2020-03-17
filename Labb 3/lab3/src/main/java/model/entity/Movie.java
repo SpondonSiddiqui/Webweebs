@@ -28,8 +28,8 @@ public class Movie implements Serializable {
     @NonNull private String id;
     @NonNull private String director;
     @NonNull private List<String> starring;
-    //@NonNull private List<String> genres;
-   
+    @NonNull private List<String> genres;
+
     
     @JoinTable(name = "actor_list",
             joinColumns = @JoinColumn(name = "movie"),

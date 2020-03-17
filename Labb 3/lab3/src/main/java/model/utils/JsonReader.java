@@ -72,6 +72,64 @@ public class JsonReader {
       }
       return actors;
   }
+  
+  /**
+   * Get actors from url (Such as search results)
+   * @param url Url to list of actors
+   * @return List of actors
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static List<Actor> getActorsFromUrl(String url)  throws IOException, JSONException{
+        JSONObject json = readJsonFromUrl(url);
+      List<Actor> actors = new ArrayList<>();
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("results");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+          JsonNode field = fields.next();
+          
+          actors.add(getActorFromNode(field));
+      }
+      return actors;
+  }
+  
+  /**
+   * Get movies in which the actor (or general person) has starred in/been involved with.
+   * @param url Url to Actor
+   * @return List of movies
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static List<Movie> getMoviesFromActorUrl(String url, String id) throws IOException, JSONException{
+        JSONObject json = readJsonFromUrl(url);
+      List<Movie> movies = new ArrayList<>();
+      
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("results");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            if(field.findValue("id").asText().equals(id)){
+                    JsonNode newPaths = field.get("known_for");
+      
+                    Iterator<JsonNode> newFields = newPaths.elements();
+                    while(newFields.hasNext()){
+                        JsonNode movieField = newFields.next();
+                        movies.add(getMovieFromNode(field)); 
+                    }
+                    return movies;
+            }  
+      }
+      return movies;
+  }
+  
     /**
      * Reads an url and returns the actor (or any person) (chosen by id) given by the url
      * @param url Url with actor-id
@@ -157,6 +215,31 @@ public class JsonReader {
         return getMovieFromNode(field, movID);
   }
   
+  /**
+   * Get genre tied to id
+   * @param url Url with genres 
+   * @return The genre
+   * @throws IOException
+   * @throws JSONException 
+   */
+  public static String getGenreFromUrl(String url, String id) throws IOException, JSONException{
+      JSONObject json = readJsonFromUrl(url);
+
+      ObjectMapper objectMapper = new ObjectMapper();
+      JsonNode tree = objectMapper.readTree(json.toString());
+      JsonNode paths = tree.get("genres");
+      
+      Iterator<JsonNode> fields = paths.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            if(field.findValue("id").asText().equals(id))
+                return field.findValue("name").asText();
+                
+      }
+      return "";
+  }
+  
   private static Movie getMovieFromNode(JsonNode field, String movID){
       
         String title;
@@ -167,6 +250,7 @@ public class JsonReader {
         String id;
         String director;
         List<String> starring; 
+        List<String> genres = new ArrayList<>();
 
         if(field.has("title")){
             title = field.findValue("title").asText();
@@ -197,7 +281,13 @@ public class JsonReader {
              id = field.findValue("id").asText();
         } else{
              id = "Could not find id";
-        }                  
+        }      
+        if(field.has("genres")){
+            genres = getGenresFromGenreNode(field.get("genres"));
+        } else {
+            //TODO
+        }
+
         
         /*try{
             director = getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US").getName();
@@ -226,6 +316,7 @@ public class JsonReader {
                 ,id
                 ,director
                 ,starring
+                ,genres
         );
         
         return movie;
@@ -283,10 +374,19 @@ public class JsonReader {
         return actor;
   }
   
-  private static List<String> getIdFromNode(JsonNode movieField){
+  private static List<String> getGenresFromGenreNode(JsonNode genreField){
       List<String> ids = new ArrayList<>();
+      Iterator<JsonNode> fields = genreField.elements();
+      while(fields.hasNext()){
+           
+            JsonNode field = fields.next();
+            if(field.has("id")){
+                ids.add(field.findValue("id").asText());
+            }
+      }
       return ids;
   }
+  
  
 
 }

@@ -60,5 +60,6 @@ public class LoginBackingBean implements Serializable {
     public void onLogout() {
         userBean.setUser(null);
         Faces.invalidateSession();
+        Faces.redirect("index.xhtml");
     }
 }

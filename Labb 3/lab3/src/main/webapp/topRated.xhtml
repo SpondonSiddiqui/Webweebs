@@ -16,7 +16,6 @@
             </ui:define>
         </ui:decorate>
 
-
         <h:form id="form">
             <div class="search-wrapper">
                 <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
@@ -26,14 +25,16 @@
                         rows="20" paginator="true" id="mov"
                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
                         >
-
                 <f:facet name="header">
                     Movies
                 </f:facet>
-
-                <p:panel header="#{movie.title}" style="text-align:center">
+                <p:panel header="#{movie.title}" style="text-align:center" >
                     <h:panelGrid columns="1" style="width:100%">
-                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" />
+                        <h:link outcome="detailedMovie">
+                            <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}">
+                                <f:param name="id" value="#{movie.id}"/>
+                            </img>
+                        </h:link>
                         <h:outputText value="#{movie.release_date}" />
                     </h:panelGrid>
                 </p:panel>
