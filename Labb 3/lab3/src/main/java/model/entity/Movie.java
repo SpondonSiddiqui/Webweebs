@@ -26,6 +26,8 @@ public class Movie implements Serializable {
     @NonNull private String release_date;
     @NonNull private String poster_path;
     @NonNull private String id;
+    @NonNull private String director;
+    @NonNull private List<String> starring;
     //@NonNull private List<String> genres;
    
     

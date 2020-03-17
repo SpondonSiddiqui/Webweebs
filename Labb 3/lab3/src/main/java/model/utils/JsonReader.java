@@ -96,7 +96,7 @@ public class JsonReader {
    */
     public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
-      Actor emptyActor = new Actor("COuld not find Director","","","","","");
+      Actor emptyActor = new Actor("Could not find Director","","","","","");
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
@@ -105,9 +105,12 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          if(!field.has("department") || !field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
-          
+          //if(!field.has("department") || !field.findValue("department").asText().equals("Directing")
+          //        || !field.findValue("job").asText().equals("Director")) continue; //Checks if the person is a director or not. If not, continue
+          if(field.has("Director")){
           return getActorFromNode(field);
+          }
+          continue;
       }
       return emptyActor;
     }
@@ -132,7 +135,7 @@ public class JsonReader {
            
             JsonNode field = fields.next();
             
-            movies.add(getMovieFromNode(field));      
+            movies.add(getMovieFromNode(field, " "));      
       }
       return movies;
       
@@ -145,16 +148,16 @@ public class JsonReader {
    * @throws IOException
    * @throws JSONException 
    */
-  public static Movie getMovieFromUrl(String url) throws IOException, JSONException {
+  public static Movie getMovieFromUrl(String url, String movID) throws IOException, JSONException {
         JSONObject json = readJsonFromUrl(url);
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode field = objectMapper.readTree(json.toString());
 
-        return getMovieFromNode(field);
+        return getMovieFromNode(field, movID);
   }
   
-  private static Movie getMovieFromNode(JsonNode field){
+  private static Movie getMovieFromNode(JsonNode field, String movID){
       
         String title;
         String avg_rating;
@@ -162,6 +165,8 @@ public class JsonReader {
         String release_date;
         String poster_path;
         String id;
+        String director;
+        List<String> starring; 
 
         if(field.has("title")){
             title = field.findValue("title").asText();
@@ -193,7 +198,25 @@ public class JsonReader {
         } else{
              id = "Could not find id";
         }                  
-
+        
+        /*try{
+            director = getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US").getName();
+        }catch (IOException e){
+            director = "No";
+        }
+        
+        starring = new ArrayList<>();
+        
+        try{
+            for(int i=0; i<3; i++){
+            starring.add(getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+movID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US").get(i).getName());
+            }
+        }catch (IOException e){
+            starring.add(" ");
+        }*/
+        starring = new ArrayList<>();
+        director=" test";
+        starring.add(" test");
         Movie movie = new Movie(
                 title
                 ,avg_rating
@@ -201,6 +224,8 @@ public class JsonReader {
                 ,release_date
                 ,poster_path
                 ,id
+                ,director
+                ,starring
         );
         
         return movie;

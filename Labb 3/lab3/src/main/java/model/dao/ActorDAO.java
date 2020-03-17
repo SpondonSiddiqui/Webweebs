@@ -55,6 +55,7 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
      */
     public Actor getDirectorOfMovie(String movieID) throws IOException{
         Actor actor = JsonReader.getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
-        return getActor(actor.getId());
+        //return getActor(actor.getId());
+        return actor;
     }
 }

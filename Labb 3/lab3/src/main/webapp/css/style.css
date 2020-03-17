@@ -205,3 +205,14 @@ a:hover {
 .search-wrapper {
    margin-left:22px;
 }
+
+#navi {
+    margin-top: 40px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#content {
+    padding-left: 15%;
+    padding-right: 15%;
+}
