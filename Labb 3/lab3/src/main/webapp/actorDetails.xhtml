@@ -1,84 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
-    <head>
-        <title>NAME OF ACTOR</title>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title value="#{showActorBackingBean.getActor()}" var="actor">#{actor.name}
+            <f:param name="name" value="#{actor.name}"/>
+        </title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
         <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body>
+    </h:head>
+    <h:body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
         <div class="card text-center">
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="home" aria-selected="true">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="movies-tab" data-toggle="tab" href="#movies" role="tab" aria-controls="movies" aria-selected="false">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                    </li>
-                </ul>
-            </div>
+           
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
-                            <img src="img/joaquin-phoenix.jpg" class="img-fluid" alt="Responsive image"/>
-                            <table class="table table-sm">
+                            <img src="img/HereDatBoi.jpg" class="img-fluid" alt="Responsive image"/>
+                            <table class="table table-sm" value="#{showActorBackingBean.getActor()}" var="actor">
+                                
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Born</th>
-                                        <td>October 28, 1974 in San Juan, Puerto Rico</td>
+                                        <th scope="row">Birth year</th>
+                                        <td>#{showActorBackingBean.actor.birthYear}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">Birth name</th>
-                                        <td>Joaquin Rafael Bottom</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Nicknames</th>
-                                        <td>
-                                            <ul style="list-style-type:none">
-                                                <li>Kitten</li>
-                                                <li>Joaq</li>
-                                                <li>Leaf</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Height</th>
-                                        <td>5' 8" (1.73 m)</td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col">
-                            <h5 class="card-title text-left" float="left">Joaquin Phoenix</h5>
-                            <p class="card-text text-left">Joaquin Phoenix was born Joaquin Rafael Bottom in San Juan, Puerto Rico, to Arlyn (Dunetz) and John Bottom, and is the middle child in a brood of five. His parents, from the continental United States, were then serving as Children of God missionaries. His mother is from a Jewish family from New York, while his father, from California, is of mostly British Isles descent. As a youngster, Joaquin took his cues from older siblings River Phoenix and Rain Phoenix, changing his name to Leaf to match their earthier monikers. When the children were encouraged to develop their creative instincts, he followed their lead into acting. Younger sisters Liberty Phoenix and Summer Phoenix rounded out the talented troupe.
-
-                                The family moved often, traveling through Central and South America (and adopting the surname "Phoenix" to celebrate their new beginnings) but, by the time Joaquin was age 6, they had more or less settled in the Los Angeles area. Arlyn found work as a secretary at NBC, and John turned his talents to landscaping. They eventually found an agent who was willing to represent all five children, and the younger generation dove into television work. Commercials for meat, milk, and junk food were off-limits (the kids were all raised as strict vegans), but they managed to find plenty of work pushing other, less sinister products. Joaquin's first real acting gig was a guest appearance on River's sitcom, Seven Brides for Seven Brothers (1982).</p>
+                        <div class="col" value="#{showActorBackingBean.actor}">
+                            
+                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showActorBackingBean.actor.name}</h5>
+                            <p id="movieDescription" class="card-text text-left">#{showActorBackingBean.actor.bio}</p>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
-                    
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                
             </div>
         </div>
-    </body>
+    </h:body>
 </html>

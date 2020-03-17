@@ -1,7 +1,8 @@
 
+import com.github.javafaker.Faker;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
@@ -14,9 +15,6 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
-import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -38,6 +36,10 @@ public class MovieDAOTest {
     private ActorDAO actorDAO;
     
     private List<Movie> movies = new ArrayList<>();
+    private List<Actor> actors = new ArrayList<>();
+    private Faker faker = new Faker();
+    int n = 8;
+    private Random rand = new Random();
 
     Movie godfather = new Movie("The Godfather", "10", "", "1972","", "");
     Movie joker = new Movie("Joker","8","", "2019", "", "");
@@ -51,33 +53,26 @@ public class MovieDAOTest {
 
     @Before
     public void init() {
-
-        List<Actor> jokerActors = new ArrayList<>();
-        jokerActors.add(joph);
-        joker.setActors(jokerActors);
         
-        List<Actor> gladiatorActors = new ArrayList<>();
-        gladiatorActors.add(rucr);
-        gladiatorActors.add(joph);
-        gladiator.setActors(gladiatorActors);
-        
-        List<Actor> beautifulMindActors = new ArrayList<>();
-        beautifulMindActors.add(rucr);
-        beautifulMind.setActors(beautifulMindActors);
-        
-        actorDAO.create(joph);
-        actorDAO.create(rucr);
-        
-        movies.add(godfather);
-        movies.add(joker);
-        movies.add(uncut);
-        movies.add(darkNight);
-        movies.add(gladiator);
-        movies.add(beautifulMind);
-
-        for (Movie movie : movies) {
+        /*for(int i=0; i<n; i++ ) {
+            String title = faker.book().title();
+            Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
+            Integer rating = rand.nextInt((10-1)+1) + 1;
+            String description = faker.gameOfThrones().quote();
+            String review = " ";
+            Movie movie = new Movie(title, year, rating, description, review);
+            
+            String name = faker.funnyName().name();
+            Integer byear = rand.nextInt((2020-1900)+1) + 1900;
+            String bio = faker.harryPotter().spell();
+            Actor actor = new Actor(name, byear, bio);
+            actorDAO.create(actor);
+            actors.add(actor);
             movieDAO.create(movie);
-        }
+            movie.setActors(actors);
+            
+            
+        }*/
     }
 
     @After
@@ -87,14 +82,13 @@ public class MovieDAOTest {
         }*/
     }
 
-    @Test
-    public void findMoviesByName_test() {
-        //assertEquals(1, movieDAO.findMoviesByName("Joker").size());
-        assertTrue(true);
-    }
-
     /*@Test
-    public void findMoviesByYear_test() {
-        assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+    public void findMoviesByName_test() {
+        assertEquals(1, movieDAO.findMoviesByName("Joker").size());
     }*/
+
+    @Test
+    public void findMoviesByYear_test() {
+       // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+    }
 }
