@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.Getter;
 import model.entity.Actor;
+import model.entity.Movie;
 import model.utils.JsonReader;
 
 @Stateless
@@ -47,6 +48,11 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         return JsonReader.getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
     }
     
+    public List<Movie> getMoviesFromActor(String actorID) throws IOException{
+        Actor actor = getActor(actorID);
+        return JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+actor.getName()+"&page=1&include_adult=true",actorID);
+    }
+    
     /**
      * Get the director of a movie specified by its id.
      * @param movieID The id of the movie.
@@ -57,4 +63,29 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         Actor actor = JsonReader.getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
         return getActor(actor.getId());
     }
+    
+    public List<Actor> searchActor(String name, String page) throws IOException{
+        name = name.replaceAll(" ", "%20");
+        name = name.replaceAll("ö", "%C3%B6");
+        name = name.replaceAll("ä", "%C3%A4");
+        name = name.replaceAll("å", "%C3%A5");
+        if(name.isEmpty()){
+            return getTopActors();
+        }
+        return JsonReader.getActorsFromUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+name+"&page="+page+"&include_adult=true");
+    }
+    
+    public List<Actor> searchActor(String name) throws IOException{
+        return searchActor(name,"1");
+    }
+    
+    public List<Actor> getTopActors(String page) throws IOException{
+        return JsonReader.getActorsFromUrl("https://api.themoviedb.org/3/person/popular?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+    }
+    
+    public List<Actor> getTopActors() throws IOException{
+        return getTopActors("1");
+    }
+    
+
 }
