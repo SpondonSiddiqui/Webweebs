@@ -48,6 +48,13 @@ public class JsonReader {
     }
   }
   
+  /**
+   * Get a list of all actors featured in a movie (chosen by id).
+   * @param url Url to list of all people who worked on a movie
+   * @return List of all featured actors
+   * @throws IOException
+   * @throws JSONException 
+   */
   public static List<Actor> getActorsFromMovieCreditsUrl(String url) throws IOException, JSONException{
       JSONObject json = readJsonFromUrl(url);
       List<Actor> actors = new ArrayList<>();
@@ -66,9 +73,9 @@ public class JsonReader {
       return actors;
   }
     /**
-     * Reads an url and returns the actor (or any person) given by the url
-     * @param url 
-     * @return
+     * Reads an url and returns the actor (or any person) (chosen by id) given by the url
+     * @param url Url with actor-id
+     * @return The actor
      * @throws IOException
      * @throws JSONException 
      */
@@ -80,7 +87,13 @@ public class JsonReader {
         
         return getActorFromNode(field);
   }
-  
+  /**
+   * Get the director(s) of a movie (chosen by id)
+   * @param url Url to list of all people who worked on a movie
+   * @return The director as a actor
+   * @throws IOException
+   * @throws JSONException 
+   */
     public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
       Actor emptyActor = new Actor("COuld not find Director","","","","","");
@@ -99,6 +112,13 @@ public class JsonReader {
       return emptyActor;
     }
   
+    /**
+     * Get list of movies from an url. For example: search results, most popular movies etc.
+     * @param url Url to list of movies
+     * @return List of movies
+     * @throws IOException
+     * @throws JSONException 
+     */
   public static List<Movie> getMoviesFromUrl(String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
       List<Movie> movies = new ArrayList<>();
@@ -118,6 +138,13 @@ public class JsonReader {
       
   }
   
+  /**
+   * Get a singular movie (chosen by id) from an url.
+   * @param url Url with movie-id 
+   * @return The movie
+   * @throws IOException
+   * @throws JSONException 
+   */
   public static Movie getMovieFromUrl(String url) throws IOException, JSONException {
         JSONObject json = readJsonFromUrl(url);
 
