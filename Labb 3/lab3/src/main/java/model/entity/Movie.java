@@ -24,6 +24,8 @@ public class Movie implements Serializable {
     @NonNull private String overview;
     @NonNull private String release_date;
     @NonNull private String poster_path;
+    @NonNull private String id;
+    //@NonNull private List<String> genres;
     
     
     @JoinTable(name = "actor_list",
