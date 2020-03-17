@@ -33,9 +33,9 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
      * @return The actor.
      * @throws IOException 
      */
-    public Actor getActor(String id)throws IOException{
+    /*public Actor getActor(String id)throws IOException{
         return JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+id+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
-    }
+    }*/
     
     /**
      * Gets a list of actors starring in a movie specified by its id.
@@ -44,7 +44,7 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
      * @throws IOException 
      */
     public List<Actor> getActorsFromMovie(String movieID) throws IOException{
-        return JsonReader.getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
+        return JsonReader.getActorsFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
     }
     
     /**
@@ -53,8 +53,8 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
      * @return The director.
      * @throws IOException 
      */
-    public Actor getDirectorOfMovie(String movieID) throws IOException{
+    /*public Actor getDirectorOfMovie(String movieID) throws IOException{
         Actor actor = JsonReader.getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
         return getActor(actor.getId());
-    }
+    }*/
 }
