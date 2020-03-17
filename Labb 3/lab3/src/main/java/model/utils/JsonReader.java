@@ -104,23 +104,32 @@ public class JsonReader {
    * @throws IOException
    * @throws JSONException 
    */
-  public static List<Movie> getMoviesFromActorUrl(String url) throws IOException, JSONException{
+  public static List<Movie> getMoviesFromActorUrl(String url, String id) throws IOException, JSONException{
         JSONObject json = readJsonFromUrl(url);
       List<Movie> movies = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("known_for");
+      JsonNode paths = tree.get("results");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
-            
-            movies.add(getMovieFromNode(field));      
+            if(field.findValue("id").asText().equals(id)){
+                    JsonNode newPaths = field.get("known_for");
+      
+                    Iterator<JsonNode> newFields = newPaths.elements();
+                    while(newFields.hasNext()){
+                        JsonNode movieField = newFields.next();
+                        movies.add(getMovieFromNode(field)); 
+                    }
+                    return movies;
+            }  
       }
       return movies;
   }
+  
     /**
      * Reads an url and returns the actor (or any person) (chosen by id) given by the url
      * @param url Url with actor-id
