@@ -76,20 +76,20 @@ public class MovieDAOTest {
         }*/
     }
 
-    @After
+    /*@After
     public void clean() {
-        /*for (Movie movie : movies){
+        for (Movie movie : movies){
             movieDAO.remove(movie);
-        }*/
-    }
+        }
+    }*/
 
     /*@Test
     public void findMoviesByName_test() {
         assertEquals(1, movieDAO.findMoviesByName("Joker").size());
     }*/
 
-    @Test
+    /*@Test
     public void findMoviesByYear_test() {
        // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
-    }
+    }*/
 }

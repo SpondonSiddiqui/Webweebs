@@ -22,21 +22,19 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        
+
         <ui:decorate template="WEB-INF/template/common.xhtml">
             <ui:define name="menu">
             </ui:define>
         </ui:decorate>
-        
+
         <div class="card text-center">
-           
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
                             <img src="https://image.tmdb.org/t/p/w185/#{showMovieBackingBean.movie.poster_path}" class="img-fluid" alt="Responsive image" />
                             <table class="table table-sm" value="#{showMovieBackingBean.getMovie()}" var="movie">
-                                
                                 <tbody>
                                     <tr>
                                         <th scope="row">Release year</th>
@@ -50,19 +48,34 @@
                             </table>
                         </div>
                         <div class="col" value="#{showMovieBackingBean.movie}">
-                            
                             <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.title}</h5>
                             <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.overview}</p>
                         </div>
                     </div>
                     <div class="row">
-                        
                     </div>
-                        
-                    
                 </div>
-                
             </div>
+        </div>
+        <div>
+            <h:form id="reviewList">
+                <h:form id="reviewList">
+                    <p:dataList value="#{reviewBackingBean.reviews}" var="review" type="ordered">
+                        <f:facet name="header">
+                            Reviews
+                        </f:facet>
+                        #{review.content}
+                    </p:dataList> 
+                </h:form>
+            </h:form>
+        </div>
+        <div>
+            <h:form id="reviewForm"> 
+                <p:outputLabel>Leave a review</p:outputLabel>
+                <p:inputText id="input" value="#{reviewBackingBean.contentInput}" />
+                <p:commandButton value="Submit" update="" action="#{reviewBackingBean.submitReview}"/> <br/>     
+                <p:growl/>
+            </h:form>
         </div>
     </h:body>
 </html>

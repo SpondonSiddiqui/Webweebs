@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -27,12 +28,11 @@ public class Movie implements Serializable {
     @NonNull private String poster_path;
     @NonNull private String id;
     @NonNull private List<String> genres;
-
     
     @JoinTable(name = "actor_list",
             joinColumns = @JoinColumn(name = "movie"),
             inverseJoinColumns = @JoinColumn(name = "actor"))
     @ManyToMany private List<Actor> actors;
     
-   
+    @OneToMany(mappedBy = "movie") private List<Review> review;
 }
