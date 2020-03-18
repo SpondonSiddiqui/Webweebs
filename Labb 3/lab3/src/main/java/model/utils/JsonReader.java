@@ -66,39 +66,7 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          
-            String name;
-        String birthday ="";
-        String deathday="";
-        String bio="";
-        String id;
-        String pic_path;
-
-        if(field.has("name")){
-            name = field.findValue("name").asText();
-        } else{
-            name = "Could not find name";
-        }
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
-        }
-
-        Actor actor = new Actor(
-              name
-              ,birthday
-              ,deathday
-              ,bio
-              ,id
-              ,pic_path
-          );
-          actors.add(actor);
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/19292?api_key="+field.findValue("id").asText()+"&language=en-US"));
       }
       return actors;
   }
@@ -194,39 +162,8 @@ public class JsonReader {
       while(fields.hasNext()){
           JsonNode field = fields.next();
           if(!field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
-                    
-            String name;
-        String birthday ="";
-        String deathday="";
-        String bio="";
-        String id;
-        String pic_path;
-
-        if(field.has("name")){
-            name = field.findValue("name").asText();
-        } else{
-            name = "Could not find name";
-        }
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
-        }
-
-        Actor actor = new Actor(
-              name
-              ,birthday
-              ,deathday
-              ,bio
-              ,id
-              ,pic_path
-          );
-          return getActorFromNode(field);
+       
+          return getActorFromUrl("https://api.themoviedb.org/3/person/19292?api_key="+field.findValue("id").asText()+"&language=en-US");
       }
       return emptyActor;
     }
@@ -276,6 +213,7 @@ public class JsonReader {
   /**
    * Get genre tied to id
    * @param url Url with genres 
+     * @param id 
    * @return The genre
    * @throws IOException
    * @throws JSONException 
