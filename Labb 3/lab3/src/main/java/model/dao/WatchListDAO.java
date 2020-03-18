@@ -5,25 +5,33 @@
  */
 package model.dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import lombok.Getter;
-import model.entity.WatchList;
+import model.entity.Movie;
+import model.entity.UserWatchList;
 
 /**
  *
  * @author Spondon
  */
 @Stateless
-public class WatchListDAO extends AbstractDAO<WatchList, String>{
+public class WatchListDAO extends AbstractDAO<UserWatchList, String>{
     
     @Getter
     @PersistenceContext(unitName = "academy")
     private EntityManager entityManager;
 
     public WatchListDAO() {
-        super(WatchList.class);
+        super(UserWatchList.class);
+    }
+    
+    public List<Movie> getWatchList(){
+        Query query = entityManager.createQuery("SELECT m FROM Movie m");
+        return query.getResultList();
     }
     
 }

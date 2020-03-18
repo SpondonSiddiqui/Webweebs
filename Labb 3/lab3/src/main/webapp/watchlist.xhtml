@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+    <title>My WatchLists</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+<h:body>
+
+    <h:form> 
+        <p:dataScroller value="#{watchListBackingBean.watchList}" var="movie" chunkSize="10">
+            <f:facet name="header">
+                My watchlist
+            </f:facet>
+
+            <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                <p:graphicImage name="css/lotr.jpg" /> 
+
+                <p:outputPanel>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        
+                        <h:outputText value="#{movie.title}"/>
+
+                        <h:outputText value="#{movie.overview}"/>
+
+                        <h:outputText value="#{movie.relase_date}" style="font-weight: bold"/>
+                    </h:panelGrid>
+                </p:outputPanel>
+            </h:panelGrid>
+        </p:dataScroller>
+    </h:form>
+</h:body>
+</html>

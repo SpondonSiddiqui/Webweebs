@@ -98,6 +98,11 @@ a:hover {
     right:97px;
 }
 
+.watchlist-add-button {
+    background: #333;
+    color: #fff;
+}
+
 #footer {
     width:100%;
     display:relative;

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -21,10 +22,6 @@ public class WebUser implements Serializable {
     @NonNull private String username;
     @NonNull private String password;
     
-    @NonNull private WatchList myWatchList;
-    
-    /*@JoinTable(name = "watch_list",
-            joinColumns = @JoinColumn(name = "user"),
-            inverseJoinColumns = @JoinColumn(name = "movie"))
-    @ManyToMany private List<Movie> watchList;*/
+    @OneToMany(mappedBy = "webUser") 
+    private List<Movie> watchlist;
 }

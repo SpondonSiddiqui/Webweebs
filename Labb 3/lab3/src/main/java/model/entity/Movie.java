@@ -34,5 +34,10 @@ public class Movie implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "actor"))
     @ManyToMany private List<Actor> actors;
     
+    @JoinTable(name = "watchlist_lists",
+            joinColumns = @JoinColumn(name = "movie"),
+            inverseJoinColumns = @JoinColumn(name = "watchlist"))
+    @ManyToMany private List<UserWatchList> watchlists;
+    
    
 }

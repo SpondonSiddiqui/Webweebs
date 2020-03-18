@@ -6,8 +6,11 @@ import java.util.Random;
 import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
+import model.dao.UserDAO;
+import model.dao.WatchListDAO;
 import model.entity.Actor;
 import model.entity.Movie;
+import model.entity.UserWatchList;
 import model.entity.WebUser;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,7 +29,8 @@ public class MovieDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class)
+                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class, UserDAO.class,
+                        UserWatchList.class, WatchListDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -34,7 +38,11 @@ public class MovieDAOTest {
     private MovieDAO movieDAO;
     @EJB
     private ActorDAO actorDAO;
-    
+    @EJB
+    private UserDAO userDAO;
+    @EJB
+    private WatchListDAO watchListDAO;
+
     private List<Movie> movies = new ArrayList<>();
     private List<String> genres = new ArrayList<>();
     private List<Actor> actors = new ArrayList<>();
@@ -42,38 +50,64 @@ public class MovieDAOTest {
     int n = 8;
     private Random rand = new Random();
 
-    Movie godfather = new Movie("The Godfather", "10", "", "1972","", "",genres);
-    Movie joker = new Movie("Joker","8","", "2019", "", "",genres);
-    Movie uncut = new Movie("Uncut Gem","9","", "2019", "", "",genres);
-    Movie darkNight = new Movie("The Dark Knight","6","", "2008", "", "",genres);
-    Movie gladiator = new Movie("Gladiator","5","", "2000", "", "",genres);
-    Movie beautifulMind = new Movie("A Beautiful Mind","4","", "2001", "", "",genres);
-    
-    Actor joph = new Actor ("Joaquin Phoenix", "1974","","","","");
-    Actor rucr = new Actor ("Russell Crowe", "1964","","","","");
+    //private List<WatchList> watchLists = new ArrayList<>();
+    Movie godfather = new Movie("The Godfather", "10", "", "1972", "", "", genres);
+    Movie joker = new Movie("Joker", "8", "", "2019", "", "", genres);
+    Movie uncut = new Movie("Uncut Gem", "9", "", "2019", "", "", genres);
+    Movie darkNight = new Movie("The Dark Knight", "6", "", "2008", "", "", genres);
+    Movie gladiator = new Movie("Gladiator", "5", "", "2000", "", "", genres);
+    Movie beautifulMind = new Movie("A Beautiful Mind", "4", "", "2001", "", "", genres);
+
+    Actor joph = new Actor("Joaquin Phoenix", "1974", "", "", "", "");
+    Actor rucr = new Actor("Russell Crowe", "1964", "", "", "", "");
 
     @Before
     public void init() {
-        
-        /*for(int i=0; i<n; i++ ) {
+
+        WebUser spondon = new WebUser("spondon", "123");
+
+        UserWatchList watchlist1 = new UserWatchList(spondon);
+
+        for (int i = 0; i < n; i++) {
             String title = faker.book().title();
-            Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
-            Integer rating = rand.nextInt((10-1)+1) + 1;
+            String year = "1990";
+            String rating = "5";
             String description = faker.gameOfThrones().quote();
-            String review = " ";
-            Movie movie = new Movie(title, year, rating, description, review);
-            
+            String  review = " ";
+            Movie movie = new Movie(title, year, rating, description, review, "", genres);
+
             String name = faker.funnyName().name();
-            Integer byear = rand.nextInt((2020-1900)+1) + 1900;
+            Integer byear = rand.nextInt((2020 - 1900) + 1) + 1900;
             String bio = faker.harryPotter().spell();
-            Actor actor = new Actor(name, byear, bio);
-            actorDAO.create(actor);
+            Actor actor = new Actor(name, "", bio, "", "", "");
             actors.add(actor);
-            movieDAO.create(movie);
+            actorDAO.create(actor);
+
             movie.setActors(actors);
+            movieDAO.create(movie);
+
+            movies.add(movie);
+
+            name = faker.funnyName().name();
+            WebUser genUser = new WebUser(name, "123");
+            userDAO.create(genUser);
+
+            UserWatchList watchlist = new UserWatchList(genUser);
+            watchlist.setMovies(movies);
+            watchlist.setWebUser(genUser);
+            watchListDAO.update(watchlist);
             
-            
-        }*/
+
+        }
+
+        /*
+        movieDAO.create(gladiator);
+        actorDAO.create(joph);
+        
+        watchListDAO.create(watchlist1);
+        
+        userDAO.create(spondon);
+         */
     }
 
     @After
@@ -87,9 +121,8 @@ public class MovieDAOTest {
     public void findMoviesByName_test() {
         assertEquals(1, movieDAO.findMoviesByName("Joker").size());
     }*/
-
     @Test
     public void findMoviesByYear_test() {
-       // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+        // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
     }
 }
