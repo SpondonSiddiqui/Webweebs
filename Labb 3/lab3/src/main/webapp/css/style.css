@@ -205,3 +205,30 @@ a:hover {
 .search-wrapper {
    margin-left:22px;
 }
+
+/*detailedMovie.xhtml review form*/
+
+.form-container {
+    width:100%;
+    background-color:#efefef;
+    height:500px;
+    padding-left:22px;
+    padding-top:4px;
+}
+.reviewForm { 
+    width:500px;
+}
+
+.reviewForm .content {
+    width:500px;
+    height:200px;
+}
+
+.reviewForm .logged {
+    font-style: italic;
+    color:#666;
+}
+
+.reviewForm .submitButton {
+    float:right;
+}

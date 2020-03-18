@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
 import model.dao.ReviewDAO;
+import model.dao.UserDAO;
 import model.entity.Actor;
 import model.entity.Movie;
 import model.entity.Review;
@@ -29,7 +30,8 @@ public class MovieDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class, Review.class, ReviewDAO.class)
+                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, 
+                        Actor.class, Review.class, ReviewDAO.class, UserDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -37,6 +39,9 @@ public class MovieDAOTest {
     private MovieDAO movieDAO;
     @EJB
     private ActorDAO actorDAO;
+    
+    @EJB
+    private UserDAO userDAO;
     
     private List<Movie> movies = new ArrayList<>();
     private List<String> genres = new ArrayList<>();
@@ -77,6 +82,9 @@ public class MovieDAOTest {
             
             
         }*/
+        
+        WebUser wb = new WebUser("marcus", "hej");
+        userDAO.create(wb);
     }
 
     /*@After
@@ -94,6 +102,22 @@ public class MovieDAOTest {
     @Test
     public void findMoviesByYear_test() {
        //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
-        Assert.assertTrue(movieDAO.findMovieById("10752") != null);
+        //Assert.assertTrue(movieDAO.findMovieById("10752") == null);
+    }
+    
+    @Test
+    public void checkMovieExists() {
+        //Assert.assertTrue(!movieDAO.checkMovieExists("1917"));
+    }
+    
+    @Test
+    public void findUserByName() {
+       //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+       /*WebUser wb = new WebUser("marcus", "hej");
+       WebUser dbwb = userDAO.getUserByName("marcus").get(0);
+        System.out.println("HALLOJ " + dbwb);
+        Assert.assertTrue(wb.getUsername().equals(dbwb.getUsername()) &&
+                wb.getPassword().equals(dbwb.getPassword()));*/
+        
     }
 }

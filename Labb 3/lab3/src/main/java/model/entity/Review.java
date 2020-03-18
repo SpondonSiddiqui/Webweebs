@@ -2,6 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -19,11 +20,16 @@ import lombok.RequiredArgsConstructor;
 public class Review implements Serializable {
 
     @Id
-    //@NonNull private String postedBy;
-    //@NonNull private String postedWhen;
-    @NonNull private String content;   
-    //@NonNull private Double rating;
-
+    @NonNull private String content;
+    
+    @OneToOne
+    @NonNull private WebUser postedBy;
+    
+    @NonNull private String postedWhen;    
+    @NonNull private String rating;
+    
+    
+    
     @ManyToOne
     @NonNull
     @JoinColumn(name = "movie_reviewed")
