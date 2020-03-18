@@ -79,8 +79,8 @@ public class JsonReader {
         } else{
             name = "Could not find name";
         }
-        if(field.has("cast_id")){
-            id = field.findValue("cast_id").asText();
+        if(field.has("id")){
+            id = field.findValue("id").asText();
         } else{
             id = "Could not find id";
         }
