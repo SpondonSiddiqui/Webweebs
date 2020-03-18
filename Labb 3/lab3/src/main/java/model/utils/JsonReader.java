@@ -66,7 +66,7 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/19292?api_key="+field.findValue("id").asText()+"&language=en-US"));
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return actors;
   }
@@ -163,7 +163,7 @@ public class JsonReader {
           JsonNode field = fields.next();
           if(!field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
        
-          return getActorFromUrl("https://api.themoviedb.org/3/person/19292?api_key="+field.findValue("id").asText()+"&language=en-US");
+          return getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
       }
       return emptyActor;
     }
