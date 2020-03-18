@@ -29,6 +29,7 @@ public class WatchListDAO extends AbstractDAO<UserWatchList, String>{
         super(UserWatchList.class);
     }
     
+    //Ingen aning om det här är rätt, bara kopierade från en annan klass
     public List<Movie> getWatchList(){
         Query query = entityManager.createQuery("SELECT m FROM Movie m");
         return query.getResultList();

@@ -29,7 +29,9 @@ public class UserWatchList implements Serializable {
     @Id
     @NonNull
     @JoinColumn(name = "username")
+    //Ska det fortfarande vara Many to One om vi kör med att en användare endast har en watchlist?
     @ManyToOne private WebUser webUser;
     
+    //Samma sak här, om vi kör med en watchlist per användare, ska det verkligen vara Many to Many?
     @ManyToMany(mappedBy = "watchlists") private List<Movie> movies;
 }

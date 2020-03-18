@@ -22,6 +22,7 @@ public class WebUser implements Serializable {
     @NonNull private String username;
     @NonNull private String password;
     
+    //Ska det vara One to Many om vi har en watchlist per användare?
     @OneToMany(mappedBy = "webUser") 
     private List<Movie> watchlist;
 }
