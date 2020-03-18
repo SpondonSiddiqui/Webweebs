@@ -52,6 +52,16 @@ public class ShowMovieBackingBean implements Serializable {
         }
     }
 
+    public String releaseYear(){
+        String date = movie.getRelease_date();
+        char[] cDate = date.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<4; i++){
+            sb.append(cDate[i]);
+        }
+        return sb.toString();
+    }
+    
     /*public void validateSubmission() {
         movie = movieDAO.findMoviesByName(name).get(0);
         if (!movie.getReviews().equals("")) {

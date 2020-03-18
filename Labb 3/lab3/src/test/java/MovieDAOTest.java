@@ -55,25 +55,31 @@ public class MovieDAOTest {
     @Before
     public void init() {
         
-        /*for(int i=0; i<n; i++ ) {
+        for(int i=0; i<n; i++ ) {
             String title = faker.book().title();
-            Integer year = rand.nextInt((2020 -1950)+1) + 1950 ;
-            Integer rating = rand.nextInt((10-1)+1) + 1;
-            String description = faker.gameOfThrones().quote();
-            String review = " ";
-            Movie movie = new Movie(title, year, rating, description, review);
+            String year = Integer.toString(rand.nextInt((2020 -1950)+1) + 1950) ;
+            String rating = Integer.toString(rand.nextInt((10-1)+1) + 1);
+            String description = faker.buffy().quotes();
+            String img = faker.avatar().image();
+            List<String> genres = new ArrayList<>();
+            genres.add(faker.buffy().characters());
+            Movie movie = new Movie(title, rating, description, year, Integer.toString(i), img, genres);
             
             String name = faker.funnyName().name();
-            Integer byear = rand.nextInt((2020-1900)+1) + 1900;
+            String byear = Integer.toString(rand.nextInt((2020-1900)+1) + 1900);
+            String dyear = Integer.toString(rand.nextInt((2020-1900)+1) + 1900);
             String bio = faker.harryPotter().spell();
-            Actor actor = new Actor(name, byear, bio);
+            String id = faker.idNumber().toString();
+            String aImg = faker.avatar().image();
+            
+            Actor actor = new Actor(name, byear,dyear, bio, id, aImg);
             actorDAO.create(actor);
             actors.add(actor);
             movieDAO.create(movie);
             movie.setActors(actors);
             
             
-        }*/
+        }
     }
 
     @After

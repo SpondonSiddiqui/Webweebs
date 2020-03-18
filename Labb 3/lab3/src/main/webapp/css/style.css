@@ -207,12 +207,17 @@ a:hover {
 }
 
 #navi {
-    margin-top: 40px;
+    margin-top: 0px;
     padding-left: 15%;
     padding-right: 15%;
 }
 
 #content {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#castform {
     padding-left: 15%;
     padding-right: 15%;
 }

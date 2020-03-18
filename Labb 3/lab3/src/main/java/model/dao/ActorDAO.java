@@ -22,6 +22,11 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         super(Actor.class);
     }
     
+    public List<Actor> getAllActors(){
+        Query query = entityManager.createQuery("SELECT m FROM Actor m ");
+        return query.getResultList();
+    }
+    
     public List<Actor> findActorsByName(String name) {
         Query query = entityManager.createQuery("SELECT m FROM Actor m "
                 + "WHERE m.name = :name");
