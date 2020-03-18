@@ -6,6 +6,7 @@ import java.util.Random;
 import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
+import model.dao.ReviewDAO;
 import model.entity.Actor;
 import model.entity.Movie;
 import model.entity.Review;
@@ -16,6 +17,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,7 +29,7 @@ public class MovieDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class, Review.class)
+                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class, Review.class, ReviewDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -91,6 +93,7 @@ public class MovieDAOTest {
 
     @Test
     public void findMoviesByYear_test() {
-       // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+       //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+        Assert.assertTrue(movieDAO.findMovieById("10752") != null);
     }
 }

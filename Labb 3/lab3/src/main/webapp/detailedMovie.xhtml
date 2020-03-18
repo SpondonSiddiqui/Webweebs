@@ -73,7 +73,9 @@
             <h:form id="reviewForm"> 
                 <p:outputLabel>Leave a review</p:outputLabel>
                 <p:inputText id="input" value="#{reviewBackingBean.contentInput}" />
-                <p:commandButton value="Submit" update="" action="#{reviewBackingBean.submitReview}"/> <br/>     
+                <p:commandButton value="Submit" process="reviewList" action="#{reviewBackingBean.submitReview}">
+                    <f:param name="id" value="#{reviewBackingBean.id}"/>
+                </p:commandButton> <br/>     
                 <p:growl/>
             </h:form>
         </div>

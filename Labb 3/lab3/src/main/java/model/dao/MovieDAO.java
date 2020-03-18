@@ -28,6 +28,13 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
         return query.getResultList();
     }
     
+    public List<Movie> findMovieById(String id) {
+        Query query = entityManager.createQuery("SELECT m FROM Movie m "
+                + "WHERE m.id = :id");
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
+    
     public List<Movie> findMoviesByYear(String release_date) {
         Query query = entityManager.createQuery("SELECT m FROM Movie m "
                 + "WHERE m.release_date = :release_date");

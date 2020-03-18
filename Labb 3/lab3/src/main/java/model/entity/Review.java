@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,10 +21,12 @@ public class Review implements Serializable {
     @Id
     //@NonNull private String postedBy;
     //@NonNull private String postedWhen;
-    @NonNull private String content;
+    @NonNull private String content;   
     //@NonNull private Double rating;
-    
-    @JoinColumn(name = "movie_id")
-    @ManyToOne private Movie movie;
+
+    @ManyToOne
+    @NonNull
+    @JoinColumn(name = "movie_reviewed")
+    private Movie movieReviewed;
 
 }

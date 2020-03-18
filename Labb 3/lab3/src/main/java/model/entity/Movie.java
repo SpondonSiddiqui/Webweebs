@@ -2,6 +2,7 @@ package model.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -33,6 +34,7 @@ public class Movie implements Serializable {
             joinColumns = @JoinColumn(name = "movie"),
             inverseJoinColumns = @JoinColumn(name = "actor"))
     @ManyToMany private List<Actor> actors;
-    
-    @OneToMany(mappedBy = "movie") private List<Review> review;
+        
+    @OneToMany(mappedBy = "movieReviewed")
+    private List<Review> reviews;
 }
