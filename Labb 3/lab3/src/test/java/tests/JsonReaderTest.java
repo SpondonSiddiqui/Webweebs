@@ -33,6 +33,7 @@ public class JsonReaderTest {
     private final String UncutGemsID = "473033";
     private Movie UncutGems;
     private List<Actor> UncutGemsActors;
+    private Actor UncutGemsDirector;
     private Actor AdamSandler;
     private final String SandlerID = "19292";
     private Actor LakeithStanfield;
@@ -44,6 +45,7 @@ public class JsonReaderTest {
     public void setUp() throws IOException{
         UncutGems = JsonReader.getMovieFromUrl("https://api.themoviedb.org/3/movie/"+UncutGemsID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         UncutGemsActors = JsonReader.getActorsFromMovieCreditsUrl("https://api.themoviedb.org/3/movie/"+UncutGemsID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
+        UncutGemsDirector = JsonReader.getDirectorFromUrl("https://api.themoviedb.org/3/movie/"+UncutGemsID+"/credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
         AdamSandler = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SandlerID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         LakeithStanfield = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+StanfieldID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         JoshSafdie = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SafdieID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
@@ -67,7 +69,7 @@ public class JsonReaderTest {
     
     @Test
     public void getDirector_test(){
-        
+        assertEquals(UncutGemsDirector, JoshSafdie);
     }
     
     @Test
