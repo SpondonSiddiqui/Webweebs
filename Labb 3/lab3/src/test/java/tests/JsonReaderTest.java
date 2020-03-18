@@ -36,10 +36,15 @@ public class JsonReaderTest {
     private Actor UncutGemsDirector;
     private Actor AdamSandler;
     private final String SandlerID = "19292";
+    private List<Movie> SandlerMovies;
     private Actor LakeithStanfield;
     private final String StanfieldID = "1200864";
     private Actor JoshSafdie;
     private final String SafdieID = "129561";
+    String ComedyGenre;
+    String DramaGenre;
+    String ThrillerGenre;
+    String CrimeGenre;
     
     @Before
     public void setUp() throws IOException{
@@ -49,6 +54,11 @@ public class JsonReaderTest {
         AdamSandler = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SandlerID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         LakeithStanfield = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+StanfieldID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         JoshSafdie = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SafdieID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
+        SandlerMovies = JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query=Adam%20Sandler&page=1&include_adult=true", SandlerID);
+        CrimeGenre = "Crime";
+        ThrillerGenre = "Thriller";
+        DramaGenre = "Drama";
+        ComedyGenre = "Comedy";
     }
     
     @After
@@ -74,6 +84,20 @@ public class JsonReaderTest {
     
     @Test
     public void getActor_test(){
+        assertEquals(AdamSandler.getName(), "Adam Sandler");
+        assertEquals(AdamSandler.getBirthday(), "1966-09-09");
+    }
+    
+    @Test
+    public void getMoviesFromActor_test(){
+        assertTrue(SandlerMovies.contains(UncutGems));
+    }
+    
+    public void getGenres_test() throws IOException{   
+        assertEquals(CrimeGenre,JsonReader.getGenreFromUrl("https://api.themoviedb.org/3/genre/movie/list?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US", "80"));
+        assertEquals(ThrillerGenre ,JsonReader.getGenreFromUrl("https://api.themoviedb.org/3/genre/movie/list?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US", "53"));
+        assertEquals(DramaGenre ,JsonReader.getGenreFromUrl("https://api.themoviedb.org/3/genre/movie/list?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US", "18"));
+        assertEquals(ComedyGenre ,JsonReader.getGenreFromUrl("https://api.themoviedb.org/3/genre/movie/list?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US", "35"));
         
     }
     
