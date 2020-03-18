@@ -201,7 +201,7 @@ public class JsonReader {
    * @throws IOException
    * @throws JSONException 
    */
-  public static Movie getMovieFromUrl(String url, String movID) throws IOException, JSONException {
+  public static Movie getMovieFromUrl(String url) throws IOException, JSONException {
         JSONObject json = readJsonFromUrl(url);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -306,6 +306,16 @@ public class JsonReader {
         String id;
         String pic_path;
 
+        if(field.has("id")){
+            id = field.findValue("id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = "https://image.tmdb.org/t/p/w500" + field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
         if(field.has("name")){
             name = field.findValue("name").asText();
         } else{
@@ -325,16 +335,6 @@ public class JsonReader {
             bio = field.findValue("biography").asText();
         } else {
             bio = "Could not find biography";
-        }
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = "https://image.tmdb.org/t/p/w500" + field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
         }
 
         Actor actor = new Actor(

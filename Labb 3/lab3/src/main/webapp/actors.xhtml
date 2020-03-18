@@ -1,45 +1,46 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <title>Top Actors</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
     </h:head>
-    <h:body>
-        <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="about-tab" data-toggle="tab" href="actors.xthml" role="tab" aria-controls="home" aria-selected="true">Actors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="movies-tab" data-toggle="tab" href="index.xhtml" role="tab" aria-controls="movies" aria-selected="false">Movies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Something else</a>
-                    </li>
-                </ul>
-            </div>
-        <div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="movies-tab">
-                    
-                </div>
-                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-        <br />
-        <h:form>
-            <p:dataTable value="#{actorBackingBean.actors}" var="actor"
-                         paginator="true" rows="10">
-                <p:column headerText="Name" sortBy="#{actor.name}">#{actor.name}
-                    <p:button href="actorDetails.xhtml" value="details">
-                        <f:param name="name" value="#{actor.name}"/>
-                    </p:button>
-                </p:column>
 
-                <p:column headerText="Rating" sortBy="#{actor.birthYear}">#{actor.birthYear}</p:column>
-            </p:dataTable>
+    <h:body>
+
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+
+        <h:form id="form" style="margin-left: 15%; margin-right: 15%">
+            <div class="search-wrapper">
+                <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
+                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+            </div>
+            <p:dataGrid var="actor" value="#{actorBackingBean.actors}" columns="4" layout="grid"
+                        rows="20" paginator="true" id="mov"
+                        paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                        >
+                <f:facet name="header">
+                    Top Actors
+                </f:facet>
+                <p:panel header="#{actor.name}" style="text-align:center" >
+                    <h:panelGrid columns="1" style="width:100%">
+                        <h:link outcome="actorDetails.xhtml">
+                            <img src="#{actor.picture_path}" width="200">
+                                <f:param name="id" value="#{actor.id}"/>
+                            </img>
+                           
+                        </h:link>
+                         <h:outputText value="#{actor.id}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
         </h:form>
     </h:body>
-
 </html>
 
