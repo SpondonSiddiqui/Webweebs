@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title></title>
+        <title>Cast and crew</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <f:param name="name" value="#{showMovieBackingBean.movie.id}"/>
     </h:head>
@@ -25,10 +25,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <h:link class="nav-item nav-link active" outcome="detailedMovie.xhtml">About <span class="sr-only">(current)</span>
+                        <h:link class="nav-item nav-link" outcome="detailedMovie.xhtml">About
                             <f:param name="id" value="#{showCastBackingBean.id}"/>
                         </h:link>
-                        <h:link class="nav-item nav-link" outcome="movieCast.xhtml">Cast and Crew<span class="sr-only">(current)</span>
+                        <h:link class="nav-item nav-link active" outcome="">Cast and Crew<span class="sr-only">(current)</span>
                         </h:link>
                         <h:link class="nav-item nav-link" outcome="#">User Reviews</h:link>
                     </div>
@@ -39,8 +39,7 @@
         <h:form style="margin-left: 15%; margin-right: 15%">
 
             <p:dataGrid var="actor" value="#{showCastBackingBean.actors}" columns="2" layout="grid"
-                        rows="10" paginator="true"
-                        paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
+                        
                         >
                 <f:facet name="header">
                     Cast
