@@ -18,7 +18,9 @@ import javax.inject.Named;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import lombok.Data;
+import model.dao.ActorDAO;
 import model.dao.MovieDAO;
+import model.entity.Actor;
 import model.entity.Movie;
 import org.omnifaces.cdi.Param;
 import org.omnifaces.util.Faces;
@@ -58,6 +60,26 @@ public class ShowMovieBackingBean implements Serializable {
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<4; i++){
             sb.append(cDate[i]);
+        }
+        return sb.toString();
+    }
+    
+    public String getDir()throws IOException{
+        ActorDAO actorDAO = new ActorDAO();
+        Actor actor = actorDAO.getDirectorOfMovie(id);
+        return actor.getName();
+    }
+    
+    public String getStars() throws IOException{
+        ActorDAO actorDAO = new ActorDAO();
+        List<Actor> actors = new ArrayList<>();
+        actors = actorDAO.getActorsFromMovie(id);
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<3; i++){
+            if(i>0){
+                sb.append(", ");
+            }
+            sb.append(actors.get(i).getName());
         }
         return sb.toString();
     }

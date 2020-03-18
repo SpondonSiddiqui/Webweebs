@@ -49,7 +49,7 @@ public class ShowCastBackingBean implements Serializable {
            Actor actor = new Actor(name, "", "", "", "", "");
            actors.add(actor);
        }*/
-        
+        id="0";
         actors = actorDAO.getAllActors();
         System.out.println(actors.get(0).getBio());
         System.out.println(id);
