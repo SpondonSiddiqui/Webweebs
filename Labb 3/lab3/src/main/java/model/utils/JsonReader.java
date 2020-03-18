@@ -61,14 +61,44 @@ public class JsonReader {
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("cast");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          if(!field.has("character")) continue; //Checks if the person is an actor in the movie or not
           
-          actors.add(getActorFromNode(field));
+            String name;
+        String birthday ="";
+        String deathday="";
+        String bio="";
+        String id;
+        String pic_path;
+
+        if(field.has("name")){
+            name = field.findValue("name").asText();
+        } else{
+            name = "Could not find name";
+        }
+        if(field.has("cast_id")){
+            id = field.findValue("cast_id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
+
+        Actor actor = new Actor(
+              name
+              ,birthday
+              ,deathday
+              ,bio
+              ,id
+              ,pic_path
+          );
+          actors.add(actor);
       }
       return actors;
   }
@@ -158,13 +188,44 @@ public class JsonReader {
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("crew");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          if(!field.has("department") || !field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
-          
+          if(!field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
+                    
+            String name;
+        String birthday ="";
+        String deathday="";
+        String bio="";
+        String id;
+        String pic_path;
+
+        if(field.has("name")){
+            name = field.findValue("name").asText();
+        } else{
+            name = "Could not find name";
+        }
+        if(field.has("id")){
+            id = field.findValue("id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
+
+        Actor actor = new Actor(
+              name
+              ,birthday
+              ,deathday
+              ,bio
+              ,id
+              ,pic_path
+          );
           return getActorFromNode(field);
       }
       return emptyActor;
