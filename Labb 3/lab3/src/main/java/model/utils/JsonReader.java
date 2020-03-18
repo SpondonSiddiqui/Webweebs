@@ -332,7 +332,7 @@ public class JsonReader {
             id = "Could not find id";
         }
         if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
+            pic_path = "https://image.tmdb.org/t/p/w500" + field.findValue("profile_path").asText();
         } else {
             pic_path = "Could not find profile picture";
         }

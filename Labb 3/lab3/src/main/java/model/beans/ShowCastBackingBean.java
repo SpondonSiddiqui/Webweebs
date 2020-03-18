@@ -33,6 +33,9 @@ public class ShowCastBackingBean implements Serializable {
     @Inject
     @Param(name = "id")
     private String id;
+    
+    @Inject
+    private ShowMovieBackingBean bean;
 
     @EJB
     ActorDAO actorDAO;
@@ -49,16 +52,18 @@ public class ShowCastBackingBean implements Serializable {
            Actor actor = new Actor(name, "", "", "", "", "");
            actors.add(actor);
        }*/
-        id="0";
-        actors = actorDAO.getAllActors();
+        //id="0";
+        //id = bean.getId();
+        /*actors = actorDAO.getAllActors();
         System.out.println(actors.get(0).getBio());
         System.out.println(id);
-
-        /* try{
+*/
+         try{
        actors = actorDAO.getActorsFromMovie(id);
        } catch (IOException ex) {
            System.out.println(ex.toString());
-       }*/
+       }
+        System.out.println(actors.get(0).getPicture_path());
     }
 
     public List<Actor> getActors() {

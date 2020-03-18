@@ -36,11 +36,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#">About <span class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link" href="movieCast.xhtml">Cast and Crew
-                            <f:param name="id" value="#{showMovieBackingBean.movie.id}"/>
-                        </a>
-                        <a class="nav-item nav-link" href="#">User Reviews</a>
+                        <f:param name="id" value="#{showMovieBackingBean.movie.id}"/>
+                        <h:link class="nav-item nav-link active" outcome="#">About <span class="sr-only">(current)</span></h:link>
+                        <h:link class="nav-item nav-link" outcome="movieCast.xhtml">Cast and Crew
+                            <f:param name="id" value="#{showMovieBackingBean.id}"/>
+                        </h:link>
+                        <h:link class="nav-item nav-link" outcome="#">User Reviews</h:link>
                     </div>
                 </div>
             </nav>

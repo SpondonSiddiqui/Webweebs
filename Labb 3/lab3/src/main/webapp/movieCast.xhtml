@@ -25,13 +25,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="detailedMovie.xhtml">About <span class="sr-only">(current)</span>
+                        <h:link class="nav-item nav-link active" outcome="detailedMovie.xhtml">About <span class="sr-only">(current)</span>
                             <f:param name="id" value="#{showCastBackingBean.id}"/>
-
-                        </a>
-                        <a class="nav-item nav-link" href="movieCast.xhtml">Cast and Crew
-                        </a>
-                        <a class="nav-item nav-link" href="#">User Reviews</a>
+                        </h:link>
+                        <h:link class="nav-item nav-link" outcome="movieCast.xhtml">Cast and Crew<span class="sr-only">(current)</span>
+                        </h:link>
+                        <h:link class="nav-item nav-link" outcome="#">User Reviews</h:link>
                     </div>
                 </div>
             </nav>
@@ -48,9 +47,9 @@
                 </f:facet>
                 <p:panel>
                     <h:panelGrid columns="2" style="width:100%">
-                        <h:link outcome="detailedMovie">
-                            <img src="#{actor.picture_path}">
-                                <f:param name="id" value="#{showCastBackingBean.id}"/>
+                        <h:link outcome="actorDetails.xhtml">
+                            <img src="#{actor.picture_path}" width="100px">
+                                <f:param name="id" value="#{actor.id}"/>
                             </img>
                         </h:link>
                         <h:outputLabel value="#{actor.name}"/>
