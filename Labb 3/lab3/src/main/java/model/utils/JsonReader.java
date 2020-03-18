@@ -61,14 +61,12 @@ public class JsonReader {
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("cast");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          if(!field.has("character")) continue; //Checks if the person is an actor in the movie or not
-          
-          actors.add(getActorFromNode(field));
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return actors;
   }
@@ -158,17 +156,14 @@ public class JsonReader {
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("crew");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          //if(!field.has("department") || !field.findValue("department").asText().equals("Directing")
-          //        || !field.findValue("job").asText().equals("Director")) continue; //Checks if the person is a director or not. If not, continue
-          if(field.has("Director")){
-          return getActorFromNode(field);
-          }
-          continue;
+          if(!field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
+       
+          return getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
       }
       return emptyActor;
     }
@@ -218,6 +213,7 @@ public class JsonReader {
   /**
    * Get genre tied to id
    * @param url Url with genres 
+     * @param id 
    * @return The genre
    * @throws IOException
    * @throws JSONException 

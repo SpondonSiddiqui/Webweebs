@@ -30,16 +30,16 @@ public class LoginBackingBean implements Serializable {
     private String password;
  
     @EJB
-    private UserDAO userDAO;
+    private UserDAO userDAO; 
     
     @Inject
-    private UserBean userBean;
+    private UserBean userBean; 
 
     public String onLogin() {
 
         WebUser user = userDAO.find(username);
         
-        if(user != null && user.getPassword().equals(password)) {
+        if(user != null && user.getPassword().equals(password)) { 
             userBean.setUser(user);
             return "loginsuccesful";
 

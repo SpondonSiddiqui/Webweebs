@@ -1,3 +1,5 @@
+package tests;
+
 
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
