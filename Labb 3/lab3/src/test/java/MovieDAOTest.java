@@ -8,6 +8,7 @@ import model.dao.ActorDAO;
 import model.dao.MovieDAO;
 import model.entity.Actor;
 import model.entity.Movie;
+import model.entity.Review;
 import model.entity.WebUser;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,7 +27,7 @@ public class MovieDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class)
+                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class, Review.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -88,8 +89,8 @@ public class MovieDAOTest {
         assertEquals(1, movieDAO.findMoviesByName("Joker").size());
     }*/
 
-    /*@Test
+    @Test
     public void findMoviesByYear_test() {
        // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
-    }*/
+    }
 }
