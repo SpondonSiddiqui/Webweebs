@@ -19,7 +19,8 @@
         <h:form id="form">
             <div class="search-wrapper">
                 <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+                <p:commandButton value="Search Movie" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
+                <p:commandButton value="Search Actor" class ="search-button" id="searchActor" action="#{actorBackingBean.searchActor(movieBackingBean.searchKey)}" update="mov"></p:commandButton>
             </div>
             <p:dataGrid var="movie" value="#{movieBackingBean.movies}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
