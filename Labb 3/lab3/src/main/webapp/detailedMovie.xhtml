@@ -51,7 +51,7 @@
 
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                    <h:form class="row">
+                    <div class="row">
                         <div class="col-3">
                             <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.title}
                                 (#{showMovieBackingBean.releaseYear()})
@@ -59,10 +59,7 @@
                         </div>
                         <img src="img/Gold_Star.svg.png" width="30px" height="25px"/>
                         <h4 padding-left="10px">#{showMovieBackingBean.movie.avg_rating}</h4>
-                        <p:commandButton value="+ Add to watchlist" rendered="#{userBean.loggedIn}"
-                                         action="#{watchListBackingBean.onAddMovieToWatchList(showMovieBackingBean.movie.id)}">
-                        </p:commandButton>
-                    </h:form>
+                    </div>
                     <div class="row">
                         <div class="col-3">
 
@@ -81,6 +78,12 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h:form>
+                                <p:commandButton value="+ Add to watchlist" rendered="#{userBean.loggedIn}"
+                                                 disabled="#{watchListBackingBean.isInList(showMovieBackingBean.movie.id)}"
+                                                 action="#{watchListBackingBean.onAddMovieToWatchList(showMovieBackingBean.movie.id)}">
+                                </p:commandButton>
+                            </h:form>
                         </div>
 
                         <div class="col-5" value="#{showMovieBackingBean.movie}">

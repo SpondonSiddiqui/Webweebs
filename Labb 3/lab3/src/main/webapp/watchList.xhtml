@@ -26,11 +26,18 @@ and open the template in the editor.
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" /> 
+
+
+
+                    <h:link outcome="detailedMovie">
+                        <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </img>
+                    </h:link>
 
                     <p:outputPanel>
                         <h:panelGrid cellpadding="5">
-                            
+
                             <h:outputText value="#{movie.title}" style="font-weight: bold; font-size: 36px;"/>
 
                             <h:outputText value="#{movie.overview}" style="font-size: 18px"/>
