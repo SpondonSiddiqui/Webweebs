@@ -60,7 +60,8 @@
                         <img src="img/Gold_Star.svg.png" width="30px" height="25px"/>
                         <h4 padding-left="10px">#{showMovieBackingBean.movie.avg_rating}</h4>
                         <p:commandButton value="+ Add to watchlist" rendered="#{userBean.loggedIn}"
-                                         action="#{watchListBackingBean.onAddMovieToWatchList(showMovieBackingBean.movie.id)}"></p:commandButton>
+                                         action="#{watchListBackingBean.onAddMovieToWatchList(showMovieBackingBean.movie.id)}">
+                        </p:commandButton>
                     </h:form>
                     <div class="row">
                         <div class="col-3">
