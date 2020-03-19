@@ -62,8 +62,8 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
 
       /**
      * Get top movies by page.
-     * @param page 
-     * @return
+     * @param page results page number
+     * @return List of movies 
      * @throws IOException 
      */
     public List<Movie> getTopMovies(String page) throws IOException{
@@ -72,7 +72,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     
     /**
      * Get top movies
-     * @return
+     * @return List of movies
      * @throws IOException 
      */
     public List<Movie> getTopMovies() throws IOException{
@@ -82,7 +82,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     /**
      * Search for movie by name. Returns a list of search results.
      * @param movie
-     * @return
+     * @return List of movies that matches the input
      * @throws IOException 
      */
     public List<Movie> searchMovie(String movie) throws IOException{
@@ -92,7 +92,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     /**
      * Get genre by id
      * @param id
-     * @return
+     * @return Genre that matches the id
      * @throws IOException 
      */
     public String getGenre(String id)throws IOException {
@@ -102,7 +102,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     /**
      * Get movie by id
      * @param movieID
-     * @return
+     * @return Movie that matches the id
      * @throws IOException 
      */
     public Movie getMovie(String movieID) throws IOException{
@@ -110,10 +110,10 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     }
     
     /**
-     * Get list of search results
+     * Search for movie by name and page
      * @param movie Searched movie
      * @param page results page number
-     * @return
+     * @return List of movies that matches the input
      * @throws IOException 
      */
     public List<Movie> searchMovie(String movie, String page) throws IOException{

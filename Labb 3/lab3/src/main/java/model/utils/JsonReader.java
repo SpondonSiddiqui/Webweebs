@@ -66,7 +66,7 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return actors;
   }
@@ -114,7 +114,7 @@ public class JsonReader {
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
-            if(field.findValue("id").asText().equals(id)){
+            if(field.get("id").asText().equals(id)){
                     JsonNode newPaths = field.get("known_for");
       
                     Iterator<JsonNode> newFields = newPaths.elements();
@@ -161,9 +161,9 @@ public class JsonReader {
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
           JsonNode field = fields.next();
-          if(!field.findValue("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
+          if(!field.get("department").asText().equals("Directing")) continue; //Checks if the person is a director or not. If not, continue
        
-          return getActorFromUrl("https://api.themoviedb.org/3/person/"+field.findValue("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
+          return getActorFromUrl("https://api.themoviedb.org/3/person/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
       }
       return emptyActor;
     }
@@ -229,8 +229,8 @@ public class JsonReader {
       while(fields.hasNext()){
            
             JsonNode field = fields.next();
-            if(field.findValue("id").asText().equals(id))
-                return field.findValue("name").asText();
+            if(field.get("id").asText().equals(id))
+                return field.get("name").asText();
                 
       }
       return "";
@@ -247,39 +247,39 @@ public class JsonReader {
         List<String> genres = new ArrayList<>();
 
         if(field.has("title")){
-            title = field.findValue("title").asText();
+            title = field.get("title").asText();
         } else{
             title = "Could not find title";
         }
         if(field.has("vote_average")){
-             avg_rating = field.findValue("vote_average").asText();
+             avg_rating = field.get("vote_average").asText();
         } else{
              avg_rating = "Could not find vote_average";
         }
         if(field.has("overview")){
-             overview = field.findValue("overview").asText();
+             overview = field.get("overview").asText();
         } else{
              overview = "Could not find overview";
         }
         if(field.has("release_date")){
-             release_date = field.findValue("release_date").asText();
+             release_date = field.get("release_date").asText();
         } else{
              release_date = "Could not find release_date";
         }
         if(field.has("poster_path")){
-             poster_path = field.findValue("poster_path").asText();
+             poster_path = field.get("poster_path").asText();
         } else{
              poster_path = "Could not find poster_path";
         }
         if(field.has("id")){
-             id = field.findValue("id").asText();
+             id = field.get("id").asText();
         } else{
              id = "Could not find id";
         }      
         if(field.has("genres")){
             genres = getGenresFromGenreNode(field.get("genres"));
-        } else {
-            //TODO
+        } else if(field.has("genre_ids")){
+            genres = getGenresFromGenreNode(field.get("genre_ids"));
         }
 
         Movie movie = new Movie(
@@ -305,32 +305,32 @@ public class JsonReader {
         String pic_path;
 
         if(field.has("name")){
-            name = field.findValue("name").asText();
+            name = field.get("name").asText();
         } else{
             name = "Could not find name";
         }
         if(field.has("birthday")){
-            birthday = field.findValue("birthday").asText();
+            birthday = field.get("birthday").asText();
         } else {
             birthday = "Could not find birthday";
         }
         if(field.has("deathday")){
-            deathday = field.findValue("deathday").asText();
+            deathday = field.get("deathday").asText();
         } else {
             deathday = "Could not find deathday";
         }
         if(field.has("biography")){
-            bio = field.findValue("biography").asText();
+            bio = field.get("biography").asText();
         } else {
             bio = "Could not find biography";
         }
         if(field.has("id")){
-            id = field.findValue("id").asText();
+            id = field.get("id").asText();
         } else{
             id = "Could not find id";
         }
         if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
+            pic_path = field.get("profile_path").asText();
         } else {
             pic_path = "Could not find profile picture";
         }
@@ -354,7 +354,9 @@ public class JsonReader {
            
             JsonNode field = fields.next();
             if(field.has("id")){
-                ids.add(field.findValue("id").asText());
+                ids.add(field.get("id").asText());
+            } else{
+                ids.add(field.asText());
             }
       }
       return ids;
