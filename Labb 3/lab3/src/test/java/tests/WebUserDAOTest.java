@@ -16,6 +16,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,16 +37,24 @@ public class WebUserDAOTest {
     @EJB
     private UserDAO userDao;
     
+    private WebUser wb = new WebUser("marcus1", "hej");
+    private WebUser dummy = new WebUser("dummy", "hej");
+    
     @Before
     public void setUp() {
+        userDao.create(wb);
+        userDao.create(dummy);
     }
     
     @After
     public void tearDown() {
+        userDao.remove(wb);
     }
 
     @Test
-    public void findUser() {
-        
+    public void getUserByName() {
+        WebUser dbwb = new WebUser("marcus1", "hej");
+        Assert.assertTrue(wb.getUsername().equals(dbwb.getUsername()) &&
+                wb.getPassword().equals(dbwb.getPassword()));
     }
 }

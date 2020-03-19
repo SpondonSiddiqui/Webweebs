@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tests;
 
+import java.util.List;
 import javax.ejb.EJB;
 import junit.framework.Assert;
 import model.dao.ActorDAO;
@@ -41,17 +37,21 @@ public class ActorDAOTest {
     
     private Actor actor;
     
+    private List<Movie> actedIn;
+    
     @Before
     public void setUp() {
-        
+        actor = new Actor("Russel Crowe", "","","","","");
+        actorDAO.create(actor);
     }
     
     @After
     public void tearDown() {
+        actorDAO.remove(actor);
     }
 
     @Test
     public void getActorsByName() {
-        //Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").equals("Russel Crowse"));
+        Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").get(0).getName().equals("Russel Crowe"));
     }
 }
