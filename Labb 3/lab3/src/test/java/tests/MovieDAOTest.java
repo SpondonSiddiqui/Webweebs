@@ -52,8 +52,10 @@ public class MovieDAOTest {
 
     @Before
     public void init() {
+
         movieDAO.create(joker);
         movieDAO.create(godfather);
+        
     }
 
     @After
@@ -62,9 +64,11 @@ public class MovieDAOTest {
         movieDAO.remove(godfather);
     }
 
+
     @Test
     public void findMoviesByName() {
         Assert.assertTrue(movieDAO.findMoviesByName("Joker").size() == 1);
+
     }
 
     @Test
@@ -76,5 +80,8 @@ public class MovieDAOTest {
     @Test
     public void checkMovieExists() {
         Assert.assertTrue(!movieDAO.checkMovieExists("This isnt a movie"));
+
+        //Assert.assertTrue(!movieDAO.checkMovieExists("1917"));
     }
+    
 }

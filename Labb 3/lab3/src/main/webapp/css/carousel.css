@@ -1,4 +1,4 @@
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     /* show 3 items */
     .carousel-inner .active,
     .carousel-inner .active + .carousel-item,
@@ -58,11 +58,11 @@
         display: block;
         visibility: visible;
     }
-}
 
-.movie-overview {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    .carousel-wrapper{
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(117,117,117,0.81);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(117,117,117,0.81);
+        box-shadow: 0px 0px 3px 0px rgba(117,117,117,0.81);
+    }
+
 }
