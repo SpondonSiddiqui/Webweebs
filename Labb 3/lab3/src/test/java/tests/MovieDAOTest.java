@@ -11,9 +11,11 @@ import model.dao.ActorDAO;
 import model.dao.MovieDAO;
 import model.dao.ReviewDAO;
 import model.dao.UserDAO;
+import model.dao.WatchListDAO;
 import model.entity.Actor;
 import model.entity.Movie;
 import model.entity.Review;
+import model.entity.WatchList;
 import model.entity.WebUser;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -34,7 +36,8 @@ public class MovieDAOTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
                 .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, 
-                        Actor.class, Review.class, ReviewDAO.class, UserDAO.class)
+                        Actor.class, Review.class, ReviewDAO.class, UserDAO.class, WatchList.class,
+                        WatchListDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -44,25 +47,27 @@ public class MovieDAOTest {
     private ActorDAO actorDAO;   
     @EJB
     private UserDAO userDAO;
-    
-    private List<Movie> movies = new ArrayList<>();
-    private List<String> genres = Arrays.asList("1","2","3","4");
 
-    Movie godfather = new Movie("The Godfather", "10", "99999", "1972","", "",genres);
-    Movie joker = new Movie("Joker","8","", "2019", "", "",genres);
+    
+    private List<Movie> movies = Arrays.asList(new Movie("The Godfather", "10", "99999", "1972","", "", Arrays.asList("1", "2", "3")),
+            new Movie("Joker","8","", "2019", "", "", Arrays.asList("1", "2", "3")));
+    
+    private WebUser wb = new WebUser("spondon1", "hej");
+    
+    private List<String> genres = Arrays.asList("1","2","3","4");
 
     @Before
     public void init() {
 
-        movieDAO.create(joker);
-        movieDAO.create(godfather);
+        movieDAO.create(new Movie("Joker","8","", "2019", "", "", Arrays.asList("1", "2", "3")));
+        movieDAO.create(new Movie("The Godfather", "10", "99999", "1972","", "", Arrays.asList("1", "2", "3")));
         
     }
 
     @After
     public void clean() {
-        movieDAO.remove(joker);
-        movieDAO.remove(godfather);
+        movieDAO.remove(movieDAO.find("Joker"));
+        movieDAO.remove(movieDAO.find("The Godfather"));
     }
 
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <head>
+        <title>Watchlist</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+        <h:form class="watchlist">
+            <p:dataScroller value="#{watchListBackingBean.userWatchList.movies}" var="movie" chunkSize="10">
+                <f:facet name="header">
+                    #{userBean.user.username}'s watchlist
+                </f:facet>
+
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" /> 
+
+                    <p:outputPanel>
+                        <h:panelGrid cellpadding="5">
+                            
+                            <h:outputText value="#{movie.title}" style="font-weight: bold; font-size: 36px;"/>
+
+                            <h:outputText value="#{movie.overview}" style="font-size: 18px"/>
+
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
+        <div>
+            <!--<p:param value="#{userBean.user}"/>-->
+        </div>
+    </body>
+</html>
