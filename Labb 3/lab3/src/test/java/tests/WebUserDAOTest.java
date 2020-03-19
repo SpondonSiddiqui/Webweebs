@@ -39,9 +39,7 @@ public class WebUserDAOTest {
     
     @Before
     public void setUp() {
-
         userDao.create(wb);
-
     }
     
     @After

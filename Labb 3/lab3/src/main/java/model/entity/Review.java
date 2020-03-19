@@ -29,7 +29,6 @@ public class Review implements Serializable {
     @NonNull private String rating;
     
     
-    
     @ManyToOne
     @NonNull
     @JoinColumn(name = "movie_reviewed")
