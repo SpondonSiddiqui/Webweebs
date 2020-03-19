@@ -90,7 +90,8 @@ public class JsonReader {
       while(fields.hasNext()){
           JsonNode field = fields.next();
           
-          actors.add(getActorFromNode(field));
+          //actors.add(getActorFromNode(field));
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return actors;
   }
@@ -120,7 +121,8 @@ public class JsonReader {
                     Iterator<JsonNode> newFields = newPaths.elements();
                     while(newFields.hasNext()){
                         JsonNode movieField = newFields.next();
-                        movies.add(getMovieFromNode(field)); 
+                        //movies.add(getMovieFromNode(field));
+                        movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
                     }
                     return movies;
             }  
@@ -188,7 +190,8 @@ public class JsonReader {
            
             JsonNode field = fields.next();
             
-            movies.add(getMovieFromNode(field));      
+            //movies.add(getMovieFromNode(field)); 
+            movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return movies;
       
