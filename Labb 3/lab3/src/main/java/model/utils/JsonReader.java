@@ -102,28 +102,18 @@ public class JsonReader {
    * @throws IOException
    * @throws JSONException 
    */
-  public static List<Movie> getMoviesFromActorUrl(String url, String id) throws IOException, JSONException{
-        JSONObject json = readJsonFromUrl(url);
+  public static List<Movie> getMoviesFromActorUrl(String url) throws IOException, JSONException{
+      JSONObject json = readJsonFromUrl(url);
       List<Movie> movies = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("cast");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
-           
-            JsonNode field = fields.next();
-            if(field.get("id").asText().equals(id)){
-                    JsonNode newPaths = field.get("known_for");
-      
-                    Iterator<JsonNode> newFields = newPaths.elements();
-                    while(newFields.hasNext()){
-                        JsonNode movieField = newFields.next();
-                        movies.add(getMovieFromNode(field)); 
-                    }
-                    return movies;
-            }  
+          JsonNode field = fields.next();
+          movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return movies;
   }

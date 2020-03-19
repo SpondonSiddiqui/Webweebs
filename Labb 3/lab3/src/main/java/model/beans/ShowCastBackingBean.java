@@ -45,19 +45,7 @@ public class ShowCastBackingBean implements Serializable {
     //private String key = "10dfedc564f5b41f3c803582d1d3a5fa";
     @PostConstruct
     private void init() {
-        /*Faker faker = new Faker();
-       actors = new ArrayList<>();
-       for(int i=0; i<10; i++){
-           String name = faker.name().fullName();
-           Actor actor = new Actor(name, "", "", "", "", "");
-           actors.add(actor);
-       }*/
-        //id="0";
-        //id = bean.getId();
-        /*actors = actorDAO.getAllActors();
-        System.out.println(actors.get(0).getBio());
-        System.out.println(id);
-         */
+        
         try {
             actors = new ArrayList<>();
             actors = actorDAO.getActorsFromMovie(id);

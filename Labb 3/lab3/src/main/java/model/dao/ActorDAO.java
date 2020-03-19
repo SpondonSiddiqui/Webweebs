@@ -60,13 +60,15 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
      * @throws IOException 
      */
     public List<Movie> getMoviesFromActor(String actorID) throws IOException{
-        Actor actor = getActor(actorID);
+        /*Actor actor = getActor(actorID);
         String name = actor.getName();
         name = name.replaceAll(" ", "%20");
         name = name.replaceAll("ö", "%C3%B6");
         name = name.replaceAll("ä", "%C3%A4");
         name = name.replaceAll("å", "%C3%A5");
         return JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+name+"&page=1&include_adult=true",actorID);
+    */
+        return JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/person/"+actorID+"/movie_credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
     }
     
     /**

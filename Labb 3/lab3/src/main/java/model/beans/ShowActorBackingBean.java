@@ -7,6 +7,7 @@ package model.beans;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
@@ -15,6 +16,7 @@ import javax.inject.Named;
 import lombok.Data;
 import model.dao.ActorDAO;
 import model.entity.Actor;
+import model.entity.Movie;
 import org.omnifaces.cdi.Param;
 
 /**
@@ -62,6 +64,11 @@ public class ShowActorBackingBean implements Serializable {
     
     private boolean isAlive(){
         return actor.getDeathday().equals("null");
+    }
+    
+    public List<Movie> getMoviesActedIn() throws IOException{
+        System.out.println(actorDAO.getMoviesFromActor(id).size());
+        return actorDAO.getMoviesFromActor(id);
     }
 
 }
