@@ -75,6 +75,13 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         return getActor(actor.getId());
     }
     
+    /**
+     * Search for actor by name and page
+     * @param name 
+     * @param page results page number
+     * @return List of actors that matches the input 
+     * @throws IOException 
+     */
     public List<Actor> searchActor(String name, String page) throws IOException{
         name = name.replaceAll(" ", "%20");
         name = name.replaceAll("ö", "%C3%B6");
@@ -86,14 +93,31 @@ public class ActorDAO extends AbstractDAO<Actor,String> {
         return JsonReader.getActorsFromUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query="+name+"&page="+page+"&include_adult=true");
     }
     
+    /**
+     * Search for actor by name
+     * @param name
+     * @return List of actors that matches the input
+     * @throws IOException 
+     */
     public List<Actor> searchActor(String name) throws IOException{
         return searchActor(name,"1");
     }
     
+    /**
+     * Get a list of the most popular actors by page
+     * @param page results page number
+     * @return List of actors
+     * @throws IOException 
+     */
     public List<Actor> getTopActors(String page) throws IOException{
         return JsonReader.getActorsFromUrl("https://api.themoviedb.org/3/person/popular?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
     }
     
+    /**
+     * Get a list of the most popular actors
+     * @return List of actors
+     * @throws IOException 
+     */
     public List<Actor> getTopActors() throws IOException{
         return getTopActors("1");
     }
