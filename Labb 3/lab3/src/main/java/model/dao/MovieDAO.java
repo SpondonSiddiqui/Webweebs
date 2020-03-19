@@ -86,7 +86,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
      * @throws IOException 
      */
     public List<Movie> getUpcomingMovies(String page) throws IOException{
-        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/upcoming?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/upcoming?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page+"&region=SE");
     }
     
     /**
@@ -105,7 +105,7 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
      * @throws IOException 
      */
     public List<Movie> getNowPlayingMovies(String page) throws IOException{
-        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/now_playing?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/now_playing?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page+"&region=SE");
     }
     
     /**
