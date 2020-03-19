@@ -1,5 +1,5 @@
 
-package model.view;
+package view.beans;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

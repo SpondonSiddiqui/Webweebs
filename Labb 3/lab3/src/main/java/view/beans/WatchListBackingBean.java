@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.beans;
+package view.beans;
 
 import java.io.Console;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import model.dao.WatchListDAO;
 import model.entity.Movie;
 import model.entity.WatchList;
 import model.entity.WebUser;
-import model.view.UserBean;
+import view.beans.UserBean;
 import org.omnifaces.cdi.Param;
 
 /**
