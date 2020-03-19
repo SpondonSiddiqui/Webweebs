@@ -5,7 +5,7 @@
  */
 package model.beans;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
