@@ -19,17 +19,25 @@
             </ui:define>
         </ui:decorate>
 
+
+        <!-- Top movies carousel -->
         <div class="container-fluid">
-            <!--<h3 class="text-center mb-3">Top movies right now</h3>-->
-            <a href="topRated.xhtml">See all</a>
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <h4 class="mb-3">Top movies right now</h4>
+                </div>
+                <div class="col-auto">
+                    <a href="topRated.xhtml">See all</a>
+                </div>
+            </div>
             <div id="myCarousel" class="carousel slide" data-ride="carousel" value="#{movieBackingBean.movies}">
                 <div class="carousel-inner row w-100 mx-auto">
-                    <div class="carousel-item col-md-2 active">
+                    <div class="carousel-item col-md-4 active">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(0).id}"/>
                                 </img>
                             </h:link>
@@ -40,12 +48,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(1).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(1).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(1).id}"/>
                                 </img>
                             </h:link>
@@ -56,12 +64,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(2).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(2).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(2).id}"/>
                                 </img>
                             </h:link>
@@ -72,12 +80,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(3).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(3).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(3).id}"/>
                                 </img>
                             </h:link>
@@ -88,12 +96,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(4).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(4).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(4).id}"/>
                                 </img>
                             </h:link>
@@ -104,12 +112,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(5).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(5).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(5).id}"/>
                                 </img>
                             </h:link>
@@ -120,12 +128,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item col-md-2">
+                    <div class="carousel-item col-md-4">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(6).id}"/>
                                 </img>
                             </h:link>
@@ -147,6 +155,8 @@
                 </a>
             </div>
         </div>
+
+        <!-- Actors born today carousel -->
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="js/carousel.js"></script>

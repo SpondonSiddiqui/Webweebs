@@ -85,7 +85,7 @@ public class MovieDAOTest {
             
         }*/
         
-        WebUser wb = new WebUser("marcus", "hej");
+        //WebUser wb = new WebUser("marcus", "hej");
         //userDAO.create(wb);
     }
 
@@ -99,7 +99,7 @@ public class MovieDAOTest {
     /*@Test
     public void findMoviesByName_test() {
         assertEquals(1, movieDAO.findMoviesByName("Joker").size());
-    }*/
+    }
 
     @Test
     public void findMoviesByYear_test() {
@@ -110,7 +110,7 @@ public class MovieDAOTest {
     @Test
     public void checkMovieExists() {
         //Assert.assertTrue(!movieDAO.checkMovieExists("1917"));
-    }
+    }*/
     
     @Test
     public void findUserByName() {

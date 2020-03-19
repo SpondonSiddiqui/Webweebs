@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests;
+/*package tests;
 
 
 import javax.ejb.EJB;
@@ -38,6 +38,8 @@ public class WebUserDAOTest {
     
     @Before
     public void setUp() {
+        WebUser mathias = new WebUser("mathias", "password");
+        userDao.create(mathias);
     }
     
     @After
@@ -48,4 +50,4 @@ public class WebUserDAOTest {
     public void findUser() {
         
     }
-}
+}*/

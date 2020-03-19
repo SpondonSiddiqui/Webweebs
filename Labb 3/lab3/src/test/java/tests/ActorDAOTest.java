@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tests;
+/*package tests;
 
 import javax.ejb.EJB;
 import junit.framework.Assert;
@@ -55,3 +55,4 @@ public class ActorDAOTest {
         //Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").equals("Russel Crowse"));
     }
 }
+*/
