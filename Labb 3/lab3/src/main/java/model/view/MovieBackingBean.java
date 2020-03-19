@@ -65,4 +65,14 @@ public class MovieBackingBean implements Serializable {
             System.out.println(ex.toString());
         }
     }
+    
+    public List<Movie> getUpcomingMovies(){
+        try{
+            movies = movieDAO.getUpcomingMovies();
+            return movies;
+        } catch (IOException ex){
+            System.out.println(ex.toString());
+            return null;
+        }
+    }
 }
