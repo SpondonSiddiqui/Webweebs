@@ -27,7 +27,6 @@ public class ActorBackingBean implements Serializable {
             actors = actorDAO.getTopActors();
         } catch (IOException ex){
             System.out.println(ex.toString());
-        }
-        
+        }   
     }
 }
