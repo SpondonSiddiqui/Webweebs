@@ -3,6 +3,7 @@ package tests;
 
 import com.github.javafaker.Faker;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import javax.ejb.EJB;
@@ -45,7 +46,7 @@ public class MovieDAOTest {
     private UserDAO userDAO;
     
     private List<Movie> movies = new ArrayList<>();
-    private List<String> genres = new ArrayList<>();
+    private List<String> genres = Arrays.asList("1","2","3","4");
 
     Movie godfather = new Movie("The Godfather", "10", "99999", "1972","", "",genres);
     Movie joker = new Movie("Joker","8","", "2019", "", "",genres);
