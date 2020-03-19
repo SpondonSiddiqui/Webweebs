@@ -45,13 +45,17 @@
                     Filmography
                 </f:facet>
                 <p:panel>
-                    <h:panelGrid columns="2" style="width:100%">
+                    <h:panelGrid columns="2" style="width:100%; align-content: center">
                         <h:link outcome="detailedMovie.xhtml">
                             <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" width="100px">
                                 <f:param name="id" value="#{movie.id}"/>
                             </img>
                         </h:link>
-                        <h:outputLabel style="text-align: left" value="#{movie.title}"/>
+                        <h:link outcome="detailedMovie.xhtml">
+                        <h:outputLabel style="text-align: left" value="#{movie.title}">
+                                     <f:param name="id" value="#{movie.id}"/>
+                        </h:outputLabel>
+                        </h:link>
                     </h:panelGrid>
                 </p:panel>
             </p:dataGrid>

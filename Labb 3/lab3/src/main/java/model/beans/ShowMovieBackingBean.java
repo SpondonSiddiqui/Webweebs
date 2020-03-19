@@ -84,17 +84,4 @@ public class ShowMovieBackingBean implements Serializable {
         return sb.toString();
     }
     
-    /*public void validateSubmission() {
-        movie = movieDAO.findMoviesByName(name).get(0);
-        if (!movie.getReviews().equals("")) {
-            movie.setReviews(review);
-            movieDAO.update(movie);
-            Messages.addGlobalWarn("Added review", null);
-            Faces.validationFailed();
-        } else {
-            Messages.addGlobalWarn("You have already written a review "
-                    + "of this movie.", null);
-            Faces.validationFailed();
-        }
-    }*/
 }
