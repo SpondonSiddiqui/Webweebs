@@ -38,7 +38,7 @@
                     <div class="navbar-nav">
                         <h:link class="nav-item nav-link active" outcome="">About <span class="sr-only">(current)</span></h:link>
                         <h:link class="nav-item nav-link" outcome="movieCast.xhtml">Filmography
-                            <f:param name="id" value="#{showMovieBackingBean.id}"/>
+                            <f:param name="id" value="#{showActorBackingBean.id}"/>
                         </h:link>
                     </div>
                 </div>
@@ -51,36 +51,33 @@
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
-                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.title}
-                                (#{showMovieBackingBean.releaseYear()})
+                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showActorBackingBean.actor.name}
                             </h5>
                         </div>
-                        <img src="img/Gold_Star.svg.png" width="30px" height="25px"/>
-                        <h4 padding-left="10px">#{showMovieBackingBean.movie.avg_rating}</h4>
                     </div>
                     <div class="row">
                         <div class="col-3">
                             
                            
-                            <img src="https://image.tmdb.org/t/p/w185/#{showMovieBackingBean.movie.poster_path}" class="img-fluid" alt="Responsive image" width="400px" />
-                            <table class="table table-sm" value="#{showMovieBackingBean.getMovie()}" var="movie">
+                            <img src="#{showActorBackingBean.actor.picture_path}" class="img-fluid" alt="Responsive image" width="400px" />
+                            <table class="table table-sm" value="#{showActorBackingBean.actor}" var="actor">
 
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Director</th>
-                                        <td>#{showMovieBackingBean.getDir()}</td>
+                                        <th scope="row">Born</th>
+                                        <td>#{showActorBackingBean.actor.birthday}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Starring</th>
-                                        <td>#{showMovieBackingBean.getStars()}</td>
+                                        <th scope="row">#{showActorBackingBean.getDiedHeader()}</th>
+                                        <td>#{showActorBackingBean.getDeathday()}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         
-                        <div class="col-5" value="#{showMovieBackingBean.movie}">
+                        <div class="col-6">
 
-                            <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.overview}</p>
+                            <p id="actorDescription" class="card-text text-left">#{showActorBackingBean.actor.bio}</p>
                         </div>
                     </div>
                     <div class="row">

@@ -324,7 +324,7 @@ public class JsonReader {
         if(field.has("deathday")){
             deathday = field.get("deathday").asText();
         } else {
-            deathday = "Could not find deathday";
+            deathday = "0";
         }
         if(field.has("biography")){
             bio = field.get("biography").asText();

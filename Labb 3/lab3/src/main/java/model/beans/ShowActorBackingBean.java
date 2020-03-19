@@ -42,5 +42,26 @@ public class ShowActorBackingBean implements Serializable {
             System.out.println(e);
         }
     }
+    
+    public String getDiedHeader(){
+        if(!isAlive()){
+            return "Died";
+            
+        }else{
+             return " ";
+        }
+    }
+    
+    public String getDeathday(){
+        if(!isAlive()){
+            return actor.getDeathday();
+        } else{
+            return " ";
+        }
+    }
+    
+    private boolean isAlive(){
+        return actor.getDeathday().equals("null");
+    }
 
 }
