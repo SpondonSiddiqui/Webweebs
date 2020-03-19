@@ -18,4 +18,11 @@ public class UserDAO extends AbstractDAO<WebUser, String> {
     public UserDAO() {
         super(WebUser.class);
     }
+    
+    public List<WebUser> getUserByName(String username) {
+        Query query = entityManager.createQuery("SELECT w FROM WebUser w "
+                + "WHERE w.username = :username");
+        query.setParameter("username", username);
+        return query.getResultList();
+    }
 }

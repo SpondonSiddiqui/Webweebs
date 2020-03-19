@@ -22,7 +22,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        
+
         <ui:decorate template="WEB-INF/template/common.xhtml">
             <ui:define name="menu">
             </ui:define>
@@ -93,6 +93,49 @@
                 </div>
 
             </div>
+        </div>
+        <div>
+            <h:form id="reviewList">
+                <h:form class="reviewList" id="reviewList">
+                    <p:dataList value="#{reviewBackingBean.reviews}" var="review" type="definition">
+                        <f:facet class="head" name="header">
+                            Reviews
+                        </f:facet>
+                        <p:panel header="Posted by: #{review.postedBy.username}, #{review.postedWhen}">
+                            <h:panelGrid columns="1" style="width:100%">
+                                <h:outputText value="#{review.content}" />
+                                <br/>
+                                <h:outputText value="User rating: #{review.rating}"/>
+                                <p:rating stars="10" readonly="true" disabled="true" value="#{review.rating}" /> 
+                            </h:panelGrid>
+                        </p:panel>
+                        <br/>
+                    </p:dataList> 
+                </h:form>
+            </h:form>
+        </div>
+        <div class="form-container">
+            <h:form class="reviewForm" id="reviewForm"> 
+                <p:outputLabel rendered="#{userBean.loggedIn}"><h4>Leave a review</h4>
+                    Logged in as: <p:outputLabel class="logged" id="username" rendered="#{userBean.loggedIn}" value="#{userBean.user.username}" />
+                </p:outputLabel>
+                <p:outputLabel rendered="#{!userBean.loggedIn}">Log in to leave a review</p:outputLabel>
+                    <br/>
+                <h:outputText rendered="#{userBean.loggedIn}" value="Rate the movie:" /> 
+                <p:rating rendered="#{userBean.loggedIn}" stars="10" value="#{reviewBackingBean.rating}" /> 
+                    <br/>
+                <p:inputTextarea rows="5" cols="30" id="input" class="content" counter="display" maxlength="250" 
+                                 counterTemplate="{0} characters remaining." autoResize="false"
+                                 disabled="#{!userBean.loggedIn}" value="#{reviewBackingBean.contentInput}" />
+                    <br/>
+                <h:outputText id="display" />
+                <p:commandButton value="Submit" disabled="#{!userBean.loggedIn}"
+                                    action="#{reviewBackingBean.submitReview(userBean.user.username)}" class="submitButton">
+                </p:commandButton> <br/>     
+                
+                <p:growl/>
+                
+            </h:form>
         </div>
     </h:body>
 </html>

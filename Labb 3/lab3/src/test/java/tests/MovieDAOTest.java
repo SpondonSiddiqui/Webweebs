@@ -8,8 +8,11 @@ import java.util.Random;
 import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
+import model.dao.ReviewDAO;
+import model.dao.UserDAO;
 import model.entity.Actor;
 import model.entity.Movie;
+import model.entity.Review;
 import model.entity.WebUser;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,6 +20,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -28,7 +32,8 @@ public class MovieDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, Actor.class)
+                .addClasses(MovieDAO.class, Movie.class, WebUser.class, ActorDAO.class, 
+                        Actor.class, Review.class, ReviewDAO.class, UserDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -36,6 +41,9 @@ public class MovieDAOTest {
     private MovieDAO movieDAO;
     @EJB
     private ActorDAO actorDAO;
+    
+    @EJB
+    private UserDAO userDAO;
     
     private List<Movie> movies = new ArrayList<>();
     private List<String> genres = new ArrayList<>();
@@ -81,15 +89,18 @@ public class MovieDAOTest {
             movie.setActors(actors);
             
             
-        }
+        }*/
+        
+        WebUser wb = new WebUser("marcus", "hej");
+        //userDAO.create(wb);
     }
 
-    @After
+    /*@After
     public void clean() {
-        /*for (Movie movie : movies){
+        for (Movie movie : movies){
             movieDAO.remove(movie);
-        }*/
-    }
+        }
+    }*/
 
     /*@Test
     public void findMoviesByName_test() {
@@ -98,6 +109,23 @@ public class MovieDAOTest {
 
     @Test
     public void findMoviesByYear_test() {
-       // assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+       //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+        //Assert.assertTrue(movieDAO.findMovieById("10752") == null);
+    }
+    
+    @Test
+    public void checkMovieExists() {
+        //Assert.assertTrue(!movieDAO.checkMovieExists("1917"));
+    }
+    
+    @Test
+    public void findUserByName() {
+       //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
+       /*WebUser wb = new WebUser("marcus", "hej");
+       WebUser dbwb = userDAO.getUserByName("marcus").get(0);
+        System.out.println("HALLOJ " + dbwb);
+        Assert.assertTrue(wb.getUsername().equals(dbwb.getUsername()) &&
+                wb.getPassword().equals(dbwb.getPassword()));*/
+        
     }
 }

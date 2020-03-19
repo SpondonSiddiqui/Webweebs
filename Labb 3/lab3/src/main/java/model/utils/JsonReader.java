@@ -336,6 +336,17 @@ public class JsonReader {
         } else {
             bio = "Could not find biography";
         }
+        if(field.has("id")){
+            List<JsonNode> tmp = field.findValues("id");
+            id = tmp.get(0).get("id").asText();
+        } else{
+            id = "Could not find id";
+        }
+        if(field.has("profile_path")){
+            pic_path = field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
 
         Actor actor = new Actor(
               name
