@@ -59,9 +59,9 @@
         </div>
         <div>
             <h:form id="reviewList">
-                <h:form id="reviewList">
+                <h:form class="reviewList" id="reviewList">
                     <p:dataList value="#{reviewBackingBean.reviews}" var="review" type="definition">
-                        <f:facet name="header">
+                        <f:facet class="head" name="header">
                             Reviews
                         </f:facet>
                         <p:panel header="Posted by: #{review.postedBy.username}, #{review.postedWhen}">
