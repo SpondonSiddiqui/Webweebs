@@ -17,16 +17,16 @@
         </ui:decorate>
 
         <h:form id="form" style="margin-left: 15%; margin-right: 15%">
-            <div class="search-wrapper">
-                <p:inputText id="searchInput" class="search-movie" placeholder="Movies, series..." value="#{movieBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
-                <p:commandButton value="Search" class="search-button" id="search" action="#{movieBackingBean.searchMovie}" update="mov"></p:commandButton>
-            </div>
             <p:dataGrid var="actor" value="#{actorBackingBean.actors}" columns="4" layout="grid"
                         rows="20" paginator="true" id="mov"
                         paginatorTemplate="{CurrentPageReport} {PreviousPageLink} {PageLinks} {NextPageLink}"
                         >
                 <f:facet name="header">
-                    Top Actors
+                    Actors
+                    <div class="search-wrapper">
+                        <p:inputText id="searchInput" class="search" placeholder="Search for actor" value="#{actorBackingBean.searchKey}" required="false" label="Search: "></p:inputText>
+                        <p:commandButton value="Search" class="search-button" id="searchButton" action="#{actorBackingBean.searchMovie}" update="mov"></p:commandButton>
+                    </div>
                 </f:facet>
                 <p:panel header="#{actor.name}" style="text-align:center" >
                     <h:panelGrid columns="1" style="width:100%">
