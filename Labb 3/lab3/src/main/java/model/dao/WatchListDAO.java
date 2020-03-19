@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import lombok.Getter;
+import model.entity.Movie;
 import model.entity.WatchList;
 import model.entity.WebUser;
 
@@ -27,4 +28,12 @@ public class WatchListDAO extends AbstractDAO<WatchList, String> {
         
         return query.getResultList();
     }
+    
+    public boolean movieIsInList(Movie movie){
+        Query query = entityManager.createQuery("SELECT w FROM WatchList "
+                + "w WHERE w.movies = :movie");
+        query.setParameter("movie", movie);
+        return !query.getResultList().isEmpty();
+    }
+    
 }

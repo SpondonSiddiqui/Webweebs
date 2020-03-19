@@ -69,6 +69,17 @@ public class WatchListBackingBean implements Serializable {
         userWatchList = watchListDAO.find(webUser.getUsername() + "'s watchlist");
     }
     
+    public boolean isInList(String id){
+        try {
+            movie = movieDAO.getMovie(id);
+        } catch (IOException ex) {
+            Logger.getLogger(WatchListBackingBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return watchListDAO.movieIsInList(movie);
+        
+    }
+    
     public void onAddMovieToWatchList(String id) {
         
         System.out.println("Add button pressed");
