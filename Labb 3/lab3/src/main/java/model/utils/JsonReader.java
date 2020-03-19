@@ -306,11 +306,6 @@ public class JsonReader {
         String id;
         String pic_path;
 
-        if(field.has("id")){
-            id = field.findValue("id").asText();
-        } else{
-            id = "Could not find id";
-        }
         if(field.has("profile_path")){
             pic_path = "https://image.tmdb.org/t/p/w500" + field.findValue("profile_path").asText();
         } else {
@@ -337,15 +332,9 @@ public class JsonReader {
             bio = "Could not find biography";
         }
         if(field.has("id")){
-            List<JsonNode> tmp = field.findValues("id");
-            id = tmp.get(0).get("id").asText();
+            id = field.findValue("id").asText();
         } else{
             id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.findValue("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
         }
 
         Actor actor = new Actor(
