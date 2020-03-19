@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tests;
-
 
 import javax.ejb.EJB;
 import model.entity.WebUser;
@@ -38,12 +32,10 @@ public class WebUserDAOTest {
     private UserDAO userDao;
     
     private WebUser wb = new WebUser("marcus1", "hej");
-    private WebUser dummy = new WebUser("dummy", "hej");
     
     @Before
     public void setUp() {
         userDao.create(wb);
-        userDao.create(dummy);
     }
     
     @After

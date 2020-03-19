@@ -1,13 +1,10 @@
 package tests;
 
-import java.util.List;
 import javax.ejb.EJB;
-import junit.framework.Assert;
 import model.dao.ActorDAO;
-import model.dao.MovieDAO;
-import model.entity.Actor;
-import model.entity.Movie;
 import model.entity.WebUser;
+import model.dao.UserDAO;
+import model.entity.Actor;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -15,6 +12,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +25,7 @@ public class ActorDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, ActorDAO.class, Actor.class)
+                .addClasses(Actor.class, ActorDAO.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -36,8 +34,6 @@ public class ActorDAOTest {
     private ActorDAO actorDAO;
     
     private Actor actor;
-    
-    private List<Movie> actedIn;
     
     @Before
     public void setUp() {
@@ -52,6 +48,6 @@ public class ActorDAOTest {
 
     @Test
     public void getActorsByName() {
-        Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").get(0).getName().equals("Russel Crowe"));
+        Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").size() == 1);
     }
 }
