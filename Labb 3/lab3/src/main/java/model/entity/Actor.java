@@ -25,6 +25,5 @@ public class Actor implements Serializable {
     @NonNull private String id;
     @NonNull private String picture_path;
     
-    
     @ManyToMany(mappedBy = "actors") private List<Movie> moviesActedIn;
 }
