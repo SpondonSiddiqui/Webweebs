@@ -1,11 +1,7 @@
 package tests;
 
-
-import com.github.javafaker.Faker;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
+import java.util.Arrays;
 import javax.ejb.EJB;
 import model.dao.ActorDAO;
 import model.dao.MovieDAO;
@@ -23,14 +19,13 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class MovieDAOTest {
+public class WatchListDAOTest {
 
     @Deployment
     public static WebArchive createDeployment() {
@@ -41,13 +36,15 @@ public class MovieDAOTest {
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+    
     @EJB
-    private MovieDAO movieDAO;
-    @EJB
-    private ActorDAO actorDAO;   
+    private WatchListDAO watchListDAO;
+    
     @EJB
     private UserDAO userDAO;
-
+    
+    @EJB
+    private MovieDAO movieDAO;
     
     private List<Movie> movies = Arrays.asList(new Movie("The Godfather", "10", "99999", "1972","", "", Arrays.asList("1", "2", "3")),
             new Movie("Joker","8","", "2019", "", "", Arrays.asList("1", "2", "3")));
@@ -55,39 +52,30 @@ public class MovieDAOTest {
     private WebUser wb = new WebUser("spondon1", "hej");
     
     private List<String> genres = Arrays.asList("1","2","3","4");
-
+    
+    private WatchList watchList = new WatchList("test_user_3's watchlist", movies, wb);
+    
     @Before
-    public void init() {
-
-        movieDAO.create(new Movie("Joker","8","", "2019", "", "", Arrays.asList("1", "2", "3")));
+    public void setUp() {
+        userDAO.create(wb);
         movieDAO.create(new Movie("The Godfather", "10", "99999", "1972","", "", Arrays.asList("1", "2", "3")));
-        
+        movieDAO.create(new Movie("Joker","8","", "2019", "", "", Arrays.asList("1", "2", "3")));
+        watchListDAO.create(watchList);
     }
-
+    
     @After
-    public void clean() {
+    public void tearDown() {
+        watchListDAO.remove(watchList);
+        userDAO.remove(wb);
         movieDAO.remove(movieDAO.find("Joker"));
         movieDAO.remove(movieDAO.find("The Godfather"));
     }
 
-
     @Test
-    public void findMoviesByName() {
-        Assert.assertTrue(movieDAO.findMoviesByName("Joker").size() == 1);
-
+    public void getWatchListForUser() {
+        assertEquals(watchList.getMovies().get(0).getTitle(), 
+                watchListDAO.getWatchListBelongingToUser(wb).get(0).getMovies().get(0).getTitle());
+        assertEquals(watchList.getMovies().get(1).getTitle(), 
+                watchListDAO.getWatchListBelongingToUser(wb).get(0).getMovies().get(1).getTitle());
     }
-
-    @Test
-    public void findMoviesById() {
-       //assertEquals(2, movieDAO.findMoviesByYear(2019).size());
-       Assert.assertTrue(movieDAO.findMovieById("99999") != null);
-    }
-    
-    @Test
-    public void checkMovieExists() {
-        Assert.assertTrue(!movieDAO.checkMovieExists("This isnt a movie"));
-
-        //Assert.assertTrue(!movieDAO.checkMovieExists("1917"));
-    }
-    
 }

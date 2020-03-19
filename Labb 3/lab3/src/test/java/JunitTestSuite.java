@@ -3,6 +3,8 @@ import org.junit.runners.Suite;
 import tests.ActorDAOTest;
 import tests.JsonReaderTest;
 import tests.MovieDAOTest;
+import tests.ReviewDAOTest;
+import tests.WatchListDAOTest;
 import tests.WebUserDAOTest;
 
 @RunWith(Suite.class)
@@ -11,7 +13,9 @@ import tests.WebUserDAOTest;
     ActorDAOTest.class,
     MovieDAOTest.class,
     WebUserDAOTest.class,
-    JsonReaderTest.class
+    JsonReaderTest.class,
+    ReviewDAOTest.class,
+    WatchListDAOTest.class
 })
 public class JunitTestSuite {   
     
