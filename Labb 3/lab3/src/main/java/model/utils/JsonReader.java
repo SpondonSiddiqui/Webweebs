@@ -122,7 +122,7 @@ public class JsonReader {
                     while(newFields.hasNext()){
                         JsonNode movieField = newFields.next();
                         //movies.add(getMovieFromNode(field));
-                        movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
+                        movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+movieField.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
                     }
                     return movies;
             }  
