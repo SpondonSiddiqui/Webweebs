@@ -33,7 +33,6 @@ public class JsonReaderTest {
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
     
-    @EJB
     private final String UncutGemsID = "473033";
     private Movie UncutGems;
     private List<Actor> UncutGemsActors;

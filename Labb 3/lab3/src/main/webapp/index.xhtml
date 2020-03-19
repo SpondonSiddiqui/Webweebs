@@ -7,7 +7,7 @@
     <h:head>
         <title>MovIT</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <link rel="stylesheet" type="text/css" href="css/carousel.css" />
+
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
     </h:head>
@@ -19,17 +19,33 @@
             </ui:define>
         </ui:decorate>
 
-        <div class="container-fluid">
-            <!--<h3 class="text-center mb-3">Top movies right now</h3>-->
+        <p:carousel autoPlayInterval="3" circular="true" numVisible="3" value="#{movieBackingBean.movies}" var="movie">
+            <div style="width:200px;">
+                <h:link outcome="detailedMovie">
+                    <img
+                        src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" 
+                        alt="Card image cap">
+                        <f:param name="id" value="#{movie.id}"/>
+                    </img>
+                </h:link>
+                <h4 class="card-title">#{movie.title}</h4>
+                <p class="card-text movie-overview">#{movie.overview}</p>
+                <p class="card-text"><small class="text-muted">Rating: #{movie.avg_rating}</small></p>
+            </div>
+        </p:carousel>
+
+        <!--<div class="container-fluid">
+
             <a href="topRated.xhtml">See all</a>
-            <div id="myCarousel" class="carousel slide" data-ride="carousel" value="#{movieBackingBean.movies}">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" value="#{movieBackingBean.movies}"
+                 >
                 <div class="carousel-inner row w-100 mx-auto">
                     <div class="carousel-item col-md-2 active">
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(0).id}"/>
                                 </img>
                             </h:link>
@@ -44,8 +60,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(1).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(1).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(1).id}"/>
                                 </img>
                             </h:link>
@@ -60,8 +76,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(2).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(2).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(2).id}"/>
                                 </img>
                             </h:link>
@@ -76,8 +92,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(3).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(3).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(3).id}"/>
                                 </img>
                             </h:link>
@@ -92,8 +108,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(4).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(4).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(4).id}"/>
                                 </img>
                             </h:link>
@@ -108,8 +124,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(5).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(5).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(5).id}"/>
                                 </img>
                             </h:link>
@@ -124,8 +140,8 @@
                         <div class="card">
                             <h:link outcome="detailedMovie">
                                 <img class="card-img-top img-fluid" 
-                                 src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
-                                 alt="Card image cap">
+                                     src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
+                                     alt="Card image cap">
                                     <f:param name="id" value="#{movieBackingBean.movies.get(6).id}"/>
                                 </img>
                             </h:link>
@@ -146,7 +162,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </div>
+        </div>-->
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="js/carousel.js"></script>

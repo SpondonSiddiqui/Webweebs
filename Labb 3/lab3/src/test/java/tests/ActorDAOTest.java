@@ -5,6 +5,8 @@ import model.dao.ActorDAO;
 import model.entity.WebUser;
 import model.dao.UserDAO;
 import model.entity.Actor;
+import model.entity.Movie;
+import model.entity.Review;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -25,7 +27,7 @@ public class ActorDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(Actor.class, ActorDAO.class)
+                .addClasses(Actor.class, ActorDAO.class, Movie.class, Review.class, WebUser.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
