@@ -24,7 +24,7 @@ a:hover {
 }
 
 #form {
-    margin-top:65px;
+    margin-top:0px;
 }
 
 .header button {
@@ -231,4 +231,20 @@ a:hover {
 
 .reviewForm .submitButton {
     float:right;
+}
+
+#navi {
+    margin-top: 0px;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#content {
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#castform {
+    padding-left: 15%;
+    padding-right: 15%;
 }

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Cast and crew</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <f:param name="name" value="#{showMovieBackingBean.movie.id}"/>
+    </h:head>
+
+    <h:body>
+
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+
+        <div class="navbar" id="navi">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <h:link class="nav-item nav-link" outcome="detailedMovie.xhtml">About
+                            <f:param name="id" value="#{showCastBackingBean.id}"/>
+                        </h:link>
+                        <h:link class="nav-item nav-link active" outcome="">Cast and Crew<span class="sr-only">(current)</span>
+                        </h:link>
+                       
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <h:form style="margin-left: 15%; margin-right: 15%">
+
+            <p:dataGrid var="actor" value="#{showCastBackingBean.actors}" columns="2" layout="grid"
+                        
+                        >
+                <f:facet name="header">
+                    Cast
+                </f:facet>
+                <p:panel>
+                    <h:panelGrid columns="2" style="width:100%">
+                        <h:link outcome="actorDetails.xhtml">
+                            <img src="#{actor.picture_path}" width="100px">
+                                <f:param name="id" value="#{actor.id}"/>
+                            </img>
+                        </h:link>
+                        <h:outputLabel value="#{actor.name}"/>
+                    </h:panelGrid>
+                </p:panel>
+            </p:dataGrid>
+        </h:form>
+    </h:body>
+</html>
+

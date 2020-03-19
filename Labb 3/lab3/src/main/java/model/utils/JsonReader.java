@@ -90,7 +90,8 @@ public class JsonReader {
       while(fields.hasNext()){
           JsonNode field = fields.next();
           
-          actors.add(getActorFromNode(field));
+          //actors.add(getActorFromNode(field));
+          actors.add(getActorFromUrl("https://api.themoviedb.org/3/person/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return actors;
   }
@@ -102,28 +103,18 @@ public class JsonReader {
    * @throws IOException
    * @throws JSONException 
    */
-  public static List<Movie> getMoviesFromActorUrl(String url, String id) throws IOException, JSONException{
-        JSONObject json = readJsonFromUrl(url);
+  public static List<Movie> getMoviesFromActorUrl(String url) throws IOException, JSONException{
+      JSONObject json = readJsonFromUrl(url);
       List<Movie> movies = new ArrayList<>();
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
-      JsonNode paths = tree.get("results");
+      JsonNode paths = tree.get("cast");
       
       Iterator<JsonNode> fields = paths.elements();
       while(fields.hasNext()){
-           
-            JsonNode field = fields.next();
-            if(field.get("id").asText().equals(id)){
-                    JsonNode newPaths = field.get("known_for");
-      
-                    Iterator<JsonNode> newFields = newPaths.elements();
-                    while(newFields.hasNext()){
-                        JsonNode movieField = newFields.next();
-                        movies.add(getMovieFromNode(field)); 
-                    }
-                    return movies;
-            }  
+          JsonNode field = fields.next();
+          movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return movies;
   }
@@ -152,7 +143,7 @@ public class JsonReader {
    */
     public static Actor getDirectorFromUrl (String url) throws IOException, JSONException {
       JSONObject json = readJsonFromUrl(url);
-      Actor emptyActor = new Actor("COuld not find Director","","","","","");
+      Actor emptyActor = new Actor("Could not find Director","","","","","");
       
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode tree = objectMapper.readTree(json.toString());
@@ -188,7 +179,8 @@ public class JsonReader {
            
             JsonNode field = fields.next();
             
-            movies.add(getMovieFromNode(field));      
+            //movies.add(getMovieFromNode(field)); 
+            movies.add(getMovieFromUrl("https://api.themoviedb.org/3/movie/"+field.get("id").asText()+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US"));
       }
       return movies;
       
@@ -244,6 +236,8 @@ public class JsonReader {
         String release_date;
         String poster_path;
         String id;
+        String director;
+        List<String> starring; 
         List<String> genres = new ArrayList<>();
 
         if(field.has("title")){
@@ -281,7 +275,7 @@ public class JsonReader {
         } else if(field.has("genre_ids")){
             genres = getGenresFromGenreNode(field.get("genre_ids"));
         }
-
+        
         Movie movie = new Movie(
                 title
                 ,avg_rating
@@ -304,6 +298,11 @@ public class JsonReader {
         String id;
         String pic_path;
 
+        if(field.has("profile_path")){
+            pic_path = "https://image.tmdb.org/t/p/w500" + field.findValue("profile_path").asText();
+        } else {
+            pic_path = "Could not find profile picture";
+        }
         if(field.has("name")){
             name = field.get("name").asText();
         } else{
@@ -317,7 +316,7 @@ public class JsonReader {
         if(field.has("deathday")){
             deathday = field.get("deathday").asText();
         } else {
-            deathday = "Could not find deathday";
+            deathday = "0";
         }
         if(field.has("biography")){
             bio = field.get("biography").asText();
@@ -328,11 +327,6 @@ public class JsonReader {
             id = field.get("id").asText();
         } else{
             id = "Could not find id";
-        }
-        if(field.has("profile_path")){
-            pic_path = field.get("profile_path").asText();
-        } else {
-            pic_path = "Could not find profile picture";
         }
 
         Actor actor = new Actor(

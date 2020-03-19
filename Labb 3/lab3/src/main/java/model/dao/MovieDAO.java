@@ -89,6 +89,10 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
         return searchMovie(movie,"1");
     }
     
+    public Movie getMovie(String movieID) throws IOException{     
+        return JsonReader.getMovieFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
+    
+    }
     /**
      * Get genre by id
      * @param id
@@ -105,9 +109,6 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
      * @return Movie that matches the id
      * @throws IOException 
      */
-    public Movie getMovie(String movieID) throws IOException{
-        return JsonReader.getMovieFromUrl("https://api.themoviedb.org/3/movie/"+movieID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
-    }
     
     /**
      * Search for movie by name and page
