@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tests;
-
 
 import javax.ejb.EJB;
 import model.entity.WebUser;
@@ -16,6 +10,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,16 +31,24 @@ public class WebUserDAOTest {
     @EJB
     private UserDAO userDao;
     
+    private WebUser wb = new WebUser("marcus1", "hej");
+    
     @Before
     public void setUp() {
+
+        userDao.create(wb);
+
     }
     
     @After
     public void tearDown() {
+        userDao.remove(wb);
     }
 
     @Test
-    public void findUser() {
-        
+    public void getUserByName() {
+        WebUser dbwb = new WebUser("marcus1", "hej");
+        Assert.assertTrue(wb.getUsername().equals(dbwb.getUsername()) &&
+                wb.getPassword().equals(dbwb.getPassword()));
     }
 }

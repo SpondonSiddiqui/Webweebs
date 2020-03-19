@@ -15,4 +15,4 @@ import tests.WebUserDAOTest;
 })
 public class JunitTestSuite {   
     
-}  
+}

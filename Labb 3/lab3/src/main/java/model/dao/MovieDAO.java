@@ -61,23 +61,81 @@ public class MovieDAO extends AbstractDAO<Movie, String> {
     }
 
       /**
-     * Get top movies by page.
+     * Get the most popluar movies at the moment by page.
      * @param page results page number
      * @return List of movies 
      * @throws IOException 
      */
     public List<Movie> getTopMovies(String page) throws IOException{
-        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/discover/movie?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&sort_by=popularity.desc&include_adult=true&include_video=false" + "&page=" + page);
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/popular?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
     }
-    
+        
     /**
-     * Get top movies
+     * Get the most popluar movies at the moment
      * @return List of movies
      * @throws IOException 
      */
     public List<Movie> getTopMovies() throws IOException{
         return getTopMovies("1");
     }
+    
+    /**
+     * Get upcoming movies by page
+     * @param page
+     * @return 
+     * @throws IOException 
+     */
+    public List<Movie> getUpcomingMovies(String page) throws IOException{
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/upcoming?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+    }
+    
+    /**
+     * Get upcoming movies
+     * @return
+     * @throws IOException 
+     */
+    public List<Movie> getUpcomingMovies() throws IOException{
+        return getUpcomingMovies("1");
+    }
+    
+    /**
+     * Get movies now playing in theaters by page
+     * @param page
+     * @return
+     * @throws IOException 
+     */
+    public List<Movie> getNowPlayingMovies(String page) throws IOException{
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/now_playing?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+    }
+    
+    /**
+     * Get movies now playing in theaters
+     * @return
+     * @throws IOException 
+     */
+    public List<Movie> getNowPlayingMovies() throws IOException{
+        return getNowPlayingMovies("1");
+    }
+    
+    /**
+     * Get top rated movies by page
+     * @param page
+     * @return
+     * @throws IOException 
+     */
+    public List<Movie> getTopRatedMovies(String page) throws IOException{
+        return JsonReader.getMoviesFromUrl("https://api.themoviedb.org/3/movie/top_rated?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&page="+page);
+    }
+    
+    /**
+     * Get top rated movies
+     * @return
+     * @throws IOException 
+     */
+    public List<Movie> getTopRatedMovies() throws IOException{
+        return getTopRatedMovies("1");
+    }
+
     
     /**
      * Search for movie by name. Returns a list of search results.

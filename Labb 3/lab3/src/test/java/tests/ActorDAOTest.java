@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tests;
 
 import javax.ejb.EJB;
-import junit.framework.Assert;
 import model.dao.ActorDAO;
-import model.dao.MovieDAO;
+import model.entity.WebUser;
+import model.dao.UserDAO;
 import model.entity.Actor;
 import model.entity.Movie;
-import model.entity.WebUser;
+import model.entity.Review;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -19,6 +15,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,7 +28,7 @@ public class ActorDAOTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(MovieDAO.class, Movie.class, ActorDAO.class, Actor.class)
+                .addClasses(Actor.class, ActorDAO.class, Movie.class, Review.class, WebUser.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -43,15 +40,17 @@ public class ActorDAOTest {
     
     @Before
     public void setUp() {
-        
+        actor = new Actor("Russel Crowe", "","","","","");
+        actorDAO.create(actor);
     }
     
     @After
     public void tearDown() {
+        actorDAO.remove(actor);
     }
 
     @Test
     public void getActorsByName() {
-        //Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").equals("Russel Crowse"));
+        Assert.assertTrue(actorDAO.findActorsByName("Russel Crowe").size() == 1);
     }
 }
