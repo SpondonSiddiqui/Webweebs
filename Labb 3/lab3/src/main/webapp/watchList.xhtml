@@ -26,16 +26,15 @@ and open the template in the editor.
                 </f:facet>
 
                 <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-                    <p:graphicImage name="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" /> 
+                    <img src="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" /> 
 
                     <p:outputPanel>
-                        <h:panelGrid columns="2" cellpadding="5">
+                        <h:panelGrid cellpadding="5">
                             
-                            <h:outputText value="#{movie.title}"/>
+                            <h:outputText value="#{movie.title}" style="font-weight: bold; font-size: 36px;"/>
 
-                            <h:outputText value="#{movie.overview}"/>
+                            <h:outputText value="#{movie.overview}" style="font-size: 18px"/>
 
-                            <h:outputText value="#{movie.release_date}"/>
                         </h:panelGrid>
                     </p:outputPanel>
                 </h:panelGrid>

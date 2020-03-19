@@ -127,6 +127,11 @@ a:hover {
     width: 70%;
 }
 
+.watchlist-movie-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .watchlist-add-button {
     margin-left: 25px;
 }
