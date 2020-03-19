@@ -120,3 +120,19 @@ section .section-title {
     color: #007b5e !important;
 }
 
+.cardTitle {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+
+.cardText {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 9; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   text-align: justify;
+}

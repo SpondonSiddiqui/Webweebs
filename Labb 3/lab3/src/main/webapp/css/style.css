@@ -209,15 +209,25 @@ a:hover {
 }
 
 .search-movie {
-    width:300px;
+    width:400px;
+}
+
+.search {
+    min-width:40%; 
+    margin-left: 0%;
+}
+
+.search :focus{
+    border-color: yellow;
 }
 
 .search-button {
-    margin-left:10px !important;
+    margin-left:20px !important;
 }
 
 .search-wrapper {
-   margin-left:22px;
+   margin-left:0px;
+   margin-right: 0px;
 }
 
 /*detailedMovie.xhtml review form*/
