@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 	<h:head>
@@ -13,74 +13,65 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	</h:head>
 	<h:body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
 			<div class="container">
-                                <img src="img/logo.png" width="40" />
-				<a class="navbar-brand" href="#">IMDB Clone</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav ml-auto">
+                                <a class="navbar-brand" href="index.xhtml">
+                                    <img src="img/logo.png" height="30" class="d-inline-block align-top"
+                                        alt="mdb logo"/> MovIT
+                                </a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                  </button>
+                                
+                                <!-- Links -->
+                                <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item active">
+                                      <p:link class="nav-link" value="Movies" outcome="index">
+                                          
+                                      </p:link>
+                                  </li>
+                                  <li class="nav-item">
+                                    <p:link class="nav-link" value="Series" outcome="index">
+                                          
+                                      </p:link>
+                                  </li>
+                                  <li class="nav-item">
+                                      <p:link class="nav-link" value="My Watchlists" outcome="index" rendered="#{userBean.loggedIn}">
+                                          
+                                      </p:link>
+                                  </li>
+                                </ul>
+                                <ul class="navbar-nav ml-auto nav-flex-icons">
+                                    <li>
+                                        
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                                          aria-haspopup="true" aria-expanded="false">
+                                          <i class="fas fa-user">
+                                              <p:outputLabel class="logged-in-text" rendered="#{userBean.loggedIn}" value="Logged in as #{userBean.user.username}"></p:outputLabel>
+                                              <img src="img/user_logo.png" width="25"/>
+                                          </i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                                          aria-labelledby="navbarDropdownMenuLink-333">
+                                          <h:form>
                                             
-                                            <h:form>
-						<p:outputPanel class="button-container" rendered="#{userBean.loggedIn}">
-                                                    <p:outputLabel class="logged-in-text" value="Logged in as #{userBean.user.username}"></p:outputLabel>
-                                                    <p:commandButton value="Log out" class="login-button" action="#{loginBackingBean.onLogout}" update="@form"></p:commandButton>
-                                                </p:outputPanel>
-                                                <p:outputPanel class="button-container" rendered="#{!userBean.loggedIn}">
-                                                    <p:button value="Log in" class="login-button" outcome="login"></p:button>
-                                                    <p:button value="Sign up" class="login-button" outcome="signup"></p:button>
-                                                </p:outputPanel>
-                                            </h:form>
-					</ul>
-				</div>
+                                                <p:commandLink value="Log out" rendered="#{userBean.loggedIn}" class="dropdown-item" action="#{loginBackingBean.onLogout}"></p:commandLink>
+                                            
+                                                <p:link value="Log in" class="dropdown-item" rendered="#{!userBean.loggedIn}" outcome="login"></p:link>
+                                                <p:link value="Create an account" class="dropdown-item" rendered="#{!userBean.loggedIn}" outcome="signup"></p:link>
+                                            
+                                        </h:form>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                             
+                                
 			</div>
 		</nav>
-		<header>
-			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner" role="listbox">
-					<!-- Slide One - Set the background image for this slide in the line below -->
-					<div class="carousel-item active" style="background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3 class="display-4">First Slide</h3>
-							<p class="lead">This is a description for the first slide.</p>
-						</div>
-					</div>
-					<!-- Slide Two - Set the background image for this slide in the line below -->
-					<div class="carousel-item" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1920x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3 class="display-4">Second Slide</h3>
-							<p class="lead">This is a description for the second slide.</p>
-						</div>
-					</div>
-					<!-- Slide Three - Set the background image for this slide in the line below -->
-					<div class="carousel-item" style="background-image: url('https://source.unsplash.com/O7fzqFEfLlo/1920x1080')">
-						<div class="carousel-caption d-none d-md-block">
-							<h3 class="display-4">Third Slide</h3>
-							<p class="lead">This is a description for the third slide.</p>
-						</div>
-					</div>
-				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
-		</header>
-		<section>
-			<div class="container">
-				<ui:insert name="content" />
-			</div>
-		</section>
+		
 	</h:body>
 </html>

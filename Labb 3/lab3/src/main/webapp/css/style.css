@@ -179,9 +179,9 @@ a:hover {
 
 .logged-in-text {
     float:left;
-    margin-top:11px;
-    padding-right:5px;
-    color:white !important;
+    margin-top:4px;
+    padding-right:10px;
+    color:#000 !important;
 }
 
 #navbar {
