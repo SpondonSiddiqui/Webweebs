@@ -12,6 +12,8 @@ import model.dao.UserDAO;
 import model.entity.WebUser;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import model.dao.WatchListDAO;
+import model.entity.WatchList;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
@@ -34,6 +36,9 @@ public class SignUpBackingBean implements Serializable {
 
     @EJB
     private UserDAO userDAO;
+    
+    @EJB
+    private WatchListDAO watchListDAO;
 
     @PostConstruct
     private void init() { 
@@ -49,6 +54,7 @@ public class SignUpBackingBean implements Serializable {
         WebUser wu = new WebUser(username, password); //create new user
         if (!userDAO.contains(wu.getUsername())) {
             userDAO.create(wu);
+            watchListDAO.create(new WatchList(username + "'s watchlist", null, wu));
             Messages.addGlobalWarn("Created user " + username + "!", null);
             Faces.validationFailed(); 
             return "signupsuccesful"; //return to index
