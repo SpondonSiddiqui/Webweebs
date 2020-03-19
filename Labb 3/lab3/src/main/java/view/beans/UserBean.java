@@ -1,4 +1,4 @@
-package model.view;
+package view.beans;
 
 import java.io.Serializable;
 import javax.annotation.ManagedBean;

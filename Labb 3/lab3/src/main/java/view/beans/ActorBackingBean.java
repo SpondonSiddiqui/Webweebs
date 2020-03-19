@@ -1,4 +1,4 @@
-package model.beans;
+package view.beans;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package beans;
+package view.beans;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -24,7 +24,7 @@ import model.dao.UserDAO;
 import model.entity.Movie;
 import model.entity.Review;
 import model.entity.WebUser;
-import model.view.UserBean;
+import view.beans.UserBean;
 import org.omnifaces.cdi.Param;
 import org.omnifaces.util.Faces;
 import org.primefaces.event.RateEvent;
