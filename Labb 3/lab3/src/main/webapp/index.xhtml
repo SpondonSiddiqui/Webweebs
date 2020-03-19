@@ -22,6 +22,7 @@
 
         <!-- Top movies carousel -->
         <div class="container text-center my-3 carousel-wrapper">
+            <!-- Header -->
             <div class="row">
                 <div class="col-auto mr-auto">
                     <h4 class="mb-3">Top movies right now</h4>
@@ -33,9 +34,10 @@
             <div class="row mx-auto my-auto">
                 <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
                     <div class="carousel-inner w-100" role="listbox">
+                        <!-- Top movie card -->
                         <div class="carousel-item active">
                             <div class="col-md-4">
-                                <div class="card card-body">
+                                <div class="card">
                                     <h:link outcome="detailedMovie">
                                         <img class="card-img-top img-fluid" 
                                              src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(0).poster_path}" 
@@ -50,6 +52,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
                         <div class="carousel-item">
                             <div class="col-md-4">
                                 <div class="card">
@@ -67,6 +71,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
                         <div class="carousel-item">
                             <div class="col-md-4">
                                 <div class="card">
@@ -84,6 +90,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
                         <div class="carousel-item">
                             <div class="col-md-4">
                                 <div class="card">
@@ -101,6 +109,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
                         <div class="carousel-item">
                             <div class="col-md-4">
                                 <div class="card">
@@ -118,6 +128,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
                         <div class="carousel-item">
                             <div class="col-md-4">
                                 <div class="card">
@@ -135,6 +147,45 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <h:link outcome="detailedMovie">
+                                        <img class="card-img-top img-fluid" 
+                                             src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(6).poster_path}" 
+                                             alt="Card image cap">
+                                            <f:param name="id" value="#{movieBackingBean.movies.get(6).id}"/>
+                                        </img>
+                                    </h:link>
+                                    <div class="card-body">
+                                        <h4 class="card-title">#{movieBackingBean.movies.get(6).title}</h4>
+                                        <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(6).avg_rating}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ./Top movie card -->
+                        <!-- Top movie card -->
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <h:link outcome="detailedMovie">
+                                        <img class="card-img-top img-fluid" 
+                                             src="https://image.tmdb.org/t/p/w185/#{movieBackingBean.movies.get(7).poster_path}" 
+                                             alt="Card image cap">
+                                            <f:param name="id" value="#{movieBackingBean.movies.get(7).id}"/>
+                                        </img>
+                                    </h:link>
+                                    <div class="card-body">
+                                        <h4 class="card-title">#{movieBackingBean.movies.get(7).title}</h4>
+                                        <p class="card-text"><small class="text-muted">Rating: #{movieBackingBean.movies.get(7).avg_rating}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Top movie card -->
                     </div>
                     <a class="carousel-control-prev w-auto" href="#recipeCarousel" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
