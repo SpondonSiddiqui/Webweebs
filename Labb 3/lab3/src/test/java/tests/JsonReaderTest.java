@@ -54,7 +54,7 @@ public class JsonReaderTest {
         AdamSandler = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SandlerID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         LakeithStanfield = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+StanfieldID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
         JoshSafdie = JsonReader.getActorFromUrl("https://api.themoviedb.org/3/person/"+SafdieID+"?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US");
-        SandlerMovies = JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/search/person?api_key=10dfedc564f5b41f3c803582d1d3a5fa&language=en-US&query=Adam%20Sandler&page=1&include_adult=true", SandlerID);
+        SandlerMovies = JsonReader.getMoviesFromActorUrl("https://api.themoviedb.org/3/person/"+SandlerID+"/movie_credits?api_key=10dfedc564f5b41f3c803582d1d3a5fa");
         CrimeGenre = "Crime";
         ThrillerGenre = "Thriller";
         DramaGenre = "Drama";

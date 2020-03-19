@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title value="#{showActorBackingBean.getActor()}" var="actor">#{actor.name}
-            <f:param name="name" value="#{actor.name}"/>
+        <title value="#{showActorBackingBean.actor}" var="actor">#{showActorBackingBean.actor.name}
+            <f:param name="id" value="#{actor.id}"/>
         </title>
         <h:outputStylesheet name="css/jsfcrud.css"/>
 
@@ -21,32 +22,71 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="js/main.js"></script>
-        <div class="card text-center">
-           
+        
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+        
+        <div class="navbar" id="navi">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <h:link class="nav-item nav-link active" outcome="">About <span class="sr-only">(current)</span></h:link>
+                        <h:link class="nav-item nav-link" outcome="filmography.xhtml">Filmography
+                            <f:param name="id" value="#{showActorBackingBean.id}"/>
+                        </h:link>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div id="content" class="card text-center">
+
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
                     <div class="row">
                         <div class="col-3">
-                            <img src="img/HereDatBoi.jpg" class="img-fluid" alt="Responsive image"/>
-                            <table class="table table-sm" value="#{showActorBackingBean.getActor()}" var="actor">
-                                
+                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showActorBackingBean.actor.name}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            
+                           
+                            <img src="#{showActorBackingBean.actor.picture_path}" class="img-fluid" alt="Responsive image" width="400px" />
+                            <table class="table table-sm" value="#{showActorBackingBean.actor}" var="actor">
+
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Birth year</th>
-                                        <td>#{showActorBackingBean.actor.birthYear}</td>
+                                        <th scope="row">Born</th>
+                                        <td>#{showActorBackingBean.actor.birthday}</td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <th scope="row">#{showActorBackingBean.getDiedHeader()}</th>
+                                        <td>#{showActorBackingBean.getDeathday()}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col" value="#{showActorBackingBean.actor}">
-                            
-                            <h5 id="movieTitle" class="card-title text-left" float="left">#{showActorBackingBean.actor.name}</h5>
-                            <p id="movieDescription" class="card-text text-left">#{showActorBackingBean.actor.bio}</p>
+                        
+                        <div class="col-6">
+
+                            <p id="actorDescription" class="card-text text-left">#{showActorBackingBean.actor.bio}</p>
                         </div>
                     </div>
+                    <div class="row">
+
+                    </div>
+
+
                 </div>
-                
+
             </div>
         </div>
     </h:body>
