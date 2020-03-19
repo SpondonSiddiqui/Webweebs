@@ -21,6 +21,8 @@ public class ActorBackingBean implements Serializable {
     
     private List<Actor> actors;
     
+    private String searchKey;
+    
     @PostConstruct
     private void init() {
         try{
@@ -28,5 +30,14 @@ public class ActorBackingBean implements Serializable {
         } catch (IOException ex){
             System.out.println(ex.toString());
         }   
+    }
+    
+    public void searchMovie(){
+        try{
+            this.actors = actorDAO.searchActor(searchKey);
+            System.out.println(searchKey);
+        } catch (IOException ex){
+            System.out.println(ex.toString());
+        }
     }
 }
