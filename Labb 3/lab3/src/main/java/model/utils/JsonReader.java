@@ -325,7 +325,8 @@ public class JsonReader {
             bio = "Could not find biography";
         }
         if(field.has("id")){
-            id = field.findValue("id").asText();
+            List<JsonNode> tmp = field.findValues("id");
+            id = tmp.get(0).get("id").asText();
         } else{
             id = "Could not find id";
         }
