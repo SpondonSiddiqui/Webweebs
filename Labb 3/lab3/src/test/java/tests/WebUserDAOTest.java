@@ -1,8 +1,12 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import model.entity.WebUser;
 import model.dao.UserDAO;
+import model.entity.Movie;
+import model.entity.WatchList;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

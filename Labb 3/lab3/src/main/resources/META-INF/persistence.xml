@@ -3,6 +3,7 @@
   <persistence-unit name="academy" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/academy</jta-data-source>
+    <class>model.entity.WatchList</class>
     <properties>
       <property name="eclipselink.ddl-generation" value="none"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
