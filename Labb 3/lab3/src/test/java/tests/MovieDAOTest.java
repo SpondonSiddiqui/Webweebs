@@ -86,7 +86,7 @@ public class MovieDAOTest {
         }*/
         
         WebUser wb = new WebUser("marcus", "hej");
-        userDAO.create(wb);
+        //userDAO.create(wb);
     }
 
     /*@After
