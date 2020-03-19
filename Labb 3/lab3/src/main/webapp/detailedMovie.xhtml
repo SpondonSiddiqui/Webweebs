@@ -27,7 +27,7 @@
             <ui:define name="menu">
             </ui:define>
         </ui:decorate>
-        
+
         <div class="navbar" id="navi">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="#"></a>
@@ -41,7 +41,7 @@
                         <h:link class="nav-item nav-link" outcome="movieCast.xhtml">Cast and Crew
                             <f:param name="id" value="#{showMovieBackingBean.id}"/>
                         </h:link>
-                        
+
                     </div>
                 </div>
             </nav>
@@ -51,7 +51,7 @@
 
             <div class="tab-content card-body" id="actorContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
-                    <div class="row">
+                    <h:form class="row">
                         <div class="col-3">
                             <h5 id="movieTitle" class="card-title text-left" float="left">#{showMovieBackingBean.movie.title}
                                 (#{showMovieBackingBean.releaseYear()})
@@ -59,11 +59,13 @@
                         </div>
                         <img src="img/Gold_Star.svg.png" width="30px" height="25px"/>
                         <h4 padding-left="10px">#{showMovieBackingBean.movie.avg_rating}</h4>
-                    </div>
+                        <p:commandButton value="+ Add to watchlist" rendered="#{userBean.loggedIn}"
+                                         action="#{watchListBackingBean.onAddMovieToWatchList(showMovieBackingBean.movie.id)}"></p:commandButton>
+                    </h:form>
                     <div class="row">
                         <div class="col-3">
-                            
-                           
+
+
                             <img src="https://image.tmdb.org/t/p/w185/#{showMovieBackingBean.movie.poster_path}" class="img-fluid" alt="Responsive image" width="400px" />
                             <table class="table table-sm" value="#{showMovieBackingBean.getMovie()}" var="movie">
 
@@ -79,7 +81,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                         <div class="col-5" value="#{showMovieBackingBean.movie}">
 
                             <p id="movieDescription" class="card-text text-left">#{showMovieBackingBean.movie.overview}</p>
@@ -120,25 +122,25 @@
                     Logged in as: <p:outputLabel class="logged" id="username" rendered="#{userBean.loggedIn}" value="#{userBean.user.username}" />
                 </p:outputLabel>
                 <p:outputLabel rendered="#{!userBean.loggedIn}">Log in to leave a review</p:outputLabel>
-                    <br/>
+                <br/>
                 <h:outputText rendered="#{userBean.loggedIn}" value="Rate the movie:" /> 
                 <p:rating rendered="#{userBean.loggedIn}" stars="10" value="#{reviewBackingBean.rating}" /> 
-                    <br/>
+                <br/>
                 <p:inputTextarea rows="5" cols="30" id="input" class="content" counter="display" maxlength="250" 
                                  counterTemplate="{0} characters remaining." autoResize="false"
                                  disabled="#{!userBean.loggedIn}" value="#{reviewBackingBean.contentInput}" />
-                    <br/>
+                <br/>
                 <h:outputText id="display" />
                 <p:commandButton value="Submit" disabled="#{!userBean.loggedIn}"
-                                    action="#{reviewBackingBean.submitReview(userBean.user.username)}" class="submitButton">
+                                 action="#{reviewBackingBean.submitReview(userBean.user.username)}" class="submitButton">
                 </p:commandButton> <br/>     
-                
+
                 <p:growl/>
-                
+
             </h:form>
-            
-            
-            
+
+
+
         </div>
     </h:body>
 </html>

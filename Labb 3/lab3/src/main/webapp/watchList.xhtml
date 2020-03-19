@@ -12,8 +12,35 @@ and open the template in the editor.
     <head>
         <title>Watchlist</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
+        <ui:decorate template="WEB-INF/template/common.xhtml">
+            <ui:define name="menu">
+            </ui:define>
+        </ui:decorate>
+        <h:form class="watchlist">
+            <p:dataScroller value="#{watchListBackingBean.userWatchList.movies}" var="movie" chunkSize="10">
+                <f:facet name="header">
+                    #{userBean.user.username}'s watchlist
+                </f:facet>
+
+                <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+                    <p:graphicImage name="https://image.tmdb.org/t/p/w185/#{movie.poster_path}" /> 
+
+                    <p:outputPanel>
+                        <h:panelGrid columns="2" cellpadding="5">
+                            
+                            <h:outputText value="#{movie.title}"/>
+
+                            <h:outputText value="#{movie.overview}"/>
+
+                            <h:outputText value="#{movie.release_date}"/>
+                        </h:panelGrid>
+                    </p:outputPanel>
+                </h:panelGrid>
+            </p:dataScroller>
+        </h:form>
         <div>
             <!--<p:param value="#{userBean.user}"/>-->
         </div>
