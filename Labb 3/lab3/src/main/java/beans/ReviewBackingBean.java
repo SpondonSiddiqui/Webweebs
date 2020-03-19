@@ -39,6 +39,9 @@ public class ReviewBackingBean implements Serializable {
     @Param(name = "id")
     private String id;
     
+    @Inject
+    private UserBean userBean;
+    
     @EJB
     private MovieDAO movieDAO;
     
@@ -69,7 +72,10 @@ public class ReviewBackingBean implements Serializable {
      * 
      * @param user user session
      */
-    public void submitReview(String user){
+    public void submitReview(){
+        
+        final WebUser webUser = userBean.getUser();
+        
         if (contentInput.equals("")) return;
         
         try {
@@ -83,7 +89,7 @@ public class ReviewBackingBean implements Serializable {
             movieDAO.create(movie);
         } 
 
-        Review newReview = new Review(contentInput, userDAO.getUserByName(user).get(0), 
+        Review newReview = new Review(contentInput, userDAO.getUserByName(webUser.getUsername()).get(0), 
                 formatDate(), rating.toString(), movie);
         reviewDAO.create(newReview);
         
